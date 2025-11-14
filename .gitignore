@@ -1,0 +1,11 @@
+node_modules/
+.config/nvim/*.json
+
+.config/fish/functions/tide
+.config/fish/functions/*.py
+
+.config/tmux/plugins/*
+.config/tmux/plugins/
+
+.config/btop/btop.log
+.local/bin/oh-my-posh

@@ -1,0 +1,128 @@
+/* ================================
+   🪟 Waybar Window (Gruvbox)
+=================================== */
+window#waybar {
+  font-family: "JetBrainsMono Nerd Font", FontAwesome, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  background-color: rgba(40, 40, 40, 1);
+  color: #ebdbb2;
+  transition: background-color 0.4s ease-out;
+}
+
+window#waybar.empty {
+  background-color: rgba(40, 40, 40, 0);
+}
+
+/* ================================
+   ✨ Animations
+=================================== */
+@keyframes blink {
+  to {
+    color: #ebdbb2;
+  }
+}
+
+/* ================================
+   🧩 Workspaces
+=================================== */
+#workspaces button {
+  padding: 0 3px;
+  background: transparent;
+  color: #ebdbb2;
+  border: none;
+  transition: color 0.4s ease-in-out;
+}
+
+#workspaces button.active {
+  color: #fabd2f;
+}
+
+#workspaces button.urgent {
+  color: #fb4934;
+  animation: blink 0.5s steps(12) infinite alternate;
+}
+
+#workspaces button.empty {
+  opacity: 0.6;
+}
+
+/* ================================
+   🧱 Module Padding & Spacing
+=================================== */
+#backlight,
+#pulseaudio,
+#battery,
+#network,
+#cpu,
+#custom-power,
+#custom-search,
+#custom-expand-icon,
+#power-profiles-daemon {
+  padding: 0px 10px;
+}
+
+#clock,
+#workspaces,
+#window {
+  padding: 0px 2px;
+}
+
+/* ================================
+   🔋 Battery
+=================================== */
+#battery {
+  transition: color 0.3s ease-in-out;
+}
+
+#battery.charging,
+#battery.plugged {
+  color: #98971a;
+  /* green */
+}
+
+#battery.critical:not(.charging) {
+  color: #fb4934;
+  /* red */
+  animation: blink 0.5s steps(12) infinite alternate;
+}
+
+/* ================================
+   ⚡ Power Profiles
+=================================== */
+#power-profiles-daemon.performance {
+  color: #fb4934;
+}
+
+#power-profiles-daemon.balanced {
+  color: #83a598;
+}
+
+#power-profiles-daemon.power-saver {
+  color: #98971a;
+}
+
+/* ================================
+   🔊 Audio
+=================================== */
+#pulseaudio {
+  transition: color 0.4s ease-in-out;
+}
+
+#pulseaudio.muted {
+  color: #fb4934;
+  /* red */
+}
+
+/* ================================
+   🧰 System Tray
+=================================== */
+#tray>.passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray>.needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: #fb4934;
+  /* red */
+}

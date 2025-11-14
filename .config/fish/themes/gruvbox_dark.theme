@@ -1,0 +1,23 @@
+# Syntax Highlighting Colors
+fish_color_normal ebdbb2          # fg1 - main foreground
+fish_color_command b8bb26         # green-light - commands
+fish_color_keyword d3869b         # purple-light - keywords
+fish_color_quote fabd2f           # yellow-light - strings/quotes
+fish_color_redirection fe8019     # orange-light - pipes, >, <
+fish_color_end d65d0e             # orange - statement end (;, &)
+fish_color_option 83a598          # blue-light - options/flags
+fish_color_error fb4934           # red-light - errors
+fish_color_param fabd2f           # yellow-light - parameters/args
+fish_color_comment 928374         # gray - comments
+fish_color_selection --background=3c3836   # bg1 - selection
+fish_color_search_match --background=504945 # bg2 - search highlight
+fish_color_operator 8ec07c        # aqua-light - operators (&&, ||)
+fish_color_escape 458588          # blue - escapes (\n, \t)
+fish_color_autosuggestion 7c6f64  # bg4 - muted autosuggestion
+
+# Completion Pager Colors
+fish_pager_color_progress 928374
+fish_pager_color_prefix b8bb26    # green-light - prefix
+fish_pager_color_completion ebdbb2 # fg1 - completion text
+fish_pager_color_description a89984 # fg4 - description
+fish_pager_color_selected_background --background=3c3836
