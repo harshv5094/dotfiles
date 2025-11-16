@@ -32,7 +32,8 @@ fi
 # Install required packages
 if command -v flatpak >/dev/null; then
   printf "%b\n" "Flatpak is installed"
-  flatpak install com.github.tchx84.Flatseal com.rtosta.zapzap com.brave.Browser org.telegram.desktop com.discordapp.Discord
+  flatpak install com.github.tchx84.Flatseal com.rtosta.zapzap com.brave.Browser \
+    org.telegram.desktop com.discordapp.Discord com.obsproject.Studio
 else
   case "$package_manager" in
   pacman)
