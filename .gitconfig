@@ -25,34 +25,15 @@
   # Amend to the last commit
   amend = commit --amend --no-edit --allow-empty
 
-  # Force pushes the repository overwriting remote
-  forcepush = push --force-with-lease
-
-  # Short log aliases
-	logs = log --show-signature
-
-  # Checks for all unreachable object
-  pdr = prune --dry-run
-
-  # Set expirty of all unreachable object to now 
-  ref-exp-now = reflog expire --expire=now --expire-unreachable=now --all
-
   # A multi push command for my ease
-	pushall = !git remote | xargs -L1 git push --all
+	push-all = !git remote | xargs -L1 git push --all
 
   # edit conflicted file on merge
   edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; nvim `f`"
   # add conflicted file on merge
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
 
-  # Clean untracked object
-	deepclean = !git reflog expire --expire=now --expire-unreachable=now --all && git gc --prune=now --aggressive
-
-[ghq]
-  root = ~/.ghq/
-
-[github]
-  user = harshv5094
+	ref-prune-now = !git reflog expire --expire=now --expire-unreachable=now --all && git gc --prune=now --aggressive
 
 [difftool "nvimdiff"]
   cmd = nvim -d "$LOCAL" "$REMOTE"
@@ -60,12 +41,6 @@
 [mergetool "nvimdiff"]
 	cmd = nvim -d "$LOCAL" "$REMOTE" -ancestor "$BASE" -merge "$MERGED"
 	trustExitCode = true
-
-[filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudeg -- %f
-  required = true
-  process = git-lfs filter-process
 
 [user]
 	name = Harsh Vyapari (harshv5094)
@@ -76,3 +51,8 @@
 [commit]
 	gpgsign = true
 
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

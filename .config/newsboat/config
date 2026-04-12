@@ -1,0 +1,3 @@
+include "~/.config/newsboat/sections/design"
+include "~/.config/newsboat/sections/keymaps"
+include "~/.config/newsboat/sections/options"

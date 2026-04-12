@@ -1,0 +1,33 @@
+customCommands:
+  - key: "C"
+    command: "git cz"
+    description: "commit with commitizen"
+    context: "files"
+    loadingText: "opening commitizen commit tool"
+    output: terminal
+gui:
+  nerdFontsVersion: "3"
+  theme:
+    activeBorderColor:
+      - "#b57614"
+      - bold
+    inactiveBorderColor:
+      - "#928374"
+    searchingActiveBorderColor:
+      - "#af3a03"
+    optionsTextColor:
+      - "#076678"
+    selectedLineBgColor:
+      - "#ebdbb2"
+    cherryPickedCommitFgColor:
+      - "#427b58"
+    cherryPickedCommitBgColor:
+      - "#928374"
+    markedBaseCommitFgColor:
+      - "#b57614"
+    unstagedChangesColor:
+      - "#9d0006"
+    defaultFgColor:
+      - "#3c3836"
+os:
+  editPreset: "nvim-remote"

@@ -1,6 +1,3 @@
--- Default variables values for common options
--- local default_height = 20
-
 return {
 	{
 		"nvim-telescope/telescope.nvim",
@@ -22,7 +19,7 @@ return {
 				desc = "Telescope -> Find files from Lazy config root",
 			},
 			{
-				";c",
+				"<localleader>tc",
 				function()
 					local builtin = require("telescope.builtin")
 					builtin.lsp_incoming_calls()
@@ -30,39 +27,11 @@ return {
 				desc = "Telescope -> LSP incoming calls",
 			},
 			{
-				";;",
+				"<localleader>tr",
 				function()
 					require("telescope.builtin").resume()
 				end,
 				desc = "Telescope -> Resume",
-			},
-			{
-				";f",
-				function()
-					local builtin = require("telescope.builtin")
-					builtin.find_files({
-						no_ignore = false,
-						follow = true,
-						hidden = true,
-					})
-				end,
-				desc = "Telescope -> Find Files",
-			},
-			{
-				";b",
-				function()
-					local builtin = require("telescope.builtin")
-					builtin.buffers()
-				end,
-				desc = "Telescope -> Buffers",
-			},
-			{
-				";h",
-				function()
-					local builtin = require("telescope.builtin")
-					builtin.help_tags()
-				end,
-				desc = "Telescope -> Help Tags",
 			},
 			{
 				"sf",
@@ -75,46 +44,18 @@ return {
 					telescope.extensions.file_browser.file_browser({
 						path = "%:p:h",
 						cwd = telescope_buffer_dir(),
-						respect_gitignore = false,
+						respect_gitignore = true,
 						hidden = true,
 						follow_symlinks = true,
 						grouped = true,
 						previewer = true,
 						initial_mode = "normal",
-						layout_config = {
-							-- height = default_height,
-						},
+						-- layout_config = {
+						-- 	height = 0.60,
+						-- },
 					})
 				end,
 				desc = "Telescope -> Browse File",
-			},
-			{
-				";nn",
-				function()
-					require("utils.notes").create_note()
-				end,
-				desc = "Notes -> New Markdown Note",
-			},
-			{
-				";nt",
-				function()
-					require("utils.notes").search_by_tag()
-				end,
-				desc = "Notes -> Search Notes by Tag",
-			},
-			{
-				";nf",
-				function()
-					require("utils.notes").find_notes()
-				end,
-				desc = "Notes -> Find Notes",
-			},
-			{
-				";ns",
-				function()
-					require("utils.notes").sync_to_remote()
-				end,
-				desc = "Notes -> Sync to My Remote Repos",
 			},
 		},
 		config = function(_, opts)
@@ -123,11 +64,20 @@ return {
 			local fb_actions = require("telescope").extensions.file_browser.actions
 
 			opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
+				file_ignore_patterns = {
+					"%.git/",
+					"node_modules",
+					-- "%.git$",
+				},
 				wrap_results = true,
 				layout_strategy = "horizontal",
 				layout_config = {
-					prompt_position = "top",
-					-- height = default_height,
+					horizontal = {
+						prompt_position = "top",
+						previewer_width = 0.55,
+					},
+					width = 0.87,
+					height = 0.80,
 				},
 				sorting_strategy = "ascending",
 				winblend = 0,
@@ -138,6 +88,28 @@ return {
 				},
 			})
 
+			-- TODO: Find a permanent way to set default theme for picker
+
+			-- local custom_style = {
+			-- 	theme = "ivy",
+			-- 	layout_config = { height = 0.60 },
+			-- }
+			--
+			-- opts.pickers = {
+			-- 	diagnostics = vim.tbl_extend("force", custom_style, {
+			-- 		layout_config = { preview_cutoff = 9999 },
+			-- 	}),
+			-- 	buffers = custom_style,
+			-- 	find_files = custom_style,
+			-- 	live_grep = custom_style,
+			-- 	keymaps = custom_style,
+			-- 	help_tags = custom_style,
+			-- 	command_history = custom_style,
+			-- 	colorscheme = custom_style,
+			-- 	git_status = custom_style,
+			-- 	man_pages = custom_style,
+			-- }
+			--
 			opts.extensions = {
 				file_browser = {
 					-- theme = "ivy",

@@ -1,34 +1,29 @@
 {
-  // General Settings
   "reload_style_on_change": true,
-  "layer": "top",
   "position": "top",
-  "height": 26,
-  "spacing": 0,
-  // Module Layout
+  "layer": "top",
+  "height": "26",
+  "spacing": "0",
   "modules-left": [
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "hyprland/submap"
   ],
   "modules-center": [
-    "clock",
-    "hyprland/window"
+    "clock"
   ],
   "modules-right": [
     "group/tray-expander",
+    "bluetooth",
     "network",
-    "battery",
     "pulseaudio",
-    "custom/power"
+    "cpu",
+    "battery"
   ],
-  // ===========================
-  // 🧩 Modules Configuration
-  // ===========================
-  // Workspaces
   "hyprland/workspaces": {
     "on-click": "activate",
     "format": "{icon}",
     "format-icons": {
-      "default": "", // fallback workspace icon
+      "default": "",
       "1": "1",
       "2": "2",
       "3": "3",
@@ -38,7 +33,9 @@
       "7": "7",
       "8": "8",
       "9": "9",
-      "active": "\uf192" // dot-circle (active workspace)
+      "10": "0",
+      "active": "󱓻"
+      // "active": "󰮯"
     },
     "persistent-workspaces": {
       "1": [],
@@ -47,6 +44,45 @@
       "4": [],
       "5": []
     }
+  },
+  "hyprland/submap": {
+    "format": "\uf11c ",
+    "tooltip": false,
+    "on-click": "hyprctl dispatch submap reset"
+  },
+  "clock": {
+    "tooltip": false,
+    "format": "{:%a %I:%M %p}",
+    "format-alt": "{:%a %d %b W%V %Y}"
+  },
+  "group/tray-expander": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 600,
+      "children-class": "tray-group-item"
+    },
+    "modules": [
+      "custom/expand-icon",
+      "custom/sysup",
+      "tray"
+    ]
+  },
+  "custom/expand-icon": {
+    "format": "",
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 4
+  },
+  "bluetooth": {
+    "format": "",
+    "format-off": "󰂲",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱",
+    "format-no-controller": "",
+    "tooltip-format": "Devices connected: {num_connections}",
+    "on-click": "kitty --title float -e bluetui"
   },
   "network": {
     "format-icons": [
@@ -64,139 +100,70 @@
     "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
-    "on-click": "kitty --title nm-tui -e nmtui"
+    "on-click": "kitty --title float -e impala"
   },
-  // Active Window
-  "hyprland/window": {
-    "format": "{class}",
-    "tooltip-format": "{title}",
-    "icon": true
-  },
-  // System Tray
-  "tray": {
-    "icon-size": 20,
-    "spacing": 8
-  },
-  // Clock
-  "clock": {
-    "tooltip": false,
-    "format": "{:%a %I:%M %p}",
-    "format-alt": "{:%a %d %b %Y}",
-    "interval": 1
-  },
-  // Backlight
-  "backlight": {
-    "format": "{icon}",
-    "tooltip": false,
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      ""
-    ]
-  },
-  // Battery
-  "battery": {
-    "states": {
-      "warning": 30,
-      "critical": 15
-    },
-    "format": "{icon}",
-    "format-full": "{icon}",
-    "format-discharging": "{icon}",
-    "format-charging": "{icon}",
-    "format-plugged": "\uf1e6", // plug
-    "interval": 1,
-    "tooltip": true,
-    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
-    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
-    "format-icons": {
-      "charging": [
-        "\uf244", // empty
-        "\uf243", // quarter
-        "\uf242", // half
-        "\uf241", // three-quarters
-        "\uf240" // full
-      ],
-      "default": [
-        "\uf244",
-        "\uf243",
-        "\uf242",
-        "\uf241",
-        "\uf240"
-      ]
-    }
-  },
-  // Power Profiles
-  "power-profiles-daemon": {
-    "format": "{icon}",
-    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-    "tooltip": true,
-    "format-icons": {
-      "default": "\uf013", // cog
-      "performance": "\uf135", // rocket
-      "balanced": "\uf12e", // puzzle-piece
-      "power-saver": "\uf06c" // leaf
-    }
-  },
-  // Audio (PulseAudio)
   "pulseaudio": {
     "format": "{icon}",
-    "format-muted": "\uf6a9", // volume-mute
+    "format-muted": "",
     "tooltip-format": "Playing at {volume}%",
+    "scroll-step": 5,
     "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
       "default": [
-        "\uf026", // volume-off
-        "\uf027", // volume-down
-        "\uf028" // volume-up
+        "",
+        "",
+        ""
       ]
     },
-    "on-click": "pavucontrol",
-    "on-click-right": "pamixer -t",
+    "on-click": "kitty --title float -e wiremix",
     "tooltip": true
   },
-  // Tray Expander Group
-  "group/tray-expander": {
-    "orientation": "inherit",
-    "drawer": {
-      "transition-duration": 600,
-      "children-class": "tray-group-item"
-    },
-    "modules": [
-      "custom/expand-icon",
-      "tray",
-      "custom/search",
-      "cpu",
-      "power-profiles-daemon",
-      "backlight"
-    ]
-  },
-  // Expand Icon
-  "custom/expand-icon": {
-    "format": "",
-    "tooltip": false
-  },
-  // Custom Power Button
-  "custom/power": {
-    "format": "\uf011", // power-off
-    "on-click": "~/.config/hypr/scripts/power_menu.sh",
-    "tooltip": false
-  },
-  // Search Icon
-  "custom/search": {
-    "format": "\uF002",
-    "on-click": "rofi -show drun",
-    "tooltip": false
-  },
-  // CPU
   "cpu": {
     "interval": 5,
     "format": "\uf2db",
-    "on-click": "xdg-terminal-exec btop"
+    "on-click": "kitty --title float -e btop"
+  },
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-discharging": "{icon}",
+    "format-charging": "{icon}",
+    "format-plugged": "",
+    "on-click": "auto-cpufreq-gtk",
+    "format-icons": {
+      "charging": [
+        "󰢜",
+        "󰂆",
+        "󰂇",
+        "󰂈",
+        "󰢝",
+        "󰂉",
+        "󰢞",
+        "󰂊",
+        "󰂋",
+        "󰂅"
+      ],
+      "default": [
+        "󰁺",
+        "󰁻",
+        "󰁼",
+        "󰁽",
+        "󰁾",
+        "󰁿",
+        "󰂀",
+        "󰂁",
+        "󰂂",
+        "󰁹"
+      ]
+    },
+    "format-full": "󰂅",
+    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+    "interval": 5,
+    "states": {
+      "warning": 20,
+      "critical": 10
+    }
   }
 }

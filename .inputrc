@@ -1,0 +1,9 @@
+# Enable ignore case
+set completion-ignore-case On
+
+# Show auto-completion list automatically, without double tab
+set show-all-if-ambiguous On
+
+# Intelligent "Up and Down" arrow searching
+"\e[A": history-search-backward
+"\e[B": history-search-forward

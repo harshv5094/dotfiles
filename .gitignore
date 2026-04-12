@@ -1,11 +1,8 @@
-node_modules/
+# Tmux Plugins Folder
+.config/tmux/plugins
+
+# Every Json files in neovim
 .config/nvim/*.json
 
-.config/fish/functions/tide
-.config/fish/functions/*.py
-
-.config/tmux/plugins/*
-.config/tmux/plugins/
-
+# All btop logs file
 .config/btop/btop.log
-.local/bin/oh-my-posh

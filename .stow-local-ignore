@@ -16,12 +16,7 @@ _darcs
 \.gitmodules
 
 # Ignore this custom folders
-extras
-\.scripts
-\.config/pwsh
-\.config/fish
 hyprland
-setup.sh
 
 .+~          # emacs backup files
 \#.*\#       # emacs autosave files

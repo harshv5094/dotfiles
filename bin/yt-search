@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Check for yt-dlp
+if ! command -v yt-dlp &>/dev/null; then
+  printf "%b\n" "yt-dlp not found. Install it first."
+  exit 1
+fi
+
+# Function to fetch search results
+search_youtube() {
+  query="$1"
+  yt-dlp "ytsearch5:${query}" \
+    --flat-playlist \
+    --print "%(id)s|%(title)s|%(channel)s|%(duration_string)s" \
+    --playlist-end 5 \
+    --skip-download \
+    --quiet
+}
+
+# Main
+if [[ $# -eq 0 ]]; then
+  printf "%b\n" "Usage: yt-search <query>"
+  exit 1
+fi
+
+query="$*"
+echo "Searching for: $query..."
+
+# Fetch results
+results=$(search_youtube "$query")
+
+if [[ -z "$results" ]]; then
+  echo "No results found"
+  exit 1
+fi
+
+if command -v kitty &>/dev/null; then
+  tmp_dir=$(mktemp -d)
+  cleanup() { rm -rf "$tmp_dir"; }
+  trap cleanup EXIT
+
+  while IFS='|' read -r video_id title channel duration; do
+    echo "https://youtube.com/watch?v=${video_id}" >"$tmp_dir/${title} - ${channel} [${duration}].txt"
+  done <<<"$results"
+
+  selected=$(kitten choose-files "$tmp_dir")
+
+  if [[ -n "$selected" && -f "$selected" ]]; then
+    video_url=$(cat "$selected")
+  else
+    exit 0
+  fi
+else
+  selected=$(echo "$results" | fzf \
+    --delimiter '|' \
+    --with-nth 2,3,4 \
+    --height 80% \
+    --layout reverse \
+    --header 'Select video to play (Ctrl-C to cancel)')
+
+  if [[ -n "$selected" ]]; then
+    video_id=$(echo "$selected" | cut -d'|' -f1)
+    video_url="https://youtube.com/watch?v=${video_id}"
+  else
+    exit 0
+  fi
+fi
+
+echo "Playing: $video_url"
+
+if command -v hyprctl &>/dev/null; then
+  hyprctl dispatch exec "[workspace 10] mpv \"$video_url\""
+else
+  mpv "$video_url"
+fi

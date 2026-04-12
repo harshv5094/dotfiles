@@ -1,0 +1,13 @@
+# ==========================================
+# Options
+# ==========================================
+
+# Exchanging keys for feedlist and article list
+bind k feedlist,articlelist prev
+bind j feedlist,articlelist next
+bind K articlelist prev-feed
+bind J articlelist next-feed
+
+# Setting up vim keys for up and down
+bind j article,help down
+bind k article,help up

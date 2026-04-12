@@ -1,0 +1,26 @@
+# ==========================================
+# Options
+# ==========================================
+
+# Cleanup Everything on quit
+cleanup-on-quit yes
+
+# Auto reload all the feeds
+auto-reload yes
+
+# Refresh feeds on startup
+refresh-on-startup yes
+
+# Setting up default browser
+browser firefox
+
+# Max arcticle limit
+max-items 15
+
+# Keep article for certain days
+# keep-articles-days 20
+
+# Notifications
+# notify-always yes
+# notify-beep yes
+# notify-program "$(which mako)"

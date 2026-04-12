@@ -1,11 +1,31 @@
-#######################################################
-# Z shell Setup
-#######################################################
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  if [[ -f "/opt/homebrew/bin/brew" ]]; then
-    # If you're using macOS, you'll want this enabled
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  fi
+# History settings
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=5000
+export SAVEHIST=$HISTSIZE
+export HISTFILESIZE=10000
+export HISTTIMEFORMAT="%F %T " # add timestamp to history
+
+# Zsh specific history options
+setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups hist_save_no_dups hist_find_no_dups
+
+# Setting fzf default options
+export FZF_DEFAULT_OPTS="--reverse --border --bind 'alt-j:down,alt-k:up' --ansi"
+
+# Adding home binary path
+export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.config/emacs/bin:$PATH"
+
+# set up XDG folders
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+# If user is mac
+if [[ "$OSTYPE" == "darwin"* && -x "/opt/homebrew/bin/brew" ]]; then
+    export HOMEBREW_PREFIX="/opt/homebrew"
+    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}"
+    export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}"
+    export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
 fi
 
 # Set the directory we want to store zinit and plugins
@@ -21,27 +41,20 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Add in zsh plugins
-zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
 # Add in snippets
 zinit snippet OMZL::git.zsh
+zinit snippet OMZL::completion.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
-zinit snippet OMZP::nvm
 zinit snippet OMZP::archlinux
 zinit snippet OMZP::command-not-found
+[[ "$OSTYPE" == "darwin"* ]] && zinit snippet OMZP::macos
 
-# Install Macos Plugin if macos is present
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  zinit snippet OMZP::macos
-fi
-
-# Load completions
 autoload -Uz compinit && compinit
-
 zinit cdreplay -q
 
 # Keybindings
@@ -50,19 +63,6 @@ bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
 
-# History
-HISTSIZE=5000
-HISTFILE=~/.zsh_history
-SAVEHIST=$HISTSIZE
-HISTDUP=erase
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
-
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -70,81 +70,108 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
+# Open buffer line in editor
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
 
-function have() {
-  command -v "$1" >/dev/null 2>&1
-}
+# Bind Magic space command
+bindkey " " magic-space
 
-#######################################################
-# EXPORTS
-#######################################################
-export HISTSIZE=5000
-export HISTFILESIZE=10000
-export HISTTIMEFORMAT="%F %T " # add timestamp to history
+# Basic Aliases
+alias ls="ls -F --color=auto"
+alias la='ls -AF --color=auto'
+alias l='ls -CF --color=auto'
+alias ..='cd ..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+alias check-gpu-id='lspci | grep -E "VGA|3D" && echo -e "\nPath: /dev/dri/by-path/" && ls -l /dev/dri/by-path '
 
-# Don't put duplicate lines in the history and do not add lines that start with a space
-export HISTCONTROL=ignoredups:erasedups:ignorespaces:ignoreboth
+# QOL Aliases
+if command -v paru &>/dev/null; then
+  # Install packages interactively
+  pri() {
+    pkgs=$(paru -Slq | fzf --border-label '** Install Packages **' \
+      --multi \
+      --preview 'paru -Sii {1}' \
+      --preview-window=right:60%)
 
-# Adding doom emacs export path
-export PATH="$PATH:$HOME/.config/emacs/bin"
+    # Only run if the string is not empty
+    if [[ -n "$pkgs" ]]; then
+      echo "$pkgs" | xargs -ro paru -S
+    else
+      echo "No packages selected. Exiting..."
+    fi
+  }
 
-# Adding home binary path
-export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.bun/bin:$PATH"
+  # Remove packages interactively
+  pru() {
+    pkgs=$(paru -Qq | fzf --border-label '** Remove Packages **' \
+      --multi \
+      --preview 'paru -Qii {1}' \
+      --preview-window=right:60%)
 
+    # Only run if the string is not empty
+    if [[ -n "$pkgs" ]]; then
+      echo "$pkgs" | xargs -ro paru -Rns
+    else
+      echo "No packages selected. Exiting..."
+    fi
+  }
+fi
 
-# set up XDG folders
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_STATE_HOME="$HOME/.local/state"
-export XDG_CACHE_HOME="$HOME/.cache"
+if command -v kitten &>/dev/null; then
+  listen() {
+    file=$(kitten choose-files ~/Music)
+    if [[ -n "$file" ]]; then
+      play "$file"
+    else
+      echo "No file selected. Exiting...."
+    fi
+  }
 
-# Setting editor variables to nvim
-if have nvim; then
+  view() {
+    file=$(kitten choose-files)
+    if [[ -n "$file" ]]; then
+      kitten icat "$file"
+    else
+      echo "No file selected. Exiting...."
+    fi
+  }
+fi
+
+if command -v pacman &>/dev/null; then
+  alias unlock='sudo rm /var/lib/pacman/db.lck'
+  alias orphan='sudo pacman -Rns $(pacman -Qtdq)'
+fi
+command -v fastfetch &>/dev/null && alias neofetch="fastfetch -c examples/13"
+command -v eza &>/dev/null && alias ll="eza -l -g --icons" && alias lla="eza -l -g -a --icons"
+command -v lazygit &>/dev/null && alias lg="lazygit"
+
+# Changing default editor also setting up default man pager
+if command -v nvim &>/dev/null; then
   export EDITOR=nvim
   export VISUAL=nvim
+  export MANPAGER="nvim +Man!"
+
+  # My custom nvim config
+  [[ -d $HOME/.config/mnvim/ ]] && alias mnvim="NVIM_APPNAME=mnvim nvim"
 fi
 
-# Set up fzf key bindings and fuzzy completion
-if have fzf; then
-  eval "$(fzf --zsh)"
-fi
-
-# Initialize zoxide
-if have zoxide; then
-  eval "$(zoxide init --cmd cd zsh)"
-fi
+command -v fzf &>/dev/null && eval "$(fzf --zsh)"
+command -v gh &>/dev/null && eval "$(gh completion -s zsh)"
+command -v zoxide &>/dev/null && eval "$(zoxide init --cmd=cd zsh)"
 
 # Initialize Starship prompt theme
-if have starship; then
+if command -v starship >/dev/null; then
   eval "$(starship init zsh)"
+else
+  # A simple fallback prompt
+  PROMPT='%F{blue}%n@%m%f:%F{green}%~%f$ '
 fi
 
-#######################################################
-# Aliases
-#######################################################
-# Basic Aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-if have eza; then
-    alias ll="eza -l -g --icons --header"
-    alias lla="eza -l -g -a --icons --header"
-fi
-
-if have lazygit; then
-  alias lg="lazygit"
-fi
-
-if have bat; then
-  alias os-info="bat /etc/os-release"
-fi
-
-#######################################################
-# NVM_DIR
-#######################################################
-if have nvm; then
-  export NVM_DIR="$HOME/.config/nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-fi
+# NVM Directory
+[[ -d "$HOME/.config/nvm" ]] && export NVM_DIR="$HOME/.config/nvm"
+[[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm

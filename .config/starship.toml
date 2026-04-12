@@ -1,18 +1,37 @@
-# Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# Main Prompt
-format = """
-$username\
-$hostname\
-$directory\
-$git_branch\
-$git_state\
-$git_status\
-$line_break\
-$character"""
+# Robbyrussel like theme 
+format = """$character$directory$git_branch"""
+add_newline = false
+
+palette = 'gruvbox_dark'
+
+[palettes.gruvbox_light]
+blue = '#076678'
+cyan = '#427b58'
+green = '#79740e'
+red = '#cc241d'
+yellow = '#d79921'
+gray = '#665c54'
+purple = '#8f3f71'
+
+[palettes.gruvbox_dark]
+blue = '#83a598'
+cyan = '#8ec07c'
+green = '#b8bb26'
+red = '#fb4934'
+yellow = '#fabd2f'
+purple = '#d3869b'
+gray = '#a89984'
+
+[directory]
+truncation_length = 1
+read_only = " 󰌾"
+
+[git_branch]
+symbol = 'git'
+format = '[$symbol:\(([$branch](bold red))\)](bold blue) '
 
 [character]
-success_symbol = "[❯](yellow)"
-error_symbol = "[❯](red)"
-vimcmd_symbol = "[❮](yellow)"
+success_symbol = " [➜](bold green)"
+error_symbol = " [➜](bold red)"

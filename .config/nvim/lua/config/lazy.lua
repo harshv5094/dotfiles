@@ -28,13 +28,19 @@ require("lazy").setup({
 		-- Language Extras
 		{ import = "lazyvim.plugins.extras.lang.markdown" },
 		{ import = "lazyvim.plugins.extras.lang.go" },
-		{ import = "lazyvim.plugins.extras.util.dot" },
 		{ import = "lazyvim.plugins.extras.lang.clangd" },
 		{ import = "lazyvim.plugins.extras.lang.python" },
 		{ import = "lazyvim.plugins.extras.lang.typescript" },
 		{ import = "lazyvim.plugins.extras.lang.json" },
 		{ import = "lazyvim.plugins.extras.lang.yaml" },
 		{ import = "lazyvim.plugins.extras.lang.toml" },
+
+		-- Utilities Extras
+		{ import = "lazyvim.plugins.extras.util.dot" },
+		{ import = "lazyvim.plugins.extras.util.gh" },
+
+		-- UI Extras
+		{ import = "lazyvim.plugins.extras.ui.treesitter-context" },
 
 		-- Editor Extras
 		{ import = "lazyvim.plugins.extras.editor.refactoring" },
@@ -43,70 +49,16 @@ require("lazy").setup({
 		{ import = "plugins" },
 	},
 	defaults = {
-		-- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
-		-- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
 		lazy = false,
-		-- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
-		-- have outdated releases, which may break your Neovim install.
-		version = false, -- always use the latest git commit
-		-- version = "*", -- try installing the latest stable version for plugins that support semver
+		version = false,
 	},
-	icons = {
-		diagnostics = {
-			ERROR = "",
-			WARN = "",
-			HINT = "",
-			INFO = "",
-		},
-		misc = {
-			bug = "",
-			dashed_bar = "┊",
-			ellipsis = "…",
-			git = "",
-			palette = "󰏘",
-			robot = "󰚩",
-			search = "",
-			terminal = "",
-			toolbox = "󰦬",
-			vertical_bar = "│",
-		},
-		kinds = {
-			Array = "󰅪",
-			Class = "",
-			Color = "󰏘",
-			Constant = "󰏿",
-			Constructor = "",
-			Enum = "",
-			EnumMember = "",
-			Event = "",
-			Field = "󰜢",
-			File = "󰈙",
-			Folder = "󰉋",
-			Function = "󰆧",
-			Interface = "",
-			Keyword = "󰌋",
-			Method = "󰆧",
-			Module = "",
-			Operator = "󰆕",
-			Property = "󰜢",
-			Reference = "󰈇",
-			Snippet = "",
-			Struct = "",
-			Text = "",
-			TypeParameter = "",
-			Unit = "",
-			Value = "",
-			Variable = "󰀫",
-		},
-	},
-	install = { colorscheme = { "tokyonight" } },
+	install = { colorscheme = { "habamax" } },
 	checker = {
-		enabled = true, -- check for plugin updates periodically
-		notify = false, -- notify on update
-	}, -- automatically check for plugin updates
+		enabled = true,
+		notify = false,
+	},
 	performance = {
 		rtp = {
-			-- disable some rtp plugins
 			disabled_plugins = {
 				"gzip",
 				-- "matchit",

@@ -1,8 +1,14 @@
+local discipline = require("utils.discipline")
+
+-- Cowboy mode
+discipline.cowboy()
+
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- Custom Utility function
 local git = require("utils.git")
+local hex2rgba = require("utils.hex2rgba")
 
 -- New tab
 map("n", "te", ":tabedit<CR>")
@@ -26,19 +32,23 @@ map("n", "<C-k>", "<C-w>+", opts)
 map("n", "<C-j>", "<C-w>-", opts)
 
 -- Git init current open file root dir
-map("n", "<localleader>gi", git.init, { desc = "Git init (root)" })
-
--- netrw Directory explore window
-map("n", ";x", "<cmd>Explore<CR>", opts)
+map("n", "<leader>gi", git.init, { desc = "Git init (root)" })
 
 -- Automatic find and replace
 map("n", "<localleader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "String auto replace" })
 
 -- Adding executable permission to script
-map("n", "<localleader>x", "<cmd>!chmod +x %<CR>", { desc = " Set Script To Executable", silent = true })
+map("n", "<localleader>x", "<cmd>!chmod +x %<CR>", { desc = "chmod +x <current-buffer>", silent = true })
+
+map("n", "<localleader>X", "<cmd>!chmod -x %<CR>", { desc = "chmod -x <current-buffer>", silent = true })
 
 -- adding lazy extras keybind
-map("n", "<leader>L", "<cmd>LazyExtras<CR>", { desc = "LazyExtras", silent = true })
+map("n", "<localleader>l", "<cmd>LazyExtras<CR>", { desc = "LazyExtras", silent = true })
+
+-- Custom utility to convert hex to rgba
+map("n", "<localleader>cs", function()
+	hex2rgba.Set()
+end, { desc = "Convert Hex to RGBA", silent = true, noremap = true })
 
 -- Rename whole variables in the buffer
 map("n", "rn", function()

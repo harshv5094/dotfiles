@@ -2,13 +2,34 @@ return {
 	-- LSP Manager (Mason)
 	{
 		"mason-org/mason.nvim",
-		opts = {
-			ensure_installed = {
+		opts = function(_, opts)
+			vim.list_extend(opts.ensure_installed, {
+				"css-lsp",
 				"tree-sitter-cli",
 				"stylua",
 				"shellcheck",
 				"shfmt",
 				"flake8",
+			})
+		end,
+	},
+
+	{
+		"neovim/nvim-lspconfig",
+		---@class PluginLspOpts
+		opts = {
+			---@type lspconfig.options
+			servers = {
+				cssls = {
+					settings = {
+						css = {
+							lint = {
+								unknownAtRules = "ignore",
+							},
+						},
+					},
+				},
+				html = {},
 			},
 		},
 	},
@@ -36,6 +57,9 @@ return {
 					-- border = "rounded",
 				},
 			},
+			cmdline = {
+				enabled = false,
+			},
 			sources = {
 				default = {
 					"emoji",
@@ -48,20 +72,6 @@ return {
 						opts = { insert = true }, -- Insert emoji (default) or complete its name
 					},
 				},
-			},
-		},
-	},
-
-	-- Configuring LSP
-	{
-		"neovim/nvim-lspconfig",
-		---@class PluginLspOpts
-		opts = {
-			---@type lspconfig.options
-			servers = {
-				-- pyright will be automatically installed with mason and loaded with lspconfig
-				cssls = {},
-				html = {},
 			},
 		},
 	},

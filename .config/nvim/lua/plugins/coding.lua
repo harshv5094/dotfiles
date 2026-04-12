@@ -1,26 +1,4 @@
 return {
-	-- Incremental rename
-	{
-		"smjonas/inc-rename.nvim",
-		cmd = "IncRename",
-		config = true,
-	},
-
-	-- Go forward/backward with square brackets
-	{
-		"nvim-mini/mini.bracketed",
-		event = "BufReadPost",
-		config = function()
-			local bracketed = require("mini.bracketed")
-			bracketed.setup({
-				file = { suffix = "" },
-				window = { suffix = "" },
-				quickfix = { suffix = "" },
-				yank = { suffix = "" },
-				treesitter = { suffix = "n" },
-			})
-		end,
-	},
 
 	-- Better increase/descrease
 	{
@@ -72,5 +50,43 @@ return {
 				},
 			})
 		end,
+	},
+
+	-- Git wrapper done right by "tpope"
+	{
+		"tpope/vim-fugitive",
+		event = "VeryLazy",
+		keys = {
+			{
+				"<localleader>gs",
+				"<CMD>Git status<CR>",
+				desc = "Git status",
+			},
+			{
+				"<localleader>ga",
+				":Git add ",
+				desc = "Git status",
+			},
+			{
+				"<localleader>gce",
+				"<CMD>Git commit --edit<CR>",
+				desc = "Git commit (edit)",
+			},
+			{
+				"<localleader>gca",
+				"<CMD>Git commit --amend<CR>",
+				desc = "Git commit (amend)",
+			},
+			{
+				"<localleader>gp",
+				"<CMD>Git pull --no-edit<CR>",
+				desc = "Git pull (no-edit)",
+			},
+			{
+				"<localleader>gP",
+				"<CMD>Git push --force-with-lease<CR>",
+				desc = "Git push (force-with-lease)",
+			},
+		},
 	},
 }

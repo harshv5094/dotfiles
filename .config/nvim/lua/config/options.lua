@@ -13,6 +13,7 @@ opt.encoding = "utf-8"
 
 opt.title = true
 opt.autoindent = true
+opt.autoread = true
 opt.smartindent = true
 opt.hlsearch = true
 opt.backup = false
@@ -36,7 +37,7 @@ opt.wildignore:append({ "*/node_modules/*" })
 opt.splitbelow = true -- Put new windows below current
 opt.splitright = true -- Put new windows right of current
 opt.splitkeep = "cursor"
-opt.mouse = "a"
+-- opt.mouse = "a"
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])

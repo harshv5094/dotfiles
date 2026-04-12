@@ -8,6 +8,10 @@ return {
 				enabled = false,
 			}
 
+			opts.image = {
+				enabled = true,
+			}
+
 			opts.dashboard = {
 				preset = {
 					-- NOTE: Dashboard Header
@@ -18,7 +22,7 @@ return {
  ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║
  ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║
  ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝
-      ]],
+ Powered by LazyVim]],
 
 					-- NOTE: Dashboard Keys
 					keys = {

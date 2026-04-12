@@ -12,6 +12,8 @@ return {
 				"regex",
 				"vim",
 				"ssh_config",
+				"ini",
+				"zsh",
 			})
 		end,
 	},

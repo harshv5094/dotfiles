@@ -2,21 +2,11 @@
 
 > [!WARNING]
 > Don't blindly use my setup unless you know what it is. Use it at your own risk!
+> Also some of my `hyprland` folders is tightly integrated with my dotfiles.
 
 ## Font Dependency
 
 Some configuration needs nerd fonts to properly show icons. You can download the font from [here](https://www.nerdfonts.com/font-downloads). I am using `JetBrainsMono Nerd Font` in my setup.
-
-Hey, I've also created a script picker to execute some of my shell scripts. Don't worry it doesn't have any malicious code.
-Just run the command below to see the magic. It also has script preview for your satisfaction.
-
-> [!WARNING]
-> The script will be down for some time, since I'm rehauling my website.
-<!-- > This script only works in `archlinux`, I have a future plan to support it for other major distros. -->
-
-```sh
-curl -fsSL https://harshv5094.vercel.app/scripts.sh | sh
-```
 
 ## FAQ
 

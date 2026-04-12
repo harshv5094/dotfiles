@@ -6,61 +6,6 @@ return {
 		enabled = false,
 	},
 
-	-- Noice UI
-	{
-		"folke/noice.nvim",
-		event = "VeryLazy",
-		opts = function(_, opts)
-			table.insert(opts.routes, {
-				filter = {
-					event = "notify",
-					find = "No information available",
-				},
-				opts = { skip = true },
-			})
-			local focused = true
-			vim.api.nvim_create_autocmd("FocusGained", {
-				callback = function()
-					focused = true
-				end,
-			})
-			vim.api.nvim_create_autocmd("FocusLost", {
-				callback = function()
-					focused = false
-				end,
-			})
-			table.insert(opts.routes, 1, {
-				filter = {
-					cond = function()
-						return not focused
-					end,
-				},
-				view = "notify_send",
-				opts = { stop = false },
-			})
-
-			opts.commands = {
-				all = {
-					-- options for the message history that you get with `:Noice`
-					view = "split",
-					opts = { enter = true, format = "details" },
-					filter = {},
-				},
-			}
-
-			vim.api.nvim_create_autocmd("FileType", {
-				pattern = "markdown",
-				callback = function(event)
-					vim.schedule(function()
-						require("noice.text.markdown").keys(event.buf)
-					end)
-				end,
-			})
-
-			opts.presets.lsp_doc_border = true
-		end,
-	},
-
 	-- Highlight Color
 	{
 		"brenoprata10/nvim-highlight-colors",
@@ -101,28 +46,22 @@ return {
 	-- File Title
 	{
 		"b0o/incline.nvim",
-		event = "BufReadPre",
-		priority = 1200,
+		event = "VeryLazy",
 		config = function()
-			-- local colors = require("tokyonight.colors").setup()
-			local colors = require("gruvbox").palette
 			local incline = require("incline")
-			local devicons = require("nvim-web-devicons")
-			local helpers = require("incline.helpers")
 			incline.setup({
-				highlight = {
-					groups = {
-						InclineNormal = { guibg = colors.light0, guifg = colors.dark0 },
-						InclineNormalNC = { guibg = colors.dark0, guifg = colors.light0 },
-					},
+				debounce_threshold = {
+					falling = 50,
+					rising = 10,
+				},
+				hide = {
+					cursorline = "smart",
+					focused_win = false,
+					only_win = false,
 				},
 				window = { padding = 0, margin = { vertical = 0, horizontal = 0 } },
-				hide = {
-					cursorline = true,
-				},
 				render = function(props)
 					local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
-					local icon, color = devicons.get_icon_color(filename)
 					local modified = vim.bo[props.buf].modified
 
 					-- No Name for unsaved file
@@ -135,10 +74,18 @@ return {
 						filename = "[+] " .. filename
 					end
 
+					-- Determine styling: Bold only if focused
+					-- Keeps italic if modified, regardless of focus
+					local style = ""
+					if props.focused then
+						style = modified and "bold,italic" or "bold"
+					else
+						style = modified and "italic" or "none"
+					end
+
 					local design = {
-						icon and { " ", icon, " ", guifg = color, guibg = helpers.contrast_color(color) or " " },
 						{ " " },
-						{ filename, gui = modified and "bold,italic" or "bold" },
+						{ filename, gui = style },
 						{ " " },
 					}
 
@@ -152,7 +99,10 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		opts = function(_, opts)
+			opts.options.component_separators = { left = "|", right = "|" }
+			opts.options.section_separators = { left = "", right = "" }
 			opts.sections.lualine_a = { { "mode", icon = "" } }
+			opts.sections.lualine_y = { { "progress" } }
 			opts.sections.lualine_z = {
 				function()
 					return " " .. os.date("%I:%M %p")
