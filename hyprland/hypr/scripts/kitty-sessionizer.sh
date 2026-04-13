@@ -37,7 +37,12 @@ new_tab editor
 cd $selected
 launch nvim .
 
-# Tab 2: Terminal
+# Tab 2: Neovim
+new_tab git
+cd $selected
+launch lazygit
+
+# Tab 3: Terminal
 new_tab terminal
 cd $selected
 launch bash
