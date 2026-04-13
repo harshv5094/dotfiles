@@ -90,17 +90,18 @@ alias .5='cd ../../../../..'
 alias check-gpu-id='lspci | grep -E "VGA|3D" && echo -e "\nPath: /dev/dri/by-path/" && ls -l /dev/dri/by-path '
 
 # QOL Aliases
-if command -v paru &>/dev/null; then
+AUR_HELPER="$(command -v paru || command -v yay)"
+if [[ -n "$AUR_HELPER" ]]; then
   # Install packages interactively
   pri() {
-    pkgs=$(paru -Slq | fzf --border-label '** Install Packages **' \
+    pkgs=$($AUR_HELPER -Slq | fzf --border-label "** Install Packages ($AUR_HELPER) **" \
       --multi \
-      --preview 'paru -Sii {1}' \
+      --preview "${AUR_HELPER} -Sii {1}" \
       --preview-window=right:60%)
 
     # Only run if the string is not empty
     if [[ -n "$pkgs" ]]; then
-      echo "$pkgs" | xargs -ro paru -S
+      echo "$pkgs" | xargs -ro "$AUR_HELPER" -S
     else
       echo "No packages selected. Exiting..."
     fi
@@ -108,16 +109,16 @@ if command -v paru &>/dev/null; then
 
   # Remove packages interactively
   pru() {
-    pkgs=$(paru -Qq | fzf --border-label '** Remove Packages **' \
+    pkgs=$($AUR_HELPER -Qq | fzf --border-label "** Remove Packages ($AUR_HELPER) **" \
       --multi \
-      --preview 'paru -Qii {1}' \
+      --preview "${AUR_HELPER} -Qii {1}" \
       --preview-window=right:60%)
 
     # Only run if the string is not empty
     if [[ -n "$pkgs" ]]; then
-      echo "$pkgs" | xargs -ro paru -Rns
+      echo "$pkgs" | xargs -ro "$AUR_HELPER" -Rns
     else
-      echo "No packages selected. Exiting..."
+      echo "No packages selected. Exiting...."
     fi
   }
 fi
