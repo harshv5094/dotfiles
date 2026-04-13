@@ -146,6 +146,8 @@ if command -v pacman &>/dev/null; then
   alias unlock='sudo rm /var/lib/pacman/db.lck'
   alias orphan='sudo pacman -Rns $(pacman -Qtdq)'
 fi
+
+command -v trash &>/dev/null && alias del="trash -v"
 command -v fastfetch &>/dev/null && alias neofetch="fastfetch -c examples/13"
 command -v eza &>/dev/null && alias ll="eza -l -g --icons" && alias lla="eza -l -g -a --icons"
 command -v lazygit &>/dev/null && alias lg="lazygit"
