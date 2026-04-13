@@ -4,7 +4,7 @@
 SYSTEMD_USER="$HOME/.config/systemd/user/"
 CLONE_DIR="/tmp/home-row-mods"
 KANATA_DIR="$HOME/.config/kanata"
-AUR_HELPER="paru"
+AUR_HELPER=$(command -v paru || command -v yay)
 
 # --- Command Checker --- #
 have() { command -v "$1" &>/dev/null; }

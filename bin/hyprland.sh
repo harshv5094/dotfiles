@@ -12,7 +12,7 @@ if [[ ! -d "$source_dirs" ]]; then
   git clone https://github.com/harshv5094/dotfiles "$source_dirs"
 fi
 XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
-AUR_HELPER="paru"
+AUR_HELPER=$(command -v paru || command -v yay)
 ESCALATION_TOOL=$(command -v sudo || command -v doas)
 
 if ! command -v "$AUR_HELPER" &>/dev/null; then
@@ -150,11 +150,11 @@ installAndConfigureHyprland() {
     "uwsm" "rofi" "xdg-desktop-portal-hyprland" "xdg-desktop-portal-gtk" "xdg-utils" "xdg-user-dirs" "xdg-user-dirs-gtk"
     # Base tools
     "wiremix" "brightnessctl" "iwd" "impala" "bluetui" "bluez" "bluez-utils" "playerctl" "gnome-keyring" "topgrade"
-    "wl-clipboard" "copyq" "mako" "waybar" "mate-polkit" "mpd" "mpd-mpris" "mpc" "rmpc" "mpv" "nwg-look" "flatpak"
+    "wl-clipboard" "copyq" "mako" "waybar" "mate-polkit" "mpd" "mpd-mpris" "mpc" "rmpc" "mpv" "nwg-look" "flatpak" "ncdu"
     "libgepub" "libopenraw" "breeze" "libadwaita" "qt5ct" "qt6ct" "qt6-wayland" "speech-dispatcher" "cronie" "usbutils"
     # GUI tools
     "firefox" "gnome-disk-utility" "gnome-characters" "easyeffects"
-    "transmission-gtk" "seahorse" "timeshift" "baobab" "gnome-calculator" "ristretto" "evince"
+    "transmission-gtk" "seahorse" "timeshift" "gnome-calculator" "ristretto" "evince"
     # File Manager
     "thunar" "tumbler" "thunar-volman"
     "thunar-media-tags-plugin" "thunar-archive-plugin" "xarchiver"
