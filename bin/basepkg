@@ -20,7 +20,7 @@ fi
 if have pacman; then
   $ESCALATION_TOOL pacman -S --needed --noconfirm stow tree git github-cli \
     wget curl zip unzip ripgrep fzf sox bat eza lazygit btop fd \
-    zoxide yt-dlp xsel fastfetch openssh tldr \
+    zoxide yt-dlp xsel fastfetch openssh tldr ncdu \
     trash-cli usbutils imagemagick man-db vdpauinfo \
     starship bash-completion neovim base-devel pass jq tmux cmake net-tools e2fsprogs pacman-contrib devtools
 elif have apt; then
