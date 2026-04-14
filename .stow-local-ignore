@@ -16,6 +16,7 @@ _darcs
 \.gitmodules
 
 # Ignore this custom folders
+\.github
 hyprland
 
 .+~          # emacs backup files
