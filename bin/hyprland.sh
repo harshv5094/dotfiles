@@ -76,8 +76,8 @@ cloneWallpapers() {
 # -- Setup my window manager -- #
 loginSetup() {
   luksLoginSetup() {
-    printf "** LOCKED: Root is encrypted **"
-    printf "%b\n" "** Setting up LUKS login **"
+    printf "%b" "** LOCKED: Root is encrypted **"
+    printf "%b\n" "* Setting up LUKS login *"
     target_dir="/etc/systemd/system/getty@tty1.service.d"
     target_file="$target_dir/override.conf"
     config_content="[Service]\nExecStart=\nExecStart=-/usr/bin/agetty --noreset --noclear --autologin ${SUDO_USER:-$USER} - \${TERM}"
@@ -88,13 +88,13 @@ loginSetup() {
     bash_profile_content='[[ -f $HOME/.bashrc ]] && source "$HOME/.bashrc"\n\nif [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then\n  echo -e "Starting Hyprland....\n"\n  sleep 1\n  start-hyprland\nfi\n'
     printf "%b" "$bash_profile_content" | tee "$HOME/.bash_profile"
     #shellcheck disable=SC2016
-    zprofile_content='[[ -f ~/.zshrc ]] && . ~/.zshrc\n\nif [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then\n  echo -e "Starting hyprland....\n"\n  sleep 1s\n  start-hyprland\nfi\n'
+    zprofile_content='[[ -f ~/.zshrc ]] && . ~/.zshrc\n\nif [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then\n  echo -e "Starting Hyprland....\n"\n  sleep 1s\n  start-hyprland\nfi\n'
     printf "%b" "$zprofile_content" | tee "$HOME/.zprofile"
   }
 
   lyLoginManager() {
-    printf "** OPEN: Root is not encrypted **"
-    printf "%b\n" "** Setting Up Login Manager (Ly) **"
+    printf "%b" "** OPEN: Root is not encrypted **"
+    printf "%b\n" "* Setting Up Login Manager (Ly) *"
     $AUR_HELPER -S --noconfirm --needed ly
 
     managers=('sddm' 'gdm' 'lightdm' 'lxdm' 'lxdm-gtk3' 'mdm' 'nodm' 'xdm' 'entrance')
@@ -116,6 +116,8 @@ loginSetup() {
       [[ -f "/etc/ly/config.ini" ]] && $ESCALATION_TOOL mv /etc/ly/config.ini /etc/ly/config.ini.bak
       $ESCALATION_TOOL cp -rf "${source_dirs}/hyprland/ly/config.ini" "/etc/ly/"
     fi
+
+    printf "%b\n" "* Ly setup complete! *"
   }
 
   # Check if it is root or LUKS?
@@ -128,7 +130,7 @@ loginSetup() {
   # Changing some grub settings
   if [[ -f /etc/default/grub ]]; then
     printf "* Tweaking Grub Settings *"
-    $AUR_HELPER -S --noconfirm plymouth
+    $AUR_HELPER -S --noconfirm --needed plymouth
     if ! grep -q "splash" /etc/default/grub; then
       $ESCALATION_TOOL sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"/GRUB_CMDLINE_LINUX_DEFAULT="\1 splash"/' /etc/default/grub
     fi
@@ -139,7 +141,12 @@ loginSetup() {
     $ESCALATION_TOOL grub-mkconfig -o /boot/grub/grub.cfg
   fi
 
-  printf "%b\n" "** Ly setup complete! **"
+  # Change tty fonts to terminus
+  if [[ -f /etc/vconsole.conf ]]; then
+    printf "%b\n" "Changing tty font to terminus"
+    $AUR_HELPER -S --noconfirm --needed terminus-font
+    sed -i 's/FONT=.*/FONT=ter-v20b/' /etc/vconsole.conf
+  fi
 }
 
 installAndConfigureHyprland() {
@@ -193,7 +200,7 @@ installAndConfigureHyprland() {
 }
 
 printf "%b\n" "*** Starting Hyprland Setup **"
-setupLoginManger
+loginSetup
 installAndConfigureHyprland
 copyFolders
 extractGruvboxColors
