@@ -1,4 +1,4 @@
-## Type of Change
+# Type of Change
 
 - [ ] New feature
 - [ ] Bug fix
@@ -9,7 +9,7 @@
 
 ## Description
 
-## Issues / other PRs related
+## Issues / Other pull request's related
 <!--[What issue/discussion is related to this PR (if any)]-->
 - Resolves #
 
