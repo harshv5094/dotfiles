@@ -175,6 +175,9 @@ else
   PROMPT='%F{blue}%n@%m%f:%F{green}%~%f$ '
 fi
 
+# My dotfiles directory set as env variable
+[[ -d "$HOME/dotfiles/" ]] && export DOTFILES="$HOME/dotfiles"
+
 # NVM Directory
 [[ -d "$HOME/.config/nvm" ]] && export NVM_DIR="$HOME/.config/nvm"
 [[ ! -f "$NVM_DIR/default-packages" ]] && printf "%b" "commitizen\ncz-git" | tee "$NVM_DIR/default-packages" &>/dev/null

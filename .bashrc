@@ -132,6 +132,9 @@ else
   PS1='[\u@\h \W]\$ '
 fi
 
+# My dotfiles directory set as env variable
+[[ -d "$HOME/dotfiles/" ]] && export DOTFILES="$HOME/dotfiles"
+
 command -v fzf &>/dev/null && eval "$(fzf --bash)"
 command -v gh &>/dev/null && eval "$(gh completion -s bash)"
 command -v zoxide &>/dev/null && eval "$(zoxide init --cmd=cd bash)"
