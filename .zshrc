@@ -12,7 +12,7 @@ setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups hist_sa
 export FZF_DEFAULT_OPTS="--reverse --border --bind 'alt-j:down,alt-k:up' --ansi"
 
 # Adding home binary path
-export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.config/emacs/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.config/emacs/bin:$HOME/.cargo/bin:$PATH"
 
 # set up XDG folders
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -123,25 +123,21 @@ if [[ -n "$AUR_HELPER" ]]; then
   }
 fi
 
-if command -v kitten &>/dev/null; then
-  listen() {
+# Alias for quickly listening a single song
+listen() {
+  local file
+  if command -v kitten &>/dev/null; then
     file=$(kitten choose-files ~/Music)
-    if [[ -n "$file" ]]; then
-      play "$file"
-    else
-      echo "No file selected. Exiting...."
-    fi
-  }
+  else
+    file=$(find ~/Music -iname "*.mp3" | fzf --border-label "** Select Song **")
+  fi
 
-  view() {
-    file=$(kitten choose-files)
-    if [[ -n "$file" ]]; then
-      kitten icat "$file"
-    else
-      echo "No file selected. Exiting...."
-    fi
-  }
-fi
+  if [[ -n "$file" ]]; then
+    play "$file"
+  else
+    echo "No file selected. Exiting...."
+  fi
+}
 
 if command -v pacman &>/dev/null; then
   alias unlock='sudo rm /var/lib/pacman/db.lck'
