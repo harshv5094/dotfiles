@@ -129,10 +129,14 @@ loginSetup() {
 
   # Changing some grub settings
   if [[ -f /etc/default/grub ]]; then
-    printf "* Tweaking Grub Settings *"
-    $AUR_HELPER -S --noconfirm --needed plymouth
-    if ! grep -q "splash" /etc/default/grub; then
-      $ESCALATION_TOOL sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"/GRUB_CMDLINE_LINUX_DEFAULT="\1 splash"/' /etc/default/grub
+    $ESCALATION_TOOL cp /etc/default/grub /etc/default/grub.bak
+    printf "** Tweaking Grub Settings **"
+    if lsblk -no TYPE "$(findmnt -nvo SOURCE /)" | grep -q "crypt"; then
+      printf "* Setting up plymouth for encrypted system *"
+      $AUR_HELPER -S --noconfirm --needed plymouth
+      if ! grep -q "splash" /etc/default/grub; then
+        $ESCALATION_TOOL sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"/GRUB_CMDLINE_LINUX_DEFAULT="\1 splash"/' /etc/default/grub
+      fi
     fi
     $ESCALATION_TOOL sed -i 's/^GRUB_DEFAULT=.*/GRUB_DEFAULT=saved/' /etc/default/grub
     $ESCALATION_TOOL sed -i 's/^#GRUB_DISABLE_SUBMENU=.*/GRUB_DISABLE_SUBMENU=y/' /etc/default/grub
