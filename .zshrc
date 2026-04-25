@@ -155,6 +155,7 @@ command -v lazygit &>/dev/null && alias lg="lazygit"
 # Changing default editor also setting up default man pager
 if command -v nvim &>/dev/null; then
   export EDITOR=nvim
+  export SUDO_EDITOR="nvim"
   export VISUAL=nvim
   export MANPAGER="nvim +Man!"
 
