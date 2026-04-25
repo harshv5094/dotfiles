@@ -26,33 +26,33 @@
   amend = commit --amend --no-edit --allow-empty
 
   # A multi push command for my ease
-	push-all = !git remote | xargs -L1 git push --all
+  push-all = !git remote | xargs -L1 git push --all
 
   # edit conflicted file on merge
   edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; nvim `f`"
   # add conflicted file on merge
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
 
-	ref-prune-now = !git reflog expire --expire=now --expire-unreachable=now --all && git gc --prune=now --aggressive
+  ref-prune-now = !git reflog expire --expire=now --expire-unreachable=now --all && git gc --prune=now --aggressive
 
 [difftool "nvimdiff"]
   cmd = nvim -d "$LOCAL" "$REMOTE"
 
 [mergetool "nvimdiff"]
-	cmd = nvim -d "$LOCAL" "$REMOTE" -ancestor "$BASE" -merge "$MERGED"
-	trustExitCode = true
+  cmd = nvim -d "$LOCAL" "$REMOTE" -ancestor "$BASE" -merge "$MERGED"
+  trustExitCode = true
 
 [user]
-	name = Harsh Vyapari (harshv5094)
-	email = harshvy5094@proton.me
-	signingKey = A897C10C48C4E722
+  name = Harsh Vyapari (harshv5094)
+  email = harshvy5094@proton.me
+  signingKey = A897C10C48C4E722
 
 # Setup signed commit using gpg keys
 [commit]
-	gpgsign = true
+  gpgsign = true
 
 [filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
