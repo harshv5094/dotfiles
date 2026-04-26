@@ -14,27 +14,7 @@ return {
 		end,
 	},
 
-	{
-		"neovim/nvim-lspconfig",
-		---@class PluginLspOpts
-		opts = {
-			---@type lspconfig.options
-			servers = {
-				cssls = {
-					settings = {
-						css = {
-							lint = {
-								unknownAtRules = "ignore",
-							},
-						},
-					},
-				},
-				html = {},
-			},
-		},
-	},
-
-	-- blink.cmp - Code completion made easy
+	-- NOTE: blink.cmp - Code completion made easy
 	{
 		"saghen/blink.cmp",
 		dependencies = {
