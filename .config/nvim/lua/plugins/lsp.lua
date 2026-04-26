@@ -61,9 +61,7 @@ return {
 				enabled = false,
 			},
 			sources = {
-				default = {
-					"emoji",
-				},
+				default = { "lazydev", "lsp", "path", "snippets", "buffer", "emoji" },
 				providers = {
 					emoji = {
 						module = "blink-emoji",
