@@ -167,7 +167,7 @@ installAndConfigureHyprland() {
     "firefox" "gnome-disk-utility" "gnome-characters" "easyeffects"
     "transmission-gtk" "seahorse" "timeshift" "gnome-calculator" "ristretto" "evince"
     # File Manager
-    "thunar" "tumbler" "thunar-volman"
+    "thunar" "tumbler" "thunar-volman" "gvfs-mtp" "gvfs-gphoto2"
     "thunar-media-tags-plugin" "thunar-archive-plugin" "xarchiver"
     # Fonts & Icons
     "noto-fonts" "adwaita-icon-theme-legacy"
