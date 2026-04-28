@@ -28,7 +28,7 @@ export HISTCONTROL=erasedups:ignoredups:ignorespace
 export PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
 
 # Default fzf options
-export FZF_DEFAULT_OPTS="--reverse --border --bind 'alt-j:down,alt-k:up' --ansi"
+export FZF_DEFAULT_OPTS="--reverse --border --bind 'alt-j:down,alt-k:up'"
 
 # Bash shell options
 shopt -s autocd         # change to named directory

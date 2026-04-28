@@ -9,7 +9,7 @@ export HISTTIMEFORMAT="%F %T " # add timestamp to history
 setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups hist_save_no_dups hist_find_no_dups
 
 # Setting fzf default options
-export FZF_DEFAULT_OPTS="--reverse --border --bind 'alt-j:down,alt-k:up' --ansi"
+export FZF_DEFAULT_OPTS="--reverse --border --bind 'alt-j:down,alt-k:up'"
 
 # Adding home binary path
 export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.config/emacs/bin:$HOME/.cargo/bin:$PATH"
