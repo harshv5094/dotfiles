@@ -15,7 +15,7 @@ if [ "$#" -eq 1 ]; then
   selected=$1
 else
   selected=$(
-    find ~/dev/* -mindepth 1 -maxdepth 1 -type d -not -path '*/.git*' | rofi -dmenu -i -p "" -location 0 \
+    find ~/Projects/* -mindepth 1 -maxdepth 1 -type d -not -path '*/.git*' | rofi -dmenu -i -p "" -location 0 \
       -theme-str 'window { width: 600px; }
                   listview { columns: 1; lines: 5; spacing: 10px; }
                   element { orientation: vertical; }

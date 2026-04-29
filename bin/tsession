@@ -5,7 +5,7 @@ if [[ $# -eq 1 ]]; then
   selected=$1
 else
   selected=$(
-    find ~/dev/* -mindepth 1 -maxdepth 1 -type d -not -path '*/.git*' | fzf --style full --layout=reverse \
+    find ~/Projects/* -mindepth 1 -maxdepth 1 -type d -not -path '*/.git*' | fzf --style full --layout=reverse \
       --border --padding 1,2 \
       --border-label '** Tmux Sessionizer **' --input-label ' Input ' --header-label ' File Type ' \
       --bind 'focus:transform-header:file --brief {}' \
