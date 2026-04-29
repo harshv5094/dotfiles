@@ -1,21 +1,22 @@
 #!/usr/bin/env bash
 
 printf "%b\n" "** Getting Chaotic AUR Primary Keys **"
-sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
-sudo pacman-key --lsign-key 3056513887B78AEB
+ESCALATION_TOOL=$(command -v sudo || command -v doas)
+$ESCALATION_TOOL pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+$ESCALATION_TOOL pacman-key --lsign-key 3056513887B78AEB
 
 printf "%b\n" "** Installing Chaotic AUR mirrorlist **"
-sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
-sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+$ESCALATION_TOOL pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+$ESCALATION_TOOL pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
 
 # -- Copying my pacman.conf -- ##
 printf "%b\n" "** Backing up and updating /etc/pacman.conf **"
-if [ -f "/etc/pacman.conf" ]; then
-  sudo cp /etc/pacman.conf /etc/pacman.conf.bak
+if [[ -f /etc/pacman.conf ]]; then
+  $ESCALATION_TOOL cp /etc/pacman.conf /etc/pacman.conf.bak
 fi
 
 # We use 'tee' to handle root permissions for file writing
-cat <<EOF | sudo tee /etc/pacman.conf >/dev/null
+cat <<EOF | $ESCALATION_TOOL tee /etc/pacman.conf &>/dev/null
 # See the pacman.conf(5) manpage for option and repository directives
 # Paste this file in  /etc/
 
@@ -49,6 +50,6 @@ Include = /etc/pacman.d/chaotic-mirrorlist
 Include = /etc/pacman.d/mirrorlist
 EOF
 printf "%b\n" "** Refreshing mirrorlist **"
-sudo pacman -Syu
+$ESCALATION_TOOL pacman -Syu
 
 printf "%b\n" "*** Chaotic AUR setup is finished! ***"
