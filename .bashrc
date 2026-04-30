@@ -56,7 +56,7 @@ alias check-gpu-id='lspci | grep -E "VGA|3D" && echo -e "\nPath: /dev/dri/by-pat
 AUR_HELPER="$(command -v paru || command -v yay)"
 if [[ -n "$AUR_HELPER" ]]; then
   # Install packages interactively
-  pri() {
+  pi() {
     pkgs=$($AUR_HELPER -Slq | fzf --border-label "** Install Packages ($AUR_HELPER) **" \
       --multi \
       --preview "${AUR_HELPER} -Sii {1}" \
@@ -71,7 +71,7 @@ if [[ -n "$AUR_HELPER" ]]; then
   }
 
   # Remove packages interactively
-  pru() {
+  pu() {
     pkgs=$($AUR_HELPER -Qq | fzf --border-label "** Remove Packages ($AUR_HELPER) **" \
       --multi \
       --preview "${AUR_HELPER} -Qii {1}" \
