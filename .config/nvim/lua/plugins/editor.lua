@@ -1,5 +1,15 @@
 return {
 	{
+		"mbbill/undotree",
+		keys = {
+			{
+				"<localleader>u",
+				"<CMD>UndotreeToggle<CR>",
+				{ desc = "Undotree Toggle" },
+			},
+		},
+	},
+	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			{
