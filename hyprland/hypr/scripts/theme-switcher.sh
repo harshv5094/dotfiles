@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#
+
 # Switches themes for various applications based on user selection from rofi.
 
 # --- Configuration ---
@@ -10,6 +10,7 @@ declare -A TARGETS=(
   ["kitty.conf"]="$XDG_CONFIG_HOME/kitty/current-theme.conf"
   ["mako.ini"]="$XDG_CONFIG_HOME/mako/config"
   ["waybar.css"]="$XDG_CONFIG_HOME/waybar/colors.css"
+  ["neovim.lua"]="$XDG_CONFIG_HOME/nvim/lua/plugins/colorscheme.lua"
   ["rofi.rasi"]="$XDG_CONFIG_HOME/rofi/colors.rasi"
   ["rmpc.ron"]="$XDG_CONFIG_HOME/rmpc/themes/default.ron"
   ["lazygit.yml"]="$XDG_CONFIG_HOME/lazygit/config.yml"
@@ -23,7 +24,7 @@ select_theme() {
   options=$(find "$HYPR_THEMES_DIR" -mindepth 1 -maxdepth 1 -type d -printf "%f\n")
   printf "%s" "$options" |
     rofi -dmenu -i -p " " -location 2 \
-      -theme-str 'window { width: 200px; }
+      -theme-str 'window { width: 200px; margin: 5px; }
                   listview { columns: 1; lines: 2; spacing: 10px; }
                   mainbox { children: [listview]; }
                   element { orientation: vertical; }
@@ -208,7 +209,7 @@ update_emacs() {
 # Reloads services to apply theme changes.
 reload_services() {
   command -v makoctl &>/dev/null && makoctl reload
-  pgrep -x kitty >/dev/null && kill -SIGUSR1 "$(pgrep -x kitty)"
+  pgrep -x kitty &>/dev/null && kill -SIGUSR1 "$(pgrep -x kitty)"
 }
 
 # --- Main ---
@@ -226,8 +227,8 @@ main() {
   update_starship "$choice"
   update_gtk
   update_flatpak
-  update_vscode
   update_qt
+  update_vscode
   update_bat
   update_wallpaper "$choice"
   update_emacs
