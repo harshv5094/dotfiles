@@ -3,9 +3,15 @@
 
 # Bash Completion Check
 # shellcheck disable=SC1091
-[[ -f /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
+[[ -f /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion
 # shellcheck disable=SC1091
-[[ -f /etc/bash_completion ]] && . /etc/bash_completion
+[[ -f /etc/bash_completion ]] && source /etc/bash_completion
+
+# Fzf Completion check
+# shellcheck disable=SC1091
+[[ -f /usr/share/fzf/completion.bash ]] && source /usr/share/fzf/completion.bash
+# shellcheck disable=SC1091
+[[ -f /usr/share/fzf/key-bindings.bash ]] && source /usr/share/fzf/key-bindings.bash
 
 # Adding home binary path
 export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.config/emacs/bin:$HOME/.cargo/bin:$PATH"

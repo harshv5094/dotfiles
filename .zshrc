@@ -11,6 +11,12 @@ setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups hist_sa
 # Setting fzf default options
 export FZF_DEFAULT_OPTS="--reverse --border --bind 'alt-j:down,alt-k:up'"
 
+# Fzf Completion check
+# shellcheck disable=SC1091
+[[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
+# shellcheck disable=SC1091
+[[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+
 # Adding home binary path
 export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.config/emacs/bin:$HOME/.cargo/bin:$PATH"
 
