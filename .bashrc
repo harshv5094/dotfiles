@@ -44,7 +44,6 @@ alias la='ls -AF --color=auto'
 alias l='ls -CF --color=auto'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
-alias shell='echo $0'
 alias cpa="cp -rf"
 alias ..='cd ..'
 alias .2='cd ../..'
