@@ -14,6 +14,6 @@ Some configuration needs nerd fonts to properly show icons. You can download the
 
 Sometimes, `bat` forgets to cache themes. Run the command below to fix it:
 
-```sh
+```bash
 bat cache --build
 ```
