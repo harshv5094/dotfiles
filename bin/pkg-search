@@ -13,7 +13,7 @@ if ! command -v xdg-open &>/dev/null; then
 fi
 
 if [ $# -ne 2 ]; then
-  printf "%b\n" "Usage: pkg-search [distroname (eg: --arch)] [package-name]\n OPTIONS
+  printf "%b\n" "Usage: pkg-search [distroname (eg: --arch)] [package-name]\n\nOptions:
   --aur AUR Packages
   --arch ArchLinux
   --fedora Fedora
