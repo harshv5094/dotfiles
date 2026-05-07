@@ -46,12 +46,12 @@ shopt -s expand_aliases # expand aliases
 shopt -s checkwinsize   # checks term size when bash regains control
 
 # Basic Aliases
-alias ls="ls -F --color=auto"
+alias ls='ls -F --color=auto'
 alias la='ls -AF --color=auto'
 alias l='ls -CF --color=auto'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
-alias cpa="cp -rf"
+alias cpa='cp -rf'
 alias ..='cd ..'
 alias .2='cd ../..'
 alias .3='cd ../../..'
@@ -121,13 +121,13 @@ command -v lazygit &>/dev/null && alias lg="lazygit"
 
 # Changing default editor also setting up default man pager
 if command -v nvim &>/dev/null; then
-  export EDITOR=nvim
-  export SUDO_EDITOR="nvim"
-  export VISUAL=nvim
-  export MANPAGER="nvim +Man!"
+  export EDITOR='nvim'
+  export SUDO_EDITOR='nvim'
+  export VISUAL='nvim'
+  export MANPAGER='nvim +Man!'
 
   # My custom nvim config
-  [[ -d $XDG_CONFIG_HOME/mnvim/ ]] && alias mnvim="NVIM_APPNAME=mnvim nvim"
+  [[ -d $XDG_CONFIG_HOME/mnvim/ ]] && alias mnvim='NVIM_APPNAME=mnvim nvim'
 fi
 
 # My tools initialization
@@ -138,7 +138,7 @@ else
 fi
 
 # My dotfiles directory set as env variable
-[[ -d "$HOME/dotfiles/" ]] && export DOTFILES="$HOME/dotfiles"
+[[ -d $HOME/dotfiles/ ]] && export DOTFILES="$HOME/dotfiles"
 
 command -v fzf &>/dev/null && eval "$(fzf --bash)"
 command -v gh &>/dev/null && eval "$(gh completion -s bash)"
