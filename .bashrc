@@ -34,6 +34,7 @@ export HISTCONTROL=erasedups:ignoredups:ignorespace
 export PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
 
 # Default fzf options
+# shellcheck disable=SC2031
 export FZF_DEFAULT_OPTS="--reverse --border --bind 'alt-j:down,alt-k:up'"
 
 # Bash shell options
@@ -69,7 +70,7 @@ if [[ -n "$AUR_HELPER" ]]; then
       --preview-window=right:60%)
 
     # Only run if the string is not empty
-    if [[ -n "$pkgs" ]]; then
+    if [[ -n $pkgs ]]; then
       echo "$pkgs" | xargs -ro "$AUR_HELPER" -S
     else
       echo "No packages selected. Exiting..."
@@ -84,7 +85,7 @@ if [[ -n "$AUR_HELPER" ]]; then
       --preview-window=right:60%)
 
     # Only run if the string is not empty
-    if [[ -n "$pkgs" ]]; then
+    if [[ -n $pkgs ]]; then
       echo "$pkgs" | xargs -ro "$AUR_HELPER" -Rns
     else
       echo "No packages selected. Exiting...."
@@ -101,7 +102,7 @@ listen() {
     file=$(find ~/Music -iname "*.mp3" | fzf --border-label "** Select Song **")
   fi
 
-  if [[ -n "$file" ]]; then
+  if [[ -n $file ]]; then
     play "$file"
   else
     echo "No file selected. Exiting...."
@@ -126,7 +127,7 @@ if command -v nvim &>/dev/null; then
   export MANPAGER="nvim +Man!"
 
   # My custom nvim config
-  [[ -d "$HOME/.config/mnvim/" ]] && alias mnvim="NVIM_APPNAME=mnvim nvim"
+  [[ -d $XDG_CONFIG_HOME/mnvim/ ]] && alias mnvim="NVIM_APPNAME=mnvim nvim"
 fi
 
 # My tools initialization
@@ -143,9 +144,9 @@ command -v fzf &>/dev/null && eval "$(fzf --bash)"
 command -v gh &>/dev/null && eval "$(gh completion -s bash)"
 command -v zoxide &>/dev/null && eval "$(zoxide init --cmd=cd bash)"
 
-[[ -d "$HOME/.config/nvm" ]] && export NVM_DIR="$HOME/.config/nvm"
-[[ ! -f "$NVM_DIR/default-packages" ]] && printf "%b" "commitizen\ncz-git" | tee "$NVM_DIR/default-packages" &>/dev/null
+[[ -d $HOME/.config/nvm ]] && export NVM_DIR="$HOME/.config/nvm"
+[[ ! -f $NVM_DIR/default-packages ]] && printf "%b" "commitizen\ncz-git" | tee "$NVM_DIR/default-packages" &>/dev/null
 # shellcheck disable=SC1091
-[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh" # This loads nvm
+[[ -s $NVM_DIR/nvm.sh ]] && source "$NVM_DIR/nvm.sh" # This loads nvm
 # shellcheck disable=SC1091
-[[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+[[ -s $NVM_DIR/bash_completion ]] && source "$NVM_DIR/bash_completion" # This loads nvm bash_completion
