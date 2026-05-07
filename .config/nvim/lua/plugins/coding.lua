@@ -3,6 +3,7 @@ return {
 	-- Better increase/descrease
 	{
 		"monaqa/dial.nvim",
+		event = "BufReadPre",
     -- stylua: ignore
     keys = {
       { "<C-a>", function() return require("dial.map").inc_normal() end, expr = true, desc = "Increment" },
@@ -26,7 +27,7 @@ return {
 	-- Keeping .env Secret
 	{
 		"laytan/cloak.nvim",
-		event = "VeryLazy",
+		event = "BufReadPre",
 		config = function()
 			require("cloak").setup({
 				enabled = true,
@@ -52,10 +53,10 @@ return {
 		end,
 	},
 
-	-- Git wrapper done right by "tpope"
+	-- NOTE: Git wrapper done right by "tpope"
 	{
 		"tpope/vim-fugitive",
-		event = "VeryLazy",
+		event = "BufReadPre",
 		keys = {
 			{
 				"<localleader>gs",

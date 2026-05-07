@@ -1,6 +1,7 @@
 return {
 	{
 		"mbbill/undotree",
+		event = "BufReadPre",
 		keys = {
 			{
 				"<localleader>u",
@@ -161,7 +162,7 @@ return {
 	-- Multiple close buffer plugin
 	{
 		"kazhala/close-buffers.nvim",
-		event = "VeryLazy",
+		event = "BufReadPre",
 		keys = {
 			{
 				"<leader>bh",
