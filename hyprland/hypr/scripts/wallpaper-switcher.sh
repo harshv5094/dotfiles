@@ -31,7 +31,6 @@ wallpaper=$(find "$WALLPAPER_DIR" -type f \( -iname "*.png" -o -iname "*.jpg" -o
 # To do this safely, we search for the full path based on the filename:
 wallpaper_full_path=$(find "$WALLPAPER_DIR" -name "$wallpaper" -print | head -n1)
 
-hyprctl hyprpaper unload all
 killall hyprpaper
 
 printf "%b\n" "splash = false" >~/.config/hypr/hyprpaper.conf
@@ -65,4 +64,4 @@ background {
 " >~/.config/hypr/sections/lock-background.conf
 
 notify-send "Wallpaper Applied" "$wallpaper"
-hyprctl dispatch exec hyprpaper
+hyprctl dispatch 'hl.exec_cmd("hyprpaper")'

@@ -20,7 +20,7 @@ fi
 
 if [ -f "$file" ]; then
   sed -i "s/\"position\": \".*\"/\"position\": \"$choice\"/" "$file"
-  pkill waybar && hyprctl dispatch exec waybar
+  pkill waybar && hyprctl dispatch 'hl.exec_cmd("waybar")'
   notify-send -u low "Waybar" "Position: $choice"
 else
   notify-send "Not found - $file" "It doesn't exist in the directory"

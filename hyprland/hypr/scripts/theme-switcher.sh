@@ -154,7 +154,6 @@ update_wallpaper() {
   fi
 
   # Set wallpaper using hyprctl and hyprpaper
-  hyprctl hyprpaper unload all
   killall hyprpaper
   printf "%b\n" "splash = false" >~/.config/hypr/hyprpaper.conf
   printf "%b\n" "ipc = true" >>~/.config/hypr/hyprpaper.conf
@@ -186,7 +185,7 @@ background {
     path = $wallpaper
 }" >"$XDG_CONFIG_HOME/hypr/sections/lock-background.conf"
 
-  hyprctl dispatch exec hyprpaper
+  hyprctl dispatch 'hl.exec_cmd("hyprpaper")'
 }
 
 # Updates the Emacs theme.
