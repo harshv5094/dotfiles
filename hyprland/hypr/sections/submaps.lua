@@ -80,3 +80,26 @@ hl.define_submap("rofi_menu", "reset", function()
 	-- Use `reset` to go back to the global submap
 	hl.bind("catchall", hl.dsp.submap("reset"))
 end)
+
+-- Switch to a submap called `resize`.
+hl.bind("ALT + R", hl.dsp.submap("resize"))
+
+-- Start a submap called "resize".
+hl.define_submap("resize", function()
+	-- Resize active window (Vim Keys)
+	hl.bind("h", hl.dsp.window.resize({ x = -20, y = 0, relative = true }), { repeating = true })
+	hl.bind("l", hl.dsp.window.resize({ x = 20, y = 0, relative = true }), { repeating = true })
+	hl.bind("k", hl.dsp.window.resize({ x = 0, y = -20, relative = true }), { repeating = true })
+	hl.bind("j", hl.dsp.window.resize({ x = 0, y = 20, relative = true }), { repeating = true })
+
+	-- Resize active window (Arrow Keys)
+	hl.bind("left", hl.dsp.window.resize({ x = -20, y = 0, relative = true }), { repeating = true })
+	hl.bind("right", hl.dsp.window.resize({ x = 20, y = 0, relative = true }), { repeating = true })
+	hl.bind("up", hl.dsp.window.resize({ x = 0, y = -20, relative = true }), { repeating = true })
+	hl.bind("down", hl.dsp.window.resize({ x = 0, y = 20, relative = true }), { repeating = true })
+
+	-- Use `reset` to go back to the global submap
+	hl.bind("catchall", hl.dsp.submap("reset"))
+end)
+
+-- Keybinds further down will be global again...

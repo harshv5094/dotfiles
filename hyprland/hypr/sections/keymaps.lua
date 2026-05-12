@@ -19,18 +19,6 @@ hl.bind(main_mod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(main_mod .. " + up", hl.dsp.focus({ direction = "up" }))
 hl.bind(main_mod .. " + down", hl.dsp.focus({ direction = "down" }))
 
--- Resize active window (Vim Keys)
-hl.bind(ctrl_mod .. " + h", hl.dsp.window.resize({ x = -20, y = 0, relative = true }))
-hl.bind(ctrl_mod .. " + l", hl.dsp.window.resize({ x = 20, y = 0, relative = true }))
-hl.bind(ctrl_mod .. " + k", hl.dsp.window.resize({ x = 0, y = -20, relative = true }))
-hl.bind(ctrl_mod .. " + j", hl.dsp.window.resize({ x = 0, y = 20, relative = true }))
-
--- Resize active window (Arrow Keys)
-hl.bind(ctrl_mod .. " + left", hl.dsp.window.resize({ x = -20, y = 0, relative = true }))
-hl.bind(ctrl_mod .. " + right", hl.dsp.window.resize({ x = 20, y = 0, relative = true }))
-hl.bind(ctrl_mod .. " + up", hl.dsp.window.resize({ x = 0, y = -20, relative = true }))
-hl.bind(ctrl_mod .. " + down", hl.dsp.window.resize({ x = 0, y = 20, relative = true }))
-
 -- Swap windows (Vim keys)
 hl.bind(shift_mod .. " + h", hl.dsp.window.move({ direction = "left" }))
 hl.bind(shift_mod .. " + l", hl.dsp.window.move({ direction = "right" }))
