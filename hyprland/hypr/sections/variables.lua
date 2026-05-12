@@ -4,7 +4,7 @@
 terminal = "kitty"
 terminal_float = "kitty --title float -e"
 file_manager = "thunar"
-menu = "killall rofil || rofi -show drun -location 0"
+menu = "killall rofi || rofi -show drun -location 0"
 screenshotarea =
 	'hyprctl keyword animation "fadeOut,0,0,default"; grimblast --notify copysave area; hyprctl keyword animation "fadeOut,1,4,default"'
 color_picker = "hyprpicker -a -n"
@@ -22,8 +22,8 @@ cursor_theme = "Adwaita"
 cursor_size = 24
 
 -- Custom variables
-hyprpaper = "killall hyprpaper && hyprctl dispatch exec hyprpaper"
-calculator = "killall gnome-calculator || hyprctl dispatch exec gnome-calculator"
-waybar = "killall waybar && hyprctl dispatch exec waybar"
-emoji = "killall gnome-characters || hyprctl dispatch exec gnome-characters"
+hyprpaper = "killall hyprpaper && hyprctl dispatch 'hl.dsp.exec_cmd(\"hyprpaper\")'"
+calculator = "killall gnome-calculator || hyprctl dispatch 'hl.dsp.exec_cmd(\"gnome-calculator\")'"
+waybar = "killall waybar && hyprctl dispatch 'hl.dsp.exec_cmd(\"waybar\")'"
+emoji = "killall gnome-characters || hyprctl dispatch 'hl.dsp.exec_cmd(\"gnome-characters\")'"
 browser = "gtk-launch $(xdg-settings get default-web-browser)"

@@ -1,4 +1,5 @@
 -- https://wiki.hypr.land/Configuring/Basics/Binds/#submaps
+-- FIXME: the submaps is not executing properly
 
 -- Programs submaps
 hl.bind(main_mod .. " + O", hl.dsp.submap("programs"))
@@ -12,7 +13,7 @@ hl.define_submap("programs", function()
 
 	-- Sound Controller
 	hl.bind("V", function()
-		hl.dsp.exec_cmd(terminal_float .. " wiremix")
+		hl.dsp.exec_cmd(terminal_float .. "wiremix")
 		hl.dsp.submap("reset")
 	end)
 

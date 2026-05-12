@@ -17,9 +17,8 @@ Lock)
   hyprctl dispatch 'hl.exec_cmd("hyprlock")'
   ;;
 Logout)
-  # FIXME: Fix the logout option
   # Log out
-  hyprctl dispatch 'hl.exec_cmd("exit")'
+  hyprctl dispatch 'hl.dsp.exit()'
   ;;
 Hibernate)
   # Hibernate the system
