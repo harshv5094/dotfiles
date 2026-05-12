@@ -6,7 +6,7 @@ hl.on("hyprland.start", function()
 	-- hl.exec_cmd("dbus-update-activation-environment --systemd --all")
 
 	-- Enable mate-polkit
-	hl.exec_cmd("/usr/lib/mate-polkit/polkit-mate-authentication-agent-1")
+	hl.exec_cmd(polkit)
 
 	-- Starting necessary desktop programs at startup
 	hl.exec_cmd("waybar")

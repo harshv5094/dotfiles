@@ -1,29 +1,30 @@
 -- See https://wiki.hypr.land/Configuring/Keywords/
 
 -- Default Settings Variables
-terminal = "kitty"
-terminal_float = "kitty --title float -e"
-file_manager = "thunar"
-menu = "killall rofi || rofi -show drun -location 0"
-screenshotarea =
+_G.terminal = "kitty"
+_G.terminal_float = "kitty --title float -e"
+_G.file_manager = "thunar"
+_G.menu = "killall rofi || rofi -show drun -location 0"
+_G.screenshotarea =
 	'hyprctl keyword animation "fadeOut,0,0,default"; grimblast --notify copysave area; hyprctl keyword animation "fadeOut,1,4,default"'
-color_picker = "hyprpicker -a -n"
+_G.color_picker = "hyprpicker -a -n"
 
 -- Extra variables
-script_dir = "~/.config/hypr/scripts"
+_G.script_dir = "~/.config/hypr/scripts"
+_G.polkit = "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1"
 
 -- Main Mod Key
-main_mod = "SUPER"
-shift_mod = "SUPER + SHIFT"
-ctrl_mod = "SUPER + CTRL"
+_G.main_mod = "SUPER"
+_G.shift_mod = "SUPER + SHIFT"
+_G.ctrl_mod = "SUPER + CTRL"
 
 -- Theme Variables
-cursor_theme = "Adwaita"
-cursor_size = 24
+_G.cursor_theme = "Adwaita"
+_G.cursor_size = 24
 
 -- Custom variables
-hyprpaper = "killall hyprpaper && hyprctl dispatch 'hl.dsp.exec_cmd(\"hyprpaper\")'"
-calculator = "killall gnome-calculator || hyprctl dispatch 'hl.dsp.exec_cmd(\"gnome-calculator\")'"
-waybar = "killall waybar && hyprctl dispatch 'hl.dsp.exec_cmd(\"waybar\")'"
-emoji = "killall gnome-characters || hyprctl dispatch 'hl.dsp.exec_cmd(\"gnome-characters\")'"
-browser = "gtk-launch $(xdg-settings get default-web-browser)"
+_G.hyprpaper = "killall hyprpaper && hyprctl dispatch 'hl.dsp.exec_cmd(\"hyprpaper\")'"
+_G.calculator = "killall gnome-calculator || hyprctl dispatch 'hl.dsp.exec_cmd(\"gnome-calculator\")'"
+_G.waybar = "killall waybar && hyprctl dispatch 'hl.dsp.exec_cmd(\"waybar\")'"
+_G.emoji = "killall gnome-characters || hyprctl dispatch 'hl.dsp.exec_cmd(\"gnome-characters\")'"
+_G.browser = "gtk-launch $(xdg-settings get default-web-browser)"

@@ -1,14 +1,14 @@
 -- Refer to the wiki for more information.
 -- https://wiki.hypr.land/Configuring/Start/
 
--- System Startup
-require("sections.startup")
+-- Variables
+require("sections.variables")
 
 -- Monitors Settings
 require("sections.monitors")
 
--- Variables
-require("sections.variables")
+-- System Startup
+require("sections.startup")
 
 -- Environment variables
 require("sections.env")

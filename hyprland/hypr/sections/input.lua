@@ -1,4 +1,4 @@
--- https://wiki.hypr.land/Configuring/Variables/#input
+-- https://wiki.hypr.land/Configuring/Basics/Variables/#input
 hl.config({
 	input = {
 		kb_layout = "us",
