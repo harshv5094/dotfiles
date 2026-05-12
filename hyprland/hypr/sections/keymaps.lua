@@ -1,3 +1,4 @@
+-- unbinding default keymaps
 -- See https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 -- # Basic Navigation Keymaps #
 hl.bind(main_mod .. " + F", hl.dsp.window.fullscreen())
@@ -11,7 +12,7 @@ hl.bind(ctrl_mod .. " + SPACE", hl.dsp.layout("swapsplit")) -- dwindle
 hl.bind(main_mod .. " + h", hl.dsp.focus({ direction = "left" }))
 hl.bind(main_mod .. " + l", hl.dsp.focus({ direction = "right" }))
 hl.bind(main_mod .. " + k", hl.dsp.focus({ direction = "up" }))
-hl.bind(main_mod .. " + d", hl.dsp.focus({ direction = "down" }))
+hl.bind(main_mod .. " + j", hl.dsp.focus({ direction = "down" }))
 
 -- Move focus (Arrow Keys)
 hl.bind(main_mod .. " + left", hl.dsp.focus({ direction = "left" }))
