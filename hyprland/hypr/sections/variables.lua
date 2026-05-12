@@ -13,7 +13,7 @@ _G.color_picker = "hyprpicker -a -n"
 _G.script_dir = "~/.config/hypr/scripts"
 _G.polkit = "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1"
 
--- Main Mod Key
+-- Mod Keys
 _G.main_mod = "SUPER"
 _G.shift_mod = "SUPER + SHIFT"
 _G.ctrl_mod = "SUPER + CTRL"

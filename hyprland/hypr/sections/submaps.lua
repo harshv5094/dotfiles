@@ -82,7 +82,7 @@ hl.define_submap("rofi_menu", "reset", function()
 end)
 
 -- Switch to a submap called `resize`.
-hl.bind("ALT + R", hl.dsp.submap("resize"))
+hl.bind(shift_mod .. " + R", hl.dsp.submap("resize"))
 
 -- Start a submap called "resize".
 hl.define_submap("resize", function()
