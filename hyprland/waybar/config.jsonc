@@ -82,7 +82,7 @@
     "format-connected": "󰂱",
     "format-no-controller": "",
     "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "kitty --title float -e bluetui"
+    "on-click": "pkill bluetui || kitty --title float -e bluetui"
   },
   "network": {
     "format-icons": [
@@ -100,7 +100,7 @@
     "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
-    "on-click": "kitty --title float -e impala"
+    "on-click": "pkill impala || kitty --title float -e impala"
   },
   "pulseaudio": {
     "format": "{icon}",
@@ -117,13 +117,13 @@
         ""
       ]
     },
-    "on-click": "kitty --title float -e wiremix",
+    "on-click": "pkill wiremix || kitty --title float -e wiremix",
     "tooltip": true
   },
   "cpu": {
     "interval": 5,
     "format": "\uf2db",
-    "on-click": "kitty --title float -e btop"
+    "on-click": "pkill btop || kitty --title float -e btop"
   },
   "battery": {
     "format": "{capacity}% {icon}",
