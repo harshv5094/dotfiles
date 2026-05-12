@@ -14,11 +14,12 @@ choice=$(printf "%b" "$options" |
 case "$choice" in
 Lock)
   # Lock the screen
-  hyprctl dispatch exec hyprlock
+  hyprctl dispatch 'hl.exec_cmd("hyprlock")'
   ;;
 Logout)
+  # FIXME: Fix the logout option
   # Log out
-  hyprctl dispatch exit
+  hyprctl dispatch 'hl.exec_cmd("exit")'
   ;;
 Hibernate)
   # Hibernate the system
