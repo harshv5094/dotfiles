@@ -3,7 +3,7 @@
 # Define the menu options
 options="dwindle\nmaster\nscrolling"
 
-file="$HOME/.config/hypr/hypr.d/layouts.conf"
+file="$HOME/.config/hypr/sections/layouts.lua"
 
 # Show the menu using Rofi
 choice=$(printf "%b" "$options" |
@@ -18,7 +18,7 @@ if [ -z "$choice" ]; then
 fi
 
 if [ -f "$file" ]; then
-  sed -i "s/layout = .*/layout = $choice/" "$file"
+  sed -i "s/layout = \".*\"/layout = \"$choice\"/" "$file"
 else
   notify-send "Not found - $file" "It doesn't exist in the directory"
   exit 1

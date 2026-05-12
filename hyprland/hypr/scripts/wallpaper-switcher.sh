@@ -62,7 +62,7 @@ background {
     vibrancy_darkness = 0.2
     path = $wallpaper_full_path   # supports png, jpg, webp (no animations, though)
 }
-" >~/.config/hypr/hypr.d/lock-background.conf
+" >~/.config/hypr/sections/lock-background.conf
 
 notify-send "Wallpaper Applied" "$wallpaper"
 hyprctl dispatch exec hyprpaper
