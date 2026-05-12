@@ -11,7 +11,7 @@ hl.define_submap("programs", "reset", function()
 
 	-- Sound Controller
 	hl.bind("V", function()
-		hl.exec_cmd(terminal_float .. " wiremix")
+		hl.exec_cmd("pkill wiremix || " .. terminal_float .. " wiremix")
 	end)
 
 	-- Waybar Killswitch
@@ -31,17 +31,17 @@ hl.define_submap("programs", "reset", function()
 
 	-- Impala: A wifi viewer
 	hl.bind("N", function()
-		hl.exec_cmd(terminal_float .. " impala")
+		hl.exec_cmd("pkill impala || " .. terminal_float .. " impala")
 	end)
 
 	-- Btop: A task manager
 	hl.bind("T", function()
-		hl.exec_cmd(terminal_float .. " btop")
+		hl.exec_cmd("pkill btop || " .. terminal_float .. " btop")
 	end)
 
 	-- Bluetooth Manager
 	hl.bind("B", function()
-		hl.exec_cmd(terminal_float .. " bluetui")
+		hl.exec_cmd("pkill bluetui || " .. terminal_float .. " bluetui")
 	end)
 
 	-- Use `reset` to go back to the global submap
