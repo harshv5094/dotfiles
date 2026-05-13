@@ -9,11 +9,6 @@ hl.define_submap("programs", "reset", function()
 		hl.exec_cmd(emoji)
 	end)
 
-	-- Sound Controller
-	hl.bind("V", function()
-		hl.exec_cmd("pkill wiremix || " .. terminal_float .. " wiremix")
-	end)
-
 	-- Waybar Killswitch
 	hl.bind("R", function()
 		hl.exec_cmd(waybar)
@@ -29,14 +24,19 @@ hl.define_submap("programs", "reset", function()
 		hl.exec_cmd(color_picker)
 	end)
 
-	-- Impala: A wifi viewer
-	hl.bind("N", function()
-		hl.exec_cmd("pkill impala || " .. terminal_float .. " impala")
+	-- Sound Controller
+	hl.bind("V", function()
+		hl.exec_cmd("pkill wiremix || " .. terminal_float .. " wiremix")
 	end)
 
 	-- Btop: A task manager
 	hl.bind("T", function()
 		hl.exec_cmd("pkill btop || " .. terminal_float .. " btop")
+	end)
+
+	-- Impala: A wifi viewer
+	hl.bind("N", function()
+		hl.exec_cmd("pkill impala || " .. terminal_float .. " impala")
 	end)
 
 	-- Bluetooth Manager
