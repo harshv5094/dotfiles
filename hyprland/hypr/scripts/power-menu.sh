@@ -18,7 +18,11 @@ Lock)
   ;;
 Logout)
   # Log out
-  hyprctl dispatch 'hl.dsp.exit()'
+  if command -v hyprshutdown &>/dev/null; then
+    hyprshutdown
+  else
+    hyprctl dispatch 'hl.dsp.exit()'
+  fi
   ;;
 Hibernate)
   # Hibernate the system

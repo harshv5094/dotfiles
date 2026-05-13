@@ -156,7 +156,7 @@ loginSetup() {
 installAndConfigureHyprland() {
   packages_list=(
     # Hyprland packages
-    "kitty" "hyprland" "hyprlock" "hypridle" "hyprpicker" "hyprpaper"
+    "kitty" "hyprland" "hyprlock" "hypridle" "hyprpicker" "hyprpaper" "hyprshutdown"
     "hyprutils" "hyprland-protocols" "hyprtoolkit" "hyprland-guiutils" "base-devel" "cpio" "cmake"
     "uwsm" "rofi" "xdg-desktop-portal-hyprland" "xdg-desktop-portal-gtk" "xdg-utils" "xdg-user-dirs" "xdg-user-dirs-gtk"
     # Base tools
