@@ -1,5 +1,5 @@
--- unbinding default keymaps
 -- See https://wiki.hypr.land/Configuring/Basics/Binds/ for more
+
 -- # Basic Navigation Keymaps #
 hl.bind(main_mod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(main_mod .. " + D", hl.dsp.exec_cmd(menu))
@@ -99,8 +99,7 @@ hl.bind(main_mod .. " + f10", hl.dsp.exec_cmd("playerctl previous"), { locked = 
 hl.bind(main_mod .. " + f11", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind(main_mod .. " + f12", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 
--- # Misc Kyes #
-
+-- # Misc Kyes
 -- Terminal
 hl.bind(main_mod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 

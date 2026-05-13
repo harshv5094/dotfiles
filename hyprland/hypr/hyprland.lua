@@ -16,8 +16,11 @@ require("sections.env")
 -- Input settings
 require("sections.input")
 
--- Graphics and design
+-- Look n feel
 require("sections.look_n_feel")
+
+-- Animation
+require("sections.animation")
 
 -- Layouts
 require("sections.layouts")

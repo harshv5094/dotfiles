@@ -6,6 +6,8 @@ hl.monitor({
 	scale = "auto",
 })
 
+-- Laptop lid switch
+-- See https://wiki.hypr.land/Configuring/Basics/Binds/#switches
 hl.bind("switch:on:Lid Switch", function()
 	hl.dsp.exec_cmd(hl.dsp.dpms({ action = "disable" }))
 	hl.dsp.exec_cmd("hyprlock")
