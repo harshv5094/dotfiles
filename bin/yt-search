@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
-
 # Check for yt-dlp
 if ! command -v yt-dlp &>/dev/null; then
   printf "%b\n" "yt-dlp not found. Install it first."
@@ -71,7 +69,9 @@ fi
 echo "Playing: $video_url"
 
 if command -v hyprctl &>/dev/null; then
-  hyprctl dispatch exec "[workspace 10] mpv \"$video_url\""
+  #shellcheck disable=SC2086
+  #shellcheck disable=SC2027
+  hyprctl dispatch "hl.dsp.exec_cmd('mpv "$video_url"', { workspace = 10 })"
 else
   mpv "$video_url"
 fi
