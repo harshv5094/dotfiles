@@ -6,6 +6,7 @@ hl.config({
 		gaps_in = 5,
 		gaps_out = 6,
 		border_size = 2,
+		locale = "en_IN",
 
 		-- https://wiki.hypr.land/Configuring/Basics/Variables/#variable-types for info about colors
 		col = {
