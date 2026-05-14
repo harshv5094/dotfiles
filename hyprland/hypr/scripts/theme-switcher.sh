@@ -185,7 +185,7 @@ background {
     path = $wallpaper
 }" >"$XDG_CONFIG_HOME/hypr/sections/lock-background.conf"
 
-  hyprctl dispatch 'hl.exec_cmd("hyprpaper")'
+  hyprctl dispatch 'hl.dsp.exec_cmd("hyprpaper")'
 }
 
 # Updates the Emacs theme.

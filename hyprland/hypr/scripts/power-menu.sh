@@ -14,7 +14,7 @@ choice=$(printf "%b" "$options" |
 case "$choice" in
 Lock)
   # Lock the screen
-  hyprctl dispatch 'hl.exec_cmd("hyprlock")'
+  hyprctl dispatch 'hl.dsp.exec_cmd("hyprlock")'
   ;;
 Logout)
   # Log out

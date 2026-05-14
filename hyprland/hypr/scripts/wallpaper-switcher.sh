@@ -64,4 +64,4 @@ background {
 " >~/.config/hypr/sections/lock-background.conf
 
 notify-send "Wallpaper Applied" "$wallpaper"
-hyprctl dispatch 'hl.exec_cmd("hyprpaper")'
+hyprctl dispatch 'hl.dsp.exec_cmd("hyprpaper")'
