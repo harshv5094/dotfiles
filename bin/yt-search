@@ -9,10 +9,10 @@ fi
 # Function to fetch search results
 search_youtube() {
   query="$1"
-  yt-dlp "ytsearch5:${query}" \
+  yt-dlp "ytsearch6:${query}" \
     --flat-playlist \
     --print "%(id)s|%(title)s|%(channel)s|%(duration_string)s" \
-    --playlist-end 5 \
+    --playlist-end 6 \
     --skip-download \
     --quiet
 }
@@ -34,36 +34,18 @@ if [[ -z "$results" ]]; then
   exit 1
 fi
 
-if command -v kitty &>/dev/null; then
-  tmp_dir=$(mktemp -d)
-  cleanup() { rm -rf "$tmp_dir"; }
-  trap cleanup EXIT
+selected=$(echo "$results" | fzf \
+  --delimiter '|' \
+  --with-nth 2,3,4 \
+  --height 80% \
+  --layout reverse \
+  --header 'Select video to play (Ctrl-C to cancel)')
 
-  while IFS='|' read -r video_id title channel duration; do
-    echo "https://youtube.com/watch?v=${video_id}" >"$tmp_dir/${title} - ${channel} [${duration}].txt"
-  done <<<"$results"
-
-  selected=$(kitten choose-files "$tmp_dir")
-
-  if [[ -n "$selected" && -f "$selected" ]]; then
-    video_url=$(cat "$selected")
-  else
-    exit 0
-  fi
+if [[ -n "$selected" ]]; then
+  video_id=$(echo "$selected" | cut -d'|' -f1)
+  video_url="https://youtube.com/watch?v=${video_id}"
 else
-  selected=$(echo "$results" | fzf \
-    --delimiter '|' \
-    --with-nth 2,3,4 \
-    --height 80% \
-    --layout reverse \
-    --header 'Select video to play (Ctrl-C to cancel)')
-
-  if [[ -n "$selected" ]]; then
-    video_id=$(echo "$selected" | cut -d'|' -f1)
-    video_url="https://youtube.com/watch?v=${video_id}"
-  else
-    exit 0
-  fi
+  exit 0
 fi
 
 echo "Playing: $video_url"
