@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
 
-# Check for yt-dlp
-if ! command -v yt-dlp &>/dev/null; then
-  printf "%b\n" "yt-dlp not found. Install it first."
-  exit 1
-fi
+# SCRIPT NAME: yt-search
+# AUTHOR: Harsh Vyapari (@harshv5094)
+
+# Checking for dependencies
+dependency_list=("yt-dlp" "fzf" "mpv")
+
+# A safe exit loop for checking dependencies
+for applications in "${dependency_list[@]}"; do
+  if ! command -v "$applications" &>/dev/null; then
+    printf "%b\n" "applications not found. Install it first."
+    exit 1
+  fi
+done
 
 # Function to fetch search results
 search_youtube() {
