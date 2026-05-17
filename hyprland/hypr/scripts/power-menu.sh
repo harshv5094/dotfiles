@@ -37,6 +37,7 @@ Poweroff)
   systemctl poweroff
   ;;
 Suspend)
+  # Suspends the system
   systemctl suspend
   ;;
 *)

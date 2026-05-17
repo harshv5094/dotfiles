@@ -26,7 +26,6 @@ select_theme() {
     rofi -dmenu -i -p " " -location 2 \
       -theme-str 'window { width: 200px; margin: 5px; }
                   listview { columns: 1; lines: 2; spacing: 10px; }
-                  mainbox { children: [listview]; }
                   element { orientation: vertical; }
                   element-icon { size: 250px; }
                   element-text { horizontal-align: 0.5; }'
