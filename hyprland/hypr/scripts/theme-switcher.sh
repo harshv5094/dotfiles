@@ -23,8 +23,8 @@ declare -A TARGETS=(
 select_theme() {
   options=$(find "$HYPR_THEMES_DIR" -mindepth 1 -maxdepth 1 -type d -printf "%f\n")
   printf "%s" "$options" |
-    rofi -dmenu -i -p " " -location 2 \
-      -theme-str 'window { width: 200px; margin: 5px; }
+    rofi -dmenu -i -p " " -location 0 \
+      -theme-str 'window { width: 200px; }
                   listview { columns: 1; lines: 2; spacing: 10px; }
                   element { orientation: vertical; }
                   element-icon { size: 250px; }

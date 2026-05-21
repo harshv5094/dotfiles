@@ -15,9 +15,9 @@ fi
 # Selecting wallpaper
 wallpaper=$(find "$WALLPAPER_DIR" -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" \) |
   awk -F/ '{print $NF "\0icon\x1f" $0}' |
-  rofi -dmenu -i -p "" -location 2 \
+  rofi -dmenu -i -p "" -location 0 \
     -show-icons \
-    -theme-str 'window { width: 800px; margin: 5px; }
+    -theme-str 'window { width: 800px; }
                 element-icon { size: 200px; }
                 listview { columns: 3; lines: 1; spacing: 10px; }
                 element { orientation: vertical; }

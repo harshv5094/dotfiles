@@ -5,8 +5,8 @@ options="Lock\nLogout\nHibernate\nReboot\nPoweroff\nSuspend"
 
 # Show the menu using Rofi
 choice=$(printf "%b" "$options" |
-  rofi -dmenu -i -p "⏻ " -location 2 \
-    -theme-str 'window { width: 180px; margin: 5px; }
+  rofi -dmenu -i -p "⏻ " -location 0 \
+    -theme-str 'window { width: 180px; }
                 listview { columns: 1; lines: 3; spacing: 10px; }
                 element { orientation: horizontal; }
                 element-text { horizontal-align: 0.5; }')

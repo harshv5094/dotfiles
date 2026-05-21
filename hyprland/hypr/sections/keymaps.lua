@@ -32,8 +32,8 @@ hl.bind(shift_mod .. " + right", hl.dsp.window.move({ direction = "right" }))
 hl.bind(shift_mod .. " + up", hl.dsp.window.move({ direction = "up" }))
 hl.bind(shift_mod .. " + down", hl.dsp.window.move({ direction = "down" }))
 
--- Switch workspaces with mainMod + [0-9]
--- Move active window to a workspace with mainMod + SHIFT + [0-9]
+-- Switch workspaces with main_mod + [0-9]
+-- Move active window to a workspace with main_mod + SHIFT + [0-9]
 for i = 1, 10 do
 	local key = i % 10 -- 10 maps to key 0
 	hl.bind(main_mod .. " + " .. key, hl.dsp.focus({ workspace = i }))
@@ -59,7 +59,7 @@ hl.bind(main_mod .. " + page_up", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind("ALT" .. " + tab", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind("ALT + SHIFT" .. " + tab", hl.dsp.focus({ workspace = "e-1" }))
 
--- Move/resize windows with mainMod + LMB/RMB and dragging
+-- Move/resize windows with main_mod + LMB/RMB and dragging
 hl.bind(main_mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(main_mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 

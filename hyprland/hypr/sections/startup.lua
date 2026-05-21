@@ -2,8 +2,8 @@
 
 hl.on("hyprland.start", function()
 	-- Import environment and dbus-update-activation-environment
-	-- hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
-	-- hl.exec_cmd("dbus-update-activation-environment --systemd --all")
+	hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+	hl.exec_cmd("dbus-update-activation-environment --systemd --all")
 
 	-- Enable mate-polkit
 	hl.exec_cmd(polkit)
@@ -17,4 +17,8 @@ hl.on("hyprland.start", function()
 
 	-- Start Gnome Keyring Daemon
 	hl.exec_cmd("gnome-keyring-daemon --start")
+
+	-- Open some of my daily apps
+	-- hl.exec_cmd(terminal, { workspace = "1" })
+	-- hl.exec_cmd(browser, { workspace = "2" })
 end)
