@@ -22,9 +22,15 @@ cloneRepo() {
 # --- Main Keymods Setup function --- #
 setupKanata() {
   # NOTE: Installing Kanata Package
-  if have $AUR_HELPER; then
+  if have "$AUR_HELPER"; then
     printf "%b\n" "**Installing kanata from $AUR_HELPER**"
-    $AUR_HELPER -S --noconfirm kanata
+    if grep -qE '\[chaotic-aur\]' '/etc/pacman.conf'; then
+      printf "%b\n" "** Installing kanata from Chaotic AUR **"
+      $AUR_HELPER -S --noconfirm kanata
+    else
+      printf "%b\n" "** Installing kanata Binary AUR package **"
+      $AUR_HELPER -S --noconfirm kanata-bin
+    fi
   else
     printf "%b\n" "**Please install $AUR_HELPER aur helper first**"
     exit 1
