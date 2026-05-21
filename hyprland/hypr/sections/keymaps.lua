@@ -63,6 +63,10 @@ hl.bind("ALT + SHIFT" .. " + tab", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(main_mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(main_mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
+-- Scrolling layout keymap
+hl.bind(main_mod .. " + period", hl.dsp.layout("move +col"))
+hl.bind(main_mod .. " + comma", hl.dsp.layout("swapcol l"))
+
 -- # Multimedia Controls #
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind(
@@ -99,7 +103,8 @@ hl.bind(main_mod .. " + f10", hl.dsp.exec_cmd("playerctl previous"), { locked = 
 hl.bind(main_mod .. " + f11", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind(main_mod .. " + f12", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 
--- # Misc Kyes
+-- # Misc Keys #
+
 -- Terminal
 hl.bind(main_mod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 
