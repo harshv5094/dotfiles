@@ -23,8 +23,8 @@ cloneRepo() {
 setupKanata() {
   # NOTE: Installing Kanata Package
   if have $AUR_HELPER; then
-    printf "%b\n" "**Installing kanata-bin from $AUR_HELPER**"
-    $AUR_HELPER -S --noconfirm kanata-bin
+    printf "%b\n" "**Installing kanata from $AUR_HELPER**"
+    $AUR_HELPER -S --noconfirm kanata
   else
     printf "%b\n" "**Please install $AUR_HELPER aur helper first**"
     exit 1
