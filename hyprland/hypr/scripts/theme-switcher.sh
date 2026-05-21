@@ -182,7 +182,7 @@ background {
     vibrancy = 0.2
     vibrancy_darkness = 0.2
     path = $wallpaper
-}" >"$XDG_CONFIG_HOME/hypr/sections/lock-background.conf"
+}" >"$XDG_CONFIG_HOME/hypr/lock-background.conf"
 
   hyprctl dispatch 'hl.dsp.exec_cmd("hyprpaper")'
 }
