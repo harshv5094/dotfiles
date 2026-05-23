@@ -52,10 +52,7 @@ hl.bind(main_mod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(main_mod .. " + page_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(main_mod .. " + page_up", hl.dsp.focus({ workspace = "e-1" }))
 
--- Scroll through existing workspaces with main_mod + alt/alt_shift + tab
-hl.bind(main_mod .. " + page_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(main_mod .. " + page_up", hl.dsp.focus({ workspace = "e-1" }))
-
+-- Scroll through existing workspaces with alt/alt_shift + tab
 hl.bind("ALT" .. " + tab", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind("ALT + SHIFT" .. " + tab", hl.dsp.focus({ workspace = "e-1" }))
 
