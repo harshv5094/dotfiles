@@ -25,7 +25,6 @@ search_youtube() {
     --quiet
 }
 
-# Main
 if [[ $# -eq 0 ]]; then
   printf "%b\n" "Usage: yt-search <query>"
   exit 1
@@ -34,9 +33,8 @@ fi
 query="$*"
 echo "Searching for: $query..."
 
-# Fetch results
+# Fetch results from youtube
 results=$(search_youtube "$query")
-
 if [[ -z "$results" ]]; then
   echo "No results found"
   exit 1
@@ -44,19 +42,23 @@ fi
 
 selected=$(echo "$results" | fzf \
   --delimiter '|' \
-  --with-nth 2,3,4 \
+  --with-nth 2 \
+  --preview 'printf "%b\n" "URL: https://youtube.com/watch?v={1}\nTitle: {2}\nChannel: {3}\nDuration: {4}"' \
+  --preview-window 'bottom' \
   --height 80% \
   --layout reverse \
   --header 'Select video to play (Ctrl-C to cancel)')
 
 if [[ -n "$selected" ]]; then
   video_id=$(echo "$selected" | cut -d'|' -f1)
+  video_title=$(echo "$selected" | cut -d'|' -f2)
   video_url="https://youtube.com/watch?v=${video_id}"
+  echo "Playing: $video_title"
 else
+  yt-dlp: Not selected. Exiting...
+  sleep 1s
   exit 0
 fi
-
-echo "Playing: $video_url"
 
 if command -v hyprctl &>/dev/null; then
   #shellcheck disable=SC2086
