@@ -14,6 +14,15 @@ for applications in "${dependency_list[@]}"; do
   fi
 done
 
+cat <<'EOF'
+__   _______   _____                     _     
+\ \ / /_   _| /  ___|                   | |    
+ \ V /  | |   \ `--.  ___  __ _ _ __ ___| |__  
+  \ /   | |    `--. \/ _ \/ _` | '__/ __| '_ \ 
+  | |   | |   /\__/ /  __/ (_| | | | (__| | | |
+  \_/   \_/   \____/ \___|\__,_|_|  \___|_| |_|
+EOF
+
 # Function to fetch search results
 search_youtube() {
   query="$1"

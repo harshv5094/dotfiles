@@ -3,6 +3,17 @@
 # Base Package setup
 have() { command -v "$1" &>/dev/null; }
 
+cat <<'EOF'
+ _                          _         
+| |                        | |        
+| |__   __ _ ___  ___ _ __ | | ____ _ 
+| '_ \ / _` / __|/ _ \ '_ \| |/ / _` |
+| |_) | (_| \__ \  __/ |_) |   < (_| |
+|_.__/ \__,_|___/\___| .__/|_|\_\__, |
+                     | |         __/ |
+                     |_|        |___/ 
+EOF
+
 printf "%b\n" "** Installing required CLI tools **"
 
 # Detect escalation tool (sudo, doas, or none if root)

@@ -203,6 +203,18 @@ installAndConfigureHyprland() {
   done
 }
 
+# Hyprland Banner #
+cat <<'EOF'
+ _                      _                 _ 
+| |                    | |               | |
+| |__  _   _ _ __  _ __| | __ _ _ __   __| |
+| '_ \| | | | '_ \| '__| |/ _` | '_ \ / _` |
+| | | | |_| | |_) | |  | | (_| | | | | (_| |
+|_| |_|\__, | .__/|_|  |_|\__,_|_| |_|\__,_|
+        __/ | |                             
+       |___/|_|                             
+EOF
+
 printf "%b\n" "*** Starting Hyprland Setup **"
 loginSetup
 installAndConfigureHyprland
