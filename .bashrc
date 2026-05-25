@@ -67,6 +67,7 @@ if [[ -n "$AUR_HELPER" ]]; then
     pkgs=$($AUR_HELPER -Slq | fzf --border-label "** Install Packages ($AUR_HELPER) **" \
       --multi \
       --preview "${AUR_HELPER} -Sii {1}" \
+      --header 'Select package to install (Ctrl-C to cancel)' \
       --preview-window=right:60%)
 
     # Only run if the string is not empty
@@ -82,6 +83,7 @@ if [[ -n "$AUR_HELPER" ]]; then
     pkgs=$($AUR_HELPER -Qq | fzf --border-label "** Remove Packages ($AUR_HELPER) **" \
       --multi \
       --preview "${AUR_HELPER} -Qii {1}" \
+      --header 'Select package to remove (Ctrl-C to cancel)' \
       --preview-window=right:60%)
 
     # Only run if the string is not empty
