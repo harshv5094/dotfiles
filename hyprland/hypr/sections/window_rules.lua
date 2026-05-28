@@ -101,6 +101,18 @@ hl.window_rule({
 	animation = "popin",
 })
 
+-- VlC file popups
+hl.window_rule({
+	name = "vlc_file_popups",
+	match = {
+		class = "^(vlc|VLC|Vlc)$",
+		title = "^(.*(Open|open).*)$",
+	},
+	float = true,
+	center = true,
+	animation = "popin",
+})
+
 -- Chromium popup dialogues
 hl.window_rule({
 	name = "chromium_popup_dialogues",
