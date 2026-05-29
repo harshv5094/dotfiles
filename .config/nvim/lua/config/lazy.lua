@@ -43,7 +43,6 @@ require("lazy").setup({
 		{ import = "lazyvim.plugins.extras.ui.treesitter-context" },
 
 		-- Editor Extras
-		{ import = "lazyvim.plugins.extras.editor.refactoring" },
 
 		-- import/override with your plugins
 		{ import = "plugins" },
