@@ -110,10 +110,4 @@ return {
 			}
 		end,
 	},
-
-	-- Turning of markdown rendering
-	{
-		"MeanderingProgrammer/render-markdown.nvim",
-		enabled = false,
-	},
 }
