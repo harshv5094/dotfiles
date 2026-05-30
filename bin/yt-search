@@ -67,9 +67,13 @@ if [[ -n "$selected" ]]; then
   # Saving temporary history in home directory file
   if [[ ! -f "$HOME/.ytsearch.txt" ]]; then
     touch "$HOME/.ytsearch.txt"
-    echo "$video_title - $video_url" >>.ytsearch.txt
+    if ! grep -q "$video_title" "$HOME/.ytsearch.txt"; then
+      echo "$video_title - $video_url" >>.ytsearch.txt
+    fi
   else
-    echo "$video_title - $video_url" >>.ytsearch.txt
+    if ! grep -q "$video_title" "$HOME/.ytsearch.txt"; then
+      echo "$video_title - $video_url" >>.ytsearch.txt
+    fi
   fi
 
 else
