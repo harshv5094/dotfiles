@@ -19,6 +19,7 @@ fi
 
 if [ -f "$file" ]; then
   sed -i "s/layout = \".*\"/layout = \"$choice\"/" "$file"
+  notify-send -u low "Layout Switcher" "Switched to $choice"
 else
   notify-send "Not found - $file" "It doesn't exist in the directory"
   exit 1
