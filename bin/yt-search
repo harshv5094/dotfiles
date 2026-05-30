@@ -64,7 +64,7 @@ if [[ -n "$selected" ]]; then
   video_url="https://youtube.com/watch?v=${video_id}"
   echo "Playing: $video_title"
 
-  # Saving temporary history in home directory file
+  # Saving temporary history in $HOME/.ytsearch.txt
   if [[ ! -f "$HOME/.ytsearch.txt" ]]; then
     touch "$HOME/.ytsearch.txt"
     if ! grep -q "$video_title" "$HOME/.ytsearch.txt"; then
@@ -75,7 +75,6 @@ if [[ -n "$selected" ]]; then
       echo "$video_title - $video_url" >>.ytsearch.txt
     fi
   fi
-
 else
   yt-dlp: Not selected. Exiting...
   sleep 1s

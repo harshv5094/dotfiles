@@ -96,7 +96,7 @@ alias .2='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
-alias check-gpu-id='lspci | grep -E "VGA|3D" && echo -e "\nPath: /dev/dri/by-path/" && ls -l /dev/dri/by-path '
+alias check-gpu-id='lspci | grep -E "VGA|3D" && echo -e "\nPath: /dev/dri/by-path/" && ls -l /dev/dri/by-path'
 
 # QOL Aliases
 AUR_HELPER="$(command -v paru || command -v yay)"
