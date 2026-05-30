@@ -9,6 +9,17 @@ AUR_HELPER=$(command -v paru || command -v yay)
 # --- Command Checker --- #
 have() { command -v "$1" &>/dev/null; }
 
+cat <<'EOF'
+ _   __                  _        
+| | / /                 | |       
+| |/ /  __ _ _ __   __ _| |_ __ _ 
+|    \ / _` | '_ \ / _` | __/ _` |
+| |\  \ (_| | | | | (_| | || (_| |
+\_| \_/\__,_|_| |_|\__,_|\__\__,_|
+                                  
+                                  
+EOF
+
 # --- Clonning Repo Mechanism --- #
 cloneRepo() {
   if [ ! -d "$CLONE_DIR" ]; then
