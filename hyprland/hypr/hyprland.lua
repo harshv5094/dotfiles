@@ -39,3 +39,6 @@ require("sections.permission")
 
 -- Smart Gaps
 require("sections.smart_gaps")
+
+-- Gesture
+require("sections.gesture")

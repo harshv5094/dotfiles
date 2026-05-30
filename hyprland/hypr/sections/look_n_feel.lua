@@ -45,9 +45,3 @@ hl.config({
 		force_zero_scaling = true,
 	},
 })
-
-hl.gesture({
-	fingers = 3,
-	direction = "horizontal",
-	action = "workspace",
-})
