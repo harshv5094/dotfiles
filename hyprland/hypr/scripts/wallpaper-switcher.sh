@@ -33,35 +33,22 @@ wallpaper_full_path=$(find "$WALLPAPER_DIR" -name "$wallpaper" -print | head -n1
 
 killall hyprpaper
 
-printf "%b\n" "splash = false" >~/.config/hypr/hyprpaper.conf
-printf "%b\n" "ipc = true" >>~/.config/hypr/hyprpaper.conf
-
+# This is for multi-wallpaper
+# printf "%b\n" "splash = false" >~/.config/hypr/hyprpaper.conf
+# printf "%b\n" "ipc = true" >>~/.config/hypr/hyprpaper.conf
 # monitors=$(hyprctl monitors -j | jq -r ".[] | .name")
 # for monitor in $monitors; do
 #   printf "%b" "wallpaper {
 #   monitor = $monitor
-#   path = $wallpaper
+#   path = $wallpaper_full_path
 #   fit_mode=cover
 # }" >>~/.config/hypr/hyprpaper.conf
 # done
 
-printf "%b" "wallpaper {
-    monitor =
-    path = $wallpaper_full_path
-    fit_mode=cover
-}" >>~/.config/hypr/hyprpaper.conf
+# Main Wallpaper Screen
+sed -i "s|path = .*|path = $wallpaper_full_path|" "$XDG_CONFIG_HOME/hypr/hyprpaper.conf"
+# Lock Screen
+sed -i "s|path = .*|path = $wallpaper_full_path|" "$XDG_CONFIG_HOME/hypr/lock-background.conf"
 
-printf "%b" "# BACKGROUND
-background { 
-    blur_size = 3
-    blur_passes = 2
-    contrast = 1
-    brightness = 0.5
-    vibrancy = 0.2
-    vibrancy_darkness = 0.2
-    path = $wallpaper_full_path   # supports png, jpg, webp (no animations, though)
-}
-" >~/.config/hypr/lock-background.conf
-
-notify-send "Wallpaper Applied" "$wallpaper"
+notify-send -u low "Wallpaper Applied" "$wallpaper"
 hyprctl dispatch 'hl.dsp.exec_cmd("hyprpaper")'

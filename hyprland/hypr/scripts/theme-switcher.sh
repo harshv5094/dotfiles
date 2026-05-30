@@ -154,9 +154,9 @@ update_wallpaper() {
 
   # Set wallpaper using hyprctl and hyprpaper
   killall hyprpaper
-  printf "%b\n" "splash = false" >~/.config/hypr/hyprpaper.conf
-  printf "%b\n" "ipc = true" >>~/.config/hypr/hyprpaper.conf
-
+  # This is for multi-wallpaper
+  # printf "%b\n" "splash = false" >~/.config/hypr/hyprpaper.conf
+  # printf "%b\n" "ipc = true" >>~/.config/hypr/hyprpaper.conf
   # monitors=$(hyprctl monitors -j | jq -r ".[] | .name")
   # for monitor in $monitors; do
   #   printf "%b" "wallpaper {
@@ -166,23 +166,10 @@ update_wallpaper() {
   # }" >>~/.config/hypr/hyprpaper.conf
   # done
 
-  printf "%b" "wallpaper {
-    monitor =
-    path = $wallpaper
-    fit_mode=cover
-}" >>~/.config/hypr/hyprpaper.conf
-
-  # Update hyprlock background
-  printf "%b" "# BACKGROUND
-background {
-    blur_size = 3
-    blur_passes = 2
-    contrast = 1
-    brightness = 0.5
-    vibrancy = 0.2
-    vibrancy_darkness = 0.2
-    path = $wallpaper
-}" >"$XDG_CONFIG_HOME/hypr/lock-background.conf"
+  # Main Wallpaper Screen
+  sed -i "s|path = .*|path = $wallpaper|" "$XDG_CONFIG_HOME/hypr/hyprpaper.conf"
+  # Lock Screen
+  sed -i "s|path = .*|path = $wallpaper|" "$XDG_CONFIG_HOME/hypr/lock-background.conf"
 
   hyprctl dispatch 'hl.dsp.exec_cmd("hyprpaper")'
 }
