@@ -63,6 +63,15 @@ if [[ -n "$selected" ]]; then
   video_title=$(echo "$selected" | cut -d'|' -f2)
   video_url="https://youtube.com/watch?v=${video_id}"
   echo "Playing: $video_title"
+
+  # Saving temporary history in home directory file
+  if [[ ! -f "$HOME/.ytsearch.txt" ]]; then
+    touch "$HOME/.ytsearch.txt"
+    echo "$video_title - $video_url" >>.ytsearch.txt
+  else
+    echo "$video_title - $video_url" >>.ytsearch.txt
+  fi
+
 else
   yt-dlp: Not selected. Exiting...
   sleep 1s
