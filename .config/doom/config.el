@@ -1,5 +1,10 @@
+; NOTE: Setup clipboard
+(setq select-enable-clipboard t)
+
+; NOTE: Color Scheme
 (setq doom-theme 'doom-gruvbox)
 
+; NOTE: Custom doom emacs config keymaps
 (map! :leader
       (:prefix ("=" . "open file")
        :desc "Edit agenda file"      "a" #'(lambda () (interactive) (find-file "~/org/agenda.org"))
@@ -8,33 +13,55 @@
        :desc "Edit doom init.el"     "i" #'(lambda () (interactive) (find-file "~/.config/doom/init.el"))
        :desc "Edit doom packages.el" "p" #'(lambda () (interactive) (find-file "~/.config/doom/packages.el"))))
 
-; Setting Basic Font Family and Font Size
+; NOTE: Setting Basic Font Family and Font Size
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 15)
       doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font Mono" :size 15)
       doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
 
-; Basic font style
+; NOTE: Basic font style
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
 
-; This are custom font faces for text
+; NOTE: This are custom font faces for text
 (custom-set-faces!
   '(font-lock-comment-face :slant italic))
   ;'(font-lock-keyword-face :slant italic))
 
-(global-auto-revert-mode 1)
+; NOTE: global revert mode settings
+(setq global-auto-revert-mode 1)
 (setq global-auto-revert-non-file-buffers t)
 
+; NOTE: add lsp delays
+(after! flycheck (setq flycheck-idle-change-delay 0.1))
+(after! lsp-mode
+  (setq lsp-idle-delay 0.1)
+  :custom
+  (setq lsp-completion-enable-additional-text-edit t)
+  (setq lsp-modeline-code-actions-enable t))
+
+; NOTE: Customizing modeline design
 (setq doom-modeline-height 30                    ;; Sets modeline height
       doom-modeline-bar-width 5                  ;; sets right bar width
       doom-modeline-buffer-file-name-style 'auto ;; auto setup doom modeline filename
       doom-modeline-persp-name t                 ;; adds perspective name to modeline
       doom-modeline-persp-icon t)                ;; adds folder icon next to persp name
 
-; NOTE setting relative line number
+; NOTE: User information for Emacs to use
+(setq user-full-name "Harsh Vyapari"
+      user-mail-address "harshvy5094@proton.me")
+
+; NOTE: setting relative line number
 (setq display-line-numbers-type 'relative)
 
+; NOTE: Add which key delay for searching
+(setq which-key-idle-delay 0.5)
+
+; NOTE: Setting up split window rules for evil mode
+(setq evil-vsplit-window-right t)
+(setq evil-split-window-below t)
+
+; NOTE: Setting up custom markdown header
 (custom-set-faces
  '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight bold :family "FiraCode Nerd Font Mono"))))
  '(markdown-header-face-1 ((t (:inherit markdown-header-face :height 1.7))))
@@ -44,8 +71,10 @@
  '(markdown-header-face-5 ((t (:inherit markdown-header-face :height 1.3))))
  '(markdown-header-face-6 ((t (:inherit markdown-header-face :height 1.2)))))
 
-(xterm-mouse-mode 1)
+; NOTE: Enable mouse mode
+(setq xterm-mouse-mode 1)
 
+; NOTE: Setting up org agenda file
 (after! org
   (setq org-agenda-files '("~/org/agenda.org")))
 

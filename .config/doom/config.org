@@ -5,12 +5,17 @@
 
 * Table Of Contents :toc:
 - [[#basic-configuration][Basic Configuration]]
+  - [[#clipboard][Clipboard]]
   - [[#doom-theme][Doom theme]]
   - [[#edit-specific-file][Edit Specific file]]
   - [[#font-family][Font Family]]
   - [[#global-auto-revert][Global Auto Revert]]
+  - [[#lsp-delays][LSP Delays]]
   - [[#modeline][Modeline]]
+  - [[#personal-information][Personal Information]]
   - [[#relative-line-number][Relative Line Number]]
+  - [[#which-key][Which key]]
+  - [[#window-splitting][Window splitting]]
 - [[#markdown][Markdown]]
   - [[#markdown-headers][Markdown Headers]]
 - [[#mouse-support][Mouse Support]]
@@ -22,15 +27,23 @@
 
 * Basic Configuration
 
+** Clipboard
+#+begin_src emacs-lisp :tangle yes
+; NOTE: Setup clipboard
+(setq select-enable-clipboard t)
+#+end_src
+
 ** Doom theme
 Setting default theme
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle yes
+; NOTE: Color Scheme
 (setq doom-theme 'doom-gruvbox)
 #+end_src
 
 ** Edit Specific file
 Here we are adding keybinds to edit doom emacs config files
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle yes
+; NOTE: Custom doom emacs config keymaps
 (map! :leader
       (:prefix ("=" . "open file")
        :desc "Edit agenda file"      "a" #'(lambda () (interactive) (find-file "~/org/agenda.org"))
@@ -49,18 +62,18 @@ Settings related to fonts within Doom Emacs:
 + ~font-lock-comment-face~ - for comments.
 + ~font-lock-keyword-face~ - for keywords with special significance like ~setq~ in elisp.
 
-#+begin_src emacs-lisp
-; Setting Basic Font Family and Font Size
+#+begin_src emacs-lisp :tangle yes
+; NOTE: Setting Basic Font Family and Font Size
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 15)
       doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font Mono" :size 15)
       doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
 
-; Basic font style
+; NOTE: Basic font style
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
 
-; This are custom font faces for text
+; NOTE: This are custom font faces for text
 (custom-set-faces!
   '(font-lock-comment-face :slant italic))
   ;'(font-lock-keyword-face :slant italic))
@@ -68,14 +81,27 @@ Settings related to fonts within Doom Emacs:
 
 ** Global Auto Revert
 A buffer can get out of sync with respect to its visited file on disk if that file is changed by another program. To keep it up to date, you can enable Auto Revert mode by typing M-x auto-revert-mode, or you can set it to be turned on globally with ‘global-auto-revert-mode’.  I have also turned on Global Auto Revert on non-file buffers, which is especially useful for ‘dired’ buffers.
-#+begin_src emacs-lisp
-(global-auto-revert-mode 1)
+#+begin_src emacs-lisp :tangle yes
+; NOTE: global revert mode settings
+(setq global-auto-revert-mode 1)
 (setq global-auto-revert-non-file-buffers t)
+#+end_src
+
+** LSP Delays
+#+begin_src emacs-lisp :tangle yes
+; NOTE: add lsp delays
+(after! flycheck (setq flycheck-idle-change-delay 0.1))
+(after! lsp-mode
+  (setq lsp-idle-delay 0.1)
+  :custom
+  (setq lsp-completion-enable-additional-text-edit t)
+  (setq lsp-modeline-code-actions-enable t))
 #+end_src
 
 ** Modeline
 The modeline is the bottom status bar that appears in Emacs windows. For more information on what is available to configure in the Doom modeline, check out: https://github.com/seagle0128/doom-modeline
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle yes
+; NOTE: Customizing modeline design
 (setq doom-modeline-height 30                    ;; Sets modeline height
       doom-modeline-bar-width 5                  ;; sets right bar width
       doom-modeline-buffer-file-name-style 'auto ;; auto setup doom modeline filename
@@ -83,18 +109,44 @@ The modeline is the bottom status bar that appears in Emacs windows. For more in
       doom-modeline-persp-icon t)                ;; adds folder icon next to persp name
 #+end_src
 
+** Personal Information
+This contains various bits about myself that Emacs likes to use in various modules.
+#+begin_src emacs-lisp :tangle yes
+; NOTE: User information for Emacs to use
+(setq user-full-name "Harsh Vyapari"
+      user-mail-address "harshvy5094@proton.me")
+#+end_src
+
 ** Relative Line Number
 Enable relative line number
-#+begin_src emacs-lisp
-; NOTE setting relative line number
+#+begin_src emacs-lisp :tangle yes
+; NOTE: setting relative line number
 (setq display-line-numbers-type 'relative)
+#+end_src
+
+** Which key
+Reduce the popup delay of ~which-key~
+#+begin_src emacs-lisp :tangle yes
+; NOTE: Add which key delay for searching
+(setq which-key-idle-delay 0.5)
+#+end_src
+
+** Window splitting
+These changes make window splitting a bit nicer
+
+First I want to focus to change to newly created windows.
+#+begin_src emacs-lisp :tangle yes
+; NOTE: Setting up split window rules for evil mode
+(setq evil-vsplit-window-right t)
+(setq evil-split-window-below t)
 #+end_src
 
 * Markdown
 
 ** Markdown Headers
 Here we are giving markdown header some height.
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle yes
+; NOTE: Setting up custom markdown header
 (custom-set-faces
  '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight bold :family "FiraCode Nerd Font Mono"))))
  '(markdown-header-face-1 ((t (:inherit markdown-header-face :height 1.7))))
@@ -107,15 +159,17 @@ Here we are giving markdown header some height.
 
 * Mouse Support
 Adding the mouse support to the terminal version of the emacs
-#+begin_src emacs-lisp
-(xterm-mouse-mode 1)
+#+begin_src emacs-lisp :tangle yes
+; NOTE: Enable mouse mode
+(setq xterm-mouse-mode 1)
 #+end_src
 
 * Org Mode Settings
 
 ** Org agenda default file
 Setting up org agenda default file name
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle yes
+; NOTE: Setting up org agenda file
 (after! org
   (setq org-agenda-files '("~/org/agenda.org")))
 #+end_src
@@ -123,7 +177,7 @@ Setting up org agenda default file name
 ** Org Header Defaut Font Size
 Here is my custom function ~my-custom-header~ to change the font size of the org headings.
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle yes
 ; NOTE Custom function to change header size
 (custom-theme-set-faces! nil
 '(org-level-8 :inherit outline-3 :height 1.0)
@@ -139,7 +193,7 @@ Here is my custom function ~my-custom-header~ to change the font size of the org
 
 ** Org Mode Directory Default location
 Setting different org directories default path default path
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle yes
 ; NOTE Default Org Directory
 (setq org-directory "~/org/")
 ; NOTE Default Note File
@@ -148,7 +202,7 @@ Setting different org directories default path default path
 
 ** Org Journal Config
 Setting Org Journal Default location
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle yes
 ; NOTE Setting up org journal directory
 (setq org-journal-dir "~/org/journal/"
       org-journal-date-prefix "* "
