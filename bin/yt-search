@@ -78,8 +78,7 @@ if [[ -n "$selected" ]]; then
     fi
   fi
 else
-  yt-dlp: Not selected. Exiting...
-  sleep 1s
+  printf "%b\n" "Not selected, exiting..."
   exit 0
 fi
 
