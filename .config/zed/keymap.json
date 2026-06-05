@@ -1,0 +1,18 @@
+/* Zed keymap
+ For information on binding keys, see the Zed
+documentation: https://zed.dev/docs/key-bindings */
+[
+  {
+    "context": "Workspace",
+    "bindings": {}
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {}
+  },
+  {
+    "bindings": {
+      "ctrl-k f": "workspace::CloseProject"
+    }
+  }
+]
