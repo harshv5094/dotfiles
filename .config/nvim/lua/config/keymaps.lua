@@ -42,9 +42,9 @@ map("n", "<leader>gi", git.init, { desc = "Git init (root)" })
 map("n", "<localleader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "String auto replace" })
 
 -- Adding executable permission to script
-map("n", "<localleader>x", "<cmd>!chmod +x %<CR>", { desc = "chmod +x <current-buffer>" })
+map("n", "<leader>fx", "<cmd>!chmod +x %<CR>", { desc = "chmod +x <current-buffer>" })
 
-map("n", "<localleader>X", "<cmd>!chmod -x %<CR>", { desc = "chmod -x <current-buffer>" })
+map("n", "<leader>fX", "<cmd>!chmod -x %<CR>", { desc = "chmod -x <current-buffer>" })
 
 -- adding lazy extras keybind
 map("n", "<localleader>l", "<cmd>LazyExtras<CR>", { desc = "LazyExtras", silent = true })
