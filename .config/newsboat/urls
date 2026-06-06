@@ -1,10 +1,12 @@
 # News
 https://itsfoss.com/rss/           # Its Foss
 https://archlinux.org/feeds/news/  # Archlinux News Feeds
-https://dotfyle.com/this-week-in-neovim/rss # This week in neovim
+# https://dotfyle.com/this-week-in-neovim/rss # This week in neovim
 
 # Blogs
 https://blog.vaxry.net/feed # Vaxry's blog
+https://harshv5094.github.io/index.xml # My blog
+# http://localhost:1313/index.xml # My blog
 
 # Reddit Feeds
 https://reddit.com/r/neovim.rss # Neovim RSS
