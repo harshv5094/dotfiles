@@ -6,7 +6,7 @@ https://archlinux.org/feeds/news/  # Archlinux News Feeds
 # Blogs
 https://blog.vaxry.net/feed # Vaxry's blog
 https://harshv5094.github.io/index.xml # My blog
-# http://localhost:1313/index.xml # My blog
+# http://localhost:1313/index.xml # My blog (Localhost testing)
 
 # Reddit Feeds
 https://reddit.com/r/neovim.rss # Neovim RSS
