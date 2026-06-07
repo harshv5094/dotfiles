@@ -3,7 +3,7 @@
 This is my arch hyprland setup
 
 > [!WARNING]
-> This setup is dependent on my dotfiles, so you can't run this folder seperately
+> This setup is dependent on my dotfiles, so you can't run this folder separately
 
 ## Installation instruction
 
