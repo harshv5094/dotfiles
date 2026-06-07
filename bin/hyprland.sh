@@ -7,10 +7,6 @@ fi
 
 # -- Global Variables -- #
 source_dirs="$HOME/dotfiles"
-if [[ ! -d "$source_dirs" ]]; then
-  source_dirs="/tmp/dotfiles"
-  git clone https://github.com/harshv5094/dotfiles "$source_dirs"
-fi
 XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 AUR_HELPER=$(command -v paru || command -v yay)
 ESCALATION_TOOL=$(command -v sudo || command -v doas)
@@ -76,7 +72,7 @@ cloneWallpapers() {
 # -- Setup my window manager -- #
 loginSetup() {
   luksLoginSetup() {
-    printf "%b" "** LOCKED: Root is encrypted **"
+    printf "%b\n" "** LOCKED: Root is encrypted **"
     printf "%b\n" "* Setting up LUKS login *"
     target_dir="/etc/systemd/system/getty@tty1.service.d"
     target_file="$target_dir/override.conf"
@@ -215,10 +211,10 @@ cat <<'EOF'
        |___/|_|                             
 EOF
 
-printf "%b\n" "*** Starting Hyprland Setup **"
+printf "%b\n" "*** Starting Hyprland Setup ***"
 loginSetup
 installAndConfigureHyprland
 copyFolders
 extractGruvboxColors
 cloneWallpapers
-printf "%b\n" "*** Hyprland Setup is finished **"
+printf "%b\n" "*** Hyprland Setup is finished ***"
