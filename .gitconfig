@@ -33,6 +33,7 @@
   # add conflicted file on merge
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
 
+  # removing reflog content 
   ref-prune-now = !git reflog expire --expire=now --expire-unreachable=now --all && git gc --prune=now --aggressive
 
 [difftool "nvimdiff"]
