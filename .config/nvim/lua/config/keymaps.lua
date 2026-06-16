@@ -9,6 +9,7 @@ local opts = { noremap = true, silent = true }
 -- Custom Utility function
 local git = require("utils.git")
 local hex2rgba = require("utils.hex2rgba")
+local misc = require("utils.misc")
 
 -- New tab
 map("n", "te", ":tabedit<CR>")
@@ -41,13 +42,15 @@ map("n", "<leader>gi", git.init, { desc = "Git init (root)" })
 -- Automatic find and replace
 map("n", "<localleader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "String auto replace" })
 
--- Adding executable permission to script
-map("n", "<leader>fx", "<cmd>!chmod +x %<CR>", { desc = "chmod +x <current-buffer>" })
-
-map("n", "<leader>fX", "<cmd>!chmod -x %<CR>", { desc = "chmod -x <current-buffer>" })
+map("n", "<leader>fx", function()
+	misc.chmod()
+end, { desc = "chmod +x <current-buffer>" })
+map("n", "<leader>fX", function()
+	misc.chmod("-")
+end, { desc = "chmod -x <current-buffer>" })
 
 -- adding lazy extras keybind
-map("n", "<localleader>l", "<cmd>LazyExtras<CR>", { desc = "LazyExtras", silent = true })
+map("n", "<localleader>L", "<cmd>LazyExtras<CR>", { desc = "LazyExtras", silent = true })
 
 -- Custom utility to convert hex to rgba
 map("n", "<localleader>cs", function()
