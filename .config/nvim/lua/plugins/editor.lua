@@ -180,4 +180,24 @@ return {
 			},
 		},
 	},
+
+	-- NOTE: Auto inserting license plugin
+	{
+		"GR3YH4TT3R93/licenses.nvim",
+		event = "VeryLazy",
+		keys = {
+			{
+				"<localleader>li",
+				":LicenseInsert ",
+				{ desc = "Insert License" },
+			},
+		},
+		opts = {
+			copyright_holder = "Harsh Vyapari",
+			license = { "MIT" },
+		},
+		config = function(_, opts)
+			require("licenses").setup(opts)
+		end,
+	},
 }
