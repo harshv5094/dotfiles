@@ -105,7 +105,7 @@ listen() {
   fi
 
   if [[ -n $file ]]; then
-    play "$file"
+    ffplay -nodisp -autoexit "$file"
   else
     echo "No file selected. Exiting...."
   fi

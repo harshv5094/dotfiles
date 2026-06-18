@@ -143,8 +143,8 @@ listen() {
     file=$(find ~/Music -iname "*.mp3" | fzf --border-label "** Select Song **")
   fi
 
-  if [[ -n "$file" ]]; then
-    play "$file"
+  if [[ -n "$file" ]]; then 
+    ffplay -nodisp -autoexit "$file"
   else
     echo "No file selected. Exiting...."
   fi
