@@ -11,7 +11,7 @@ local bg = {
 	soft = "#32302f",
 }
 
-local M = {
+local colors = {
 	foreground = "#ebdbb2",
 	background = bg[contrast],
 
@@ -71,4 +71,4 @@ local M = {
 	},
 }
 
-return M
+return colors
