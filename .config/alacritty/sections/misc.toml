@@ -1,0 +1,16 @@
+
+[window]
+padding = { x = 2, y = 2 }
+decorations = "full"
+opacity = 1.0
+dynamic_title = true
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+
+[selection]
+save_to_clipboard = true

@@ -1,0 +1,6 @@
+# [terminal.shell]
+# program = "pwsh"
+# args = ["-NoLogo"]
+
+[general]
+import = ["sections/colors.toml", "sections/font.toml", "sections/misc.toml"]
