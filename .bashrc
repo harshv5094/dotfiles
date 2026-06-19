@@ -96,20 +96,22 @@ if [[ -n "$AUR_HELPER" ]]; then
 fi
 
 # Alias for quickly listening a single song
-listen() {
-  local file
-  if command -v kitten &>/dev/null; then
-    file=$(kitten choose-files ~/Music)
-  else
-    file=$(find ~/Music -iname "*.mp3" | fzf --border-label "** Select Song **")
-  fi
+if command -v fzf &>/dev/null && command -v ffplay &>/dev/null; then
+  listen() {
+    local file
+    if pgrep -e kitty &>/dev/null; then
+      file=$(kitten choose-files ~/Music)
+    else
+      file=$(find ~/Music -iname "*.mp3" | fzf --border-label "** Select Song **")
+    fi
 
-  if [[ -n $file ]]; then
-    ffplay -nodisp -autoexit "$file"
-  else
-    echo "No file selected. Exiting...."
-  fi
-}
+    if [[ -n $file ]]; then
+      ffplay -nodisp -autoexit "$file"
+    else
+      echo "No file selected. Exiting...."
+    fi
+  }
+fi
 
 if command -v pacman &>/dev/null; then
   alias unlock='sudo rm /var/lib/pacman/db.lck'
