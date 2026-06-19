@@ -138,7 +138,7 @@ fi
 if command -v fzf &>/dev/null && command -v ffplay &>/dev/null; then
   listen() {
     local file
-    if pgrep -e kitty &>/dev/null; then
+    if pgrep kitty &>/dev/null; then
       file=$(kitten choose-files ~/Music)
     else
       file=$(find ~/Music -iname "*.mp3" | fzf --border-label "** Select Song **")
