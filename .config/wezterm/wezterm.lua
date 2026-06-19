@@ -5,6 +5,9 @@ if wezterm.target_triple:find("windows") then
 	config.default_prog = { "pwsh.exe", "-NoLogo" }
 end
 
+-- Keybinds
+config.keys = require("sections.keybinds")
+
 -- Colors
 config.colors = require("sections.gruvbox")
 
