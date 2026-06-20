@@ -3,8 +3,8 @@ local act = wezterm.action
 
 local keys = {
 	-- Tabs
-	{ key = "t", mods = "ALT|SHIFT", action = act.SpawnTab("CurrentPaneDomain") },
-	{ key = "q", mods = "ALT|SHIFT", action = act.CloseCurrentTab({ confirm = true }) },
+	{ key = "c", mods = "ALT", action = act.SpawnTab("CurrentPaneDomain") },
+	{ key = "q", mods = "ALT", action = act.CloseCurrentTab({ confirm = true }) },
 	{ key = "[", mods = "ALT|SHIFT", action = act.ActivateTabRelative(-1) },
 	{ key = "]", mods = "ALT|SHIFT", action = act.ActivateTabRelative(1) },
 

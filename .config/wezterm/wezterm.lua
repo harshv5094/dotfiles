@@ -6,6 +6,9 @@ if wezterm.target_triple:find("windows") then
 	config.default_prog = { "pwsh.exe", "-NoLogo" }
 end
 
+-- Environment Variables
+config.term = "xterm-256color"
+
 -- Keybinds
 config.disable_default_key_bindings = true
 config.keys = require("sections.keybinds")
