@@ -35,12 +35,15 @@ local keys = {
 	{ key = "v", mods = "ALT|SHIFT", action = act.PasteFrom("Clipboard") },
 
 	-- Font size
-	{ key = "=", mods = "ALT|SHIFT", action = act.IncreaseFontSize },
-	{ key = "-", mods = "ALT|SHIFT", action = act.DecreaseFontSize },
-	{ key = "0", mods = "ALT|SHIFT", action = act.ResetFontSize },
+	{ key = "=", mods = "ALT", action = act.IncreaseFontSize },
+	{ key = "-", mods = "ALT", action = act.DecreaseFontSize },
+	{ key = "0", mods = "ALT", action = act.ResetFontSize },
 
 	-- Search
 	{ key = "f", mods = "ALT|SHIFT", action = act.Search({ CaseSensitiveString = "" }) },
+
+	-- Debugging
+	{ key = "d", mods = "ALT|SHIFT", action = act.ShowDebugOverlay },
 }
 
 return keys

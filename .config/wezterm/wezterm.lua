@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
-local padding_size = 2
+local padding_size = 3
 
 if wezterm.target_triple:find("windows") then
 	config.default_prog = { "pwsh.exe", "-NoLogo" }
