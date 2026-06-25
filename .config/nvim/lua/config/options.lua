@@ -12,8 +12,17 @@ g.trouble_lualine = false
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 
-if vim.fn.has("win32") == 1 then
+local has = function(x)
+	return vim.fn.has(x) == 1
+end
+
+if has("win32") then
 	opt.shell = "pwsh"
+	vim.opt.clipboard:prepend({ "unnamed", "unnamedplus" })
+end
+
+if has("macunix") then
+	opt.clipboard:append({ "unnamedplus" })
 end
 
 opt.title = true
