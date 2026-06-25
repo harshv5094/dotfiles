@@ -10,6 +10,11 @@ g.autoformat = true
 g.trouble_lualine = false
 
 opt.encoding = "utf-8"
+opt.fileencoding = "utf-8"
+
+if vim.fn.has("win32") == 1 then
+	opt.shell = "pwsh"
+end
 
 opt.title = true
 opt.autoindent = true
@@ -31,6 +36,7 @@ opt.shiftwidth = 2
 opt.tabstop = 2
 opt.wrap = false -- No Wrap lines
 opt.swapfile = true -- Toggle swap files
+opt.undofile = true -- Toggle undofile
 opt.backspace = { "start", "eol", "indent" }
 opt.path:append({ "**" }) -- Finding files - Search down into subfolders
 opt.wildignore:append({ "*/node_modules/*" })
