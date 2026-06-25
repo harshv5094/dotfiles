@@ -16,6 +16,9 @@ map("n", "te", ":tabedit<CR>")
 map("n", "<tab>", ":tabnext<CR>", opts)
 map("n", "<s-tab>", ":tabprev<CR>", opts)
 
+-- Delete a word backwards
+map("n", "dw", 'vb"_d')
+
 -- Split window
 map("n", "ss", ":split<CR>", opts)
 map("n", "sv", ":vsplit<CR>", opts)
