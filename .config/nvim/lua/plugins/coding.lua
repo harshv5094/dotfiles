@@ -60,13 +60,13 @@ return {
 		keys = {
 			{
 				"<localleader>gs",
-				"<CMD>Git status<CR>",
-				desc = "Git status",
+				"<CMD>Git status --short<CR>",
+				desc = "Git status (short)",
 			},
 			{
 				"<localleader>ga",
 				":Git add ",
-				desc = "Git status",
+				desc = "Git add",
 			},
 			{
 				"<localleader>gce",
