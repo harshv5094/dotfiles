@@ -9,6 +9,7 @@ g.lazyvim_prettier_needs_config = true
 g.autoformat = true
 g.trouble_lualine = false
 
+vim.scriptencoding = "utf-8"
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 
@@ -27,8 +28,8 @@ end
 
 opt.title = true
 opt.autoindent = true
-opt.autoread = true
 opt.smartindent = true
+opt.autoread = true
 opt.hlsearch = true
 opt.backup = false
 opt.showcmd = true

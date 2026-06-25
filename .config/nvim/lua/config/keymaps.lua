@@ -16,6 +16,9 @@ map("n", "te", ":tabedit<CR>")
 map("n", "<tab>", ":tabnext<CR>", opts)
 map("n", "<s-tab>", ":tabprev<CR>", opts)
 
+-- Select All
+map("n", "<C-a>", "gg<S-V>G")
+
 -- Delete a word backwards
 map("n", "dw", 'vb"_d')
 
