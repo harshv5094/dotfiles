@@ -65,6 +65,7 @@ if [[ -n "$AUR_HELPER" ]]; then
   # Install packages interactively
   pkgi() {
     pkgs=$($AUR_HELPER -Slq | fzf --border-label "** Install Packages ($AUR_HELPER) **" \
+      --height "60%" \
       --multi \
       --preview "${AUR_HELPER} -Sii {1}" \
       --header 'Select package to install (Ctrl-C to cancel)' \
@@ -81,6 +82,7 @@ if [[ -n "$AUR_HELPER" ]]; then
   # Remove packages interactively
   pkgr() {
     pkgs=$($AUR_HELPER -Qq | fzf --border-label "** Remove Packages ($AUR_HELPER) **" \
+      --height "60%" \
       --multi \
       --preview "${AUR_HELPER} -Qii {1}" \
       --header 'Select package to remove (Ctrl-C to cancel)' \
