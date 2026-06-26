@@ -57,3 +57,7 @@
   required = true
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
+
+# Uncomment this for windows and install both gpg and gpg4win
+# [gpg]
+# 	program = C:\\Program Files\\Gpg4win\\..\\GnuPG\\bin\\gpg.exe
