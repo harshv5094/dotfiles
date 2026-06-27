@@ -37,7 +37,7 @@ local keys = {
 	-- Full Screen Toggle
 	{
 		key = "f",
-		mods = "ALT",
+		mods = "ALT|SHIFT",
 		action = act.ToggleFullScreen,
 	},
 
@@ -47,7 +47,7 @@ local keys = {
 	{ key = "0", mods = "ALT", action = act.ResetFontSize },
 
 	-- Search
-	{ key = "f", mods = "ALT|SHIFT", action = act.Search({ CaseSensitiveString = "" }) },
+	{ key = "f", mods = "CTRL|SHIFT", action = act.Search({ CaseSensitiveString = "" }) },
 
 	-- Debugging
 	{ key = "d", mods = "ALT|SHIFT", action = act.ShowDebugOverlay },
