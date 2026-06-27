@@ -104,7 +104,7 @@ if command -v fzf &>/dev/null && command -v ffplay &>/dev/null; then
     if pgrep kitty &>/dev/null; then
       file=$(kitten choose-files ~/Music)
     else
-      file=$(find ~/Music -iname "*.mp3" | fzf --border-label "** Select Song **")
+      file=$(find ~/Music -iname "*.mp3" | fzf --header='** Select a Song **' --height=60% --prompt="Play > ")
     fi
 
     if [[ -n $file ]]; then
