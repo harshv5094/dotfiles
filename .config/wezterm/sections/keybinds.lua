@@ -34,6 +34,13 @@ local keys = {
 	{ key = "c", mods = "ALT|SHIFT", action = act.CopyTo("Clipboard") },
 	{ key = "v", mods = "ALT|SHIFT", action = act.PasteFrom("Clipboard") },
 
+	-- Full Screen Toggle
+	{
+		key = "f",
+		mods = "ALT",
+		action = act.ToggleFullScreen,
+	},
+
 	-- Font size
 	{ key = "=", mods = "ALT", action = act.IncreaseFontSize },
 	{ key = "-", mods = "ALT", action = act.DecreaseFontSize },
