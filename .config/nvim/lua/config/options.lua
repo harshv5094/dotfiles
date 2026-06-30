@@ -19,7 +19,7 @@ end
 
 if has("win32") then
 	opt.shell = "pwsh"
-	vim.opt.clipboard:prepend({ "unnamed", "unnamedplus" })
+	opt.clipboard:prepend({ "unnamed", "unnamedplus" })
 end
 
 if has("macunix") then
