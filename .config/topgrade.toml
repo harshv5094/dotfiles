@@ -22,7 +22,7 @@
 # sudo_command = "sudo"
 
 # Disable specific steps - same options as the command line flag
-disable = [ "pnpm" ]
+disable = ["pnpm", "self_update"]
 
 # Ignore failures for these steps
 # ignore_failures = ["powershell"]
