@@ -4,9 +4,9 @@ return {
 		event = "BufReadPre",
 		keys = {
 			{
-				"<localleader>u",
+				"<leader>fu",
 				"<CMD>UndotreeToggle<CR>",
-				{ desc = "Undotree Toggle" },
+				desc = "Open undotree",
 			},
 		},
 	},
