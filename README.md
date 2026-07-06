@@ -5,7 +5,7 @@
 > Also some of my `hyprland` folders is tightly integrated with my dotfiles.
 
 >[!IMPORTANT]
-> Since I own only one laptop, I've gone back to windows for my job requirements, So this setup will be locked to `v0.55` changes, After that I don't know it'll support that or not. It'll be a while that I'll return to linux. Currently I'm using `wsl` archlinux for my terminal needs (I hate powershell, it's very rigid).
+> Since I own only one laptop, I've gone back to windows for my job requirements, So my hyprland setup will be locked to `v0.55` changes, After that I don't know it'll support that or not. It'll be a while that I'll return to linux. Currently I'm using `wsl` archlinux for my terminal needs (I hate powershell, it's very rigid).
 
 ## Font Dependency
 
