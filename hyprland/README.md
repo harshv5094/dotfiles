@@ -1,8 +1,6 @@
 # My Arch Hyprland Setup
 
 This is my arch hyprland setup
->[!IMPORTANT]
-> Since I own only one laptop, I've gone back to windows for my job requirements, So this setup will be locked to `v0.54` changes, After that I don't know it'll support that or not.
 
 > [!WARNING]
 > This setup is dependent on my dotfiles, so you can't run this folder separately
