@@ -25,7 +25,7 @@ purple = '#d3869b'
 gray = '#a89984'
 
 [directory]
-truncation_length = 1
+truncation_length = 2
 read_only = " 󰌾"
 
 [git_branch]
