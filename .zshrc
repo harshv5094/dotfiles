@@ -18,7 +18,7 @@ export FZF_DEFAULT_OPTS="--reverse --border --bind 'alt-j:down,alt-k:up'"
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 
 # Adding home binary path
-export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.config/emacs/bin:$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.config/emacs/bin:$HOME/.cargo/bin:/opt/homebrew/opt/man-db/libexec/bin:$PATH"
 
 # set up XDG folders
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -32,6 +32,8 @@ if [[ "$OSTYPE" == "darwin"* && -x "/opt/homebrew/bin/brew" ]]; then
     export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}"
     export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}"
     export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
+    export TERM="xterm-256color"
+    export GPG_TTY=$(tty)
 fi
 
 # Set the directory we want to store zinit and plugins
@@ -56,9 +58,9 @@ zinit snippet OMZL::git.zsh
 zinit snippet OMZL::completion.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
-zinit snippet OMZP::archlinux
 zinit snippet OMZP::command-not-found
-[[ "$OSTYPE" == "darwin"* ]] && zinit snippet OMZP::macos
+[[ "$OSTYPE" == "linux"* ]] && zinit snippet OMZP::archlinux
+[[ "$OSTYPE" == "darwin"* ]] && zinit snippet OMZP::brew
 
 autoload -Uz compinit && compinit
 zinit cdreplay -q
@@ -182,7 +184,7 @@ if command -v starship >/dev/null; then
   eval "$(starship init zsh)"
 else
   # A simple fallback prompt
-  PROMPT='%F{blue}%n@%m%f:%F{green}%~%f$ '
+  PROMPT='%n@%m%f:%~%f$ '
 fi
 
 # My dotfiles directory set as env variable
