@@ -62,7 +62,9 @@ zinit snippet OMZP::command-not-found
 [[ "$OSTYPE" == "linux"* ]] && zinit snippet OMZP::archlinux
 [[ "$OSTYPE" == "darwin"* ]] && zinit snippet OMZP::brew
 
+# Load compinit by default if zsh autocompletions not work
 autoload -Uz compinit && compinit
+# Some legacy shit I don't know about, added because claude suggested it
 zinit cdreplay -q
 
 # Keybindings
