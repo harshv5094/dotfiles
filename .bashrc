@@ -120,9 +120,13 @@ if command -v pacman &>/dev/null; then
   alias orphan='sudo pacman -Rns $(pacman -Qtdq)'
 fi
 
+if command -v eza &>/dev/null; then
+  alias ll="eza -lg --icons=auto"
+  alias lla="eza -lga --icons=auto"
+fi
+
 command -v trash &>/dev/null && alias del="trash -v" && alias sdel="sudo trash -v"
 command -v fastfetch &>/dev/null && alias neofetch="fastfetch -c examples/13"
-command -v eza &>/dev/null && alias ll="eza -l -g --icons" && alias lla="eza -l -g -a --icons"
 command -v lazygit &>/dev/null && alias lg="lazygit"
 
 # Changing default editor also setting up default man pager
