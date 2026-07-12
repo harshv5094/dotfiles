@@ -20,6 +20,7 @@ return {
 		dependencies = {
 			"moyiz/blink-emoji.nvim",
 			"saghen/blink.compat",
+			"saghen/blink.lib",
 		},
 		opts = {
 			fuzzy = {
