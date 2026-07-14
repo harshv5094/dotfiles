@@ -1,0 +1,133 @@
+{
+  "$help": "https://aka.ms/terminal-documentation",
+  "$schema": "https://aka.ms/terminal-profiles-schema",
+  "actions": [],
+  "alwaysOnTop": false,
+  "copyFormatting": "none",
+  "copyOnSelect": false,
+  "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+  "initialCols": 80,
+  "initialPosition": ",",
+  "initialRows": 25,
+  "keybindings": [
+    {
+      "id": "Terminal.DuplicatePaneAuto",
+      "keys": "alt+shift+d"
+    },
+    {
+      "id": "Terminal.NewTab",
+      "keys": "alt+t"
+    },
+    {
+      "id": "Terminal.CopyToClipboard",
+      "keys": "ctrl+c"
+    },
+    {
+      "id": "Terminal.FindText",
+      "keys": "ctrl+shift+f"
+    },
+    {
+      "id": "Terminal.PasteFromClipboard",
+      "keys": "ctrl+v"
+    }
+  ],
+  "newTabMenu": [
+    {
+      "type": "remainingProfiles"
+    }
+  ],
+  "profiles": {
+    "defaults": {
+      "colorScheme": {
+        "dark": "Gruvbox Dark",
+        "light": "Gruvbox Light"
+      },
+      "font": {
+        "face": "JetBrainsMonoNL Nerd Font Propo",
+        "size": 13
+      }
+    },
+    "list": [
+      {
+        "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+        "hidden": false,
+        "name": "PowerShell",
+        "source": "Windows.Terminal.PowershellCore"
+      },
+      {
+        "guid": "{c0f31781-b124-53ed-8e36-b8c6b5402f65}",
+        "hidden": false,
+        "name": "archlinux",
+        "source": "Microsoft.WSL"
+      },
+      {
+        "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+        "hidden": false,
+        "name": "Windows PowerShell"
+      },
+      {
+        "commandline": "%SystemRoot%\\System32\\cmd.exe",
+        "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+        "hidden": false,
+        "name": "Command Prompt"
+      },
+      {
+        "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+        "hidden": false,
+        "name": "Azure Cloud Shell",
+        "source": "Windows.Terminal.Azure"
+      }
+    ]
+  },
+  "theme": "system",
+  "schemes": [
+    {
+      "background": "#282828",
+      "black": "#282828",
+      "blue": "#458588",
+      "brightBlack": "#928374",
+      "brightBlue": "#83A598",
+      "brightCyan": "#8EC07C",
+      "brightGreen": "#B8BB26",
+      "brightPurple": "#D3869B",
+      "brightRed": "#FB4934",
+      "brightWhite": "#EBDBB2",
+      "brightYellow": "#FABD2F",
+      "cursorColor": "#EBDBB2",
+      "cyan": "#689D6A",
+      "foreground": "#EBDBB2",
+      "green": "#98971A",
+      "name": "Gruvbox Dark",
+      "purple": "#B16286",
+      "red": "#CC241D",
+      "selectionBackground": "#504945",
+      "white": "#A89984",
+      "yellow": "#D79921"
+    },
+    {
+      "background": "#FBF1C7",
+      "black": "#EBDBB2",
+      "blue": "#458588",
+      "brightBlack": "#928374",
+      "brightBlue": "#076678",
+      "brightCyan": "#427B58",
+      "brightGreen": "#79740E",
+      "brightPurple": "#8F3F71",
+      "brightRed": "#9D0006",
+      "brightWhite": "#282828",
+      "brightYellow": "#B57614",
+      "cursorColor": "#665C54",
+      "cyan": "#689D6A",
+      "foreground": "#3C3836",
+      "green": "#98971A",
+      "name": "Gruvbox Light",
+      "purple": "#B16286",
+      "red": "#CC241D",
+      "selectionBackground": "#D65D0E",
+      "white": "#7C6F64",
+      "yellow": "#D79921"
+    }
+  ],
+  "themes": []
+}
