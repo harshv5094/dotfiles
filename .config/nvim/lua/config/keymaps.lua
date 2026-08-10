@@ -9,7 +9,7 @@ local opts = { noremap = true, silent = true }
 -- Custom Utility function
 local git = require("utils.git")
 local hex2rgba = require("utils.hex2rgba")
-local misc = require("utils.misc")
+local base = require("utils.base")
 
 -- New tab
 map("n", "te", ":tabedit<CR>")
@@ -46,10 +46,10 @@ map("n", "<leader>gi", git.init, { desc = "Git init (root)" })
 map("n", "<localleader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "String auto replace" })
 
 map("n", "<leader>fx", function()
-	misc.chmod()
+	base.chmod()
 end, { desc = "chmod +x <current-buffer>" })
 map("n", "<leader>fX", function()
-	misc.chmod("-")
+	base.chmod("-")
 end, { desc = "chmod -x <current-buffer>" })
 
 -- adding lazy extras keybind
