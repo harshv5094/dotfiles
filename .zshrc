@@ -139,9 +139,20 @@ if [[ -n "$AUR_HELPER" ]]; then
 fi
 
 # Alias for quickly listening a single song
-if command -v fzf &>/dev/null && command -v ffplay &>/dev/null; then
+if command -v fzf &>/dev/null; then
+  is_wsl() {
+    [[ -n "$WSL_DISTRO_NAME" ]] || grep -qi microsoft /proc/version 2>/dev/null
+  }
+
   listen() {
-    local file
+    local file player
+
+    if is_wsl; then
+      player="ffplay -nodisp -autoexit"
+    else
+      player="mpv"
+    fi
+
     if pgrep kitty &>/dev/null; then
       file=$(kitten choose-files ~/Music)
     else
@@ -149,7 +160,7 @@ if command -v fzf &>/dev/null && command -v ffplay &>/dev/null; then
     fi
 
     if [[ -n $file ]]; then
-      ffplay -nodisp -autoexit "$file"
+      $player "$file"
     else
       echo "No file selected. Exiting...."
     fi
