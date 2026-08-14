@@ -12,6 +12,7 @@ return {
 				"regex",
 				"vim",
 				"ssh_config",
+				"gitcommit",
 				"ini",
 				"zsh",
 			})
