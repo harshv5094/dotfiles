@@ -136,7 +136,11 @@ if command -v eza &>/dev/null; then
   alias lla="eza -lga --icons=auto"
 fi
 
-command -v trash &>/dev/null && alias del="trash -v" && alias sdel="sudo trash -v"
+if command -v trash &>/dev/null; then
+  alias del="trash -v"
+  alias sdel="sudo trash -v"
+fi
+
 command -v fastfetch &>/dev/null && alias neofetch="fastfetch -c examples/13"
 command -v lazygit &>/dev/null && alias lg="lazygit"
 
