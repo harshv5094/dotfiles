@@ -69,9 +69,19 @@ return {
 				desc = "Git status (short)",
 			},
 			{
-				"<localleader>ga",
+				"<localleader>gaa",
+				"<CMD>Git add *<CR>",
+				desc = "Git add (All)",
+			},
+			{
+				"<localleader>gab",
+				"<CMD>Git add %<CR>",
+				desc = "Git add (Buffer)",
+			},
+			{
+				"<localleader>gaf",
 				":Git add ",
-				desc = "Git add",
+				desc = "Git add (Manual)",
 			},
 			{
 				"<localleader>gce",
