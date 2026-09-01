@@ -53,7 +53,7 @@ map("n", "<leader>fX", function()
 end, { desc = "chmod -x <current-buffer>" })
 
 -- adding lazy extras keybind
-map("n", "<localleader>L", "<cmd>LazyExtras<CR>", { desc = "LazyExtras", silent = true })
+map("n", "<localleader>l", "<cmd>LazyExtras<CR>", { desc = "LazyExtras", silent = true })
 
 -- Custom utility to convert hex to rgba
 map("n", "<localleader>cs", function()
