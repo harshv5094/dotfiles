@@ -97,6 +97,12 @@ if [[ -n "$AUR_HELPER" ]]; then
   }
 fi
 
+# Some default terminal config for wsl
+if [[ -n "$WSL_DISTRO_NAME" ]] || grep -qi microsoft /proc/version &>/dev/null; then
+  export TERM="xterm-256color"
+  export COLORTERM="truecolor"
+fi
+
 # Alias for quickly listening a single song
 if command -v fzf &>/dev/null; then
   is_wsl() {
