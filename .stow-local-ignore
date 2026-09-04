@@ -18,7 +18,6 @@ _darcs
 # Ignore this custom folders
 \.github
 hyprland
-\.config/windows-terminal
 
 .+~          # emacs backup files
 \#.*\#       # emacs autosave files

@@ -5,8 +5,8 @@ export SAVEHIST=$HISTSIZE
 export HISTFILESIZE=10000
 export HISTTIMEFORMAT="%F %T " # add timestamp to history
 
-# Zsh specific history options
-setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups hist_save_no_dups hist_find_no_dups
+# Zsh specific options
+setopt auto_cd appendhistory sharehistory hist_ignore_space hist_ignore_all_dups hist_save_no_dups hist_find_no_dups
 
 # Setting fzf default options
 export FZF_DEFAULT_OPTS="--reverse --border --bind 'alt-j:down,alt-k:up'"
@@ -95,11 +95,11 @@ alias l='ls -CF --color=auto'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias cpa="cp -rf"
-alias ..='cd ..'
-alias .2='cd ../..'
-alias .3='cd ../../..'
-alias .4='cd ../../../..'
-alias .5='cd ../../../../..'
+alias ..='..'
+alias .2='../..'
+alias .3='../../..'
+alias .4='../../../..'
+alias .5='../../../../..'
 alias check-gpu-id='lspci | grep -E "VGA|3D" && echo -e "\nPath: /dev/dri/by-path/" && ls -l /dev/dri/by-path'
 
 # QOL Aliases
