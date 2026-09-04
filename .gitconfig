@@ -39,6 +39,9 @@
   # removing reflog content 
   ref-prune-now = !git reflog expire --expire=now --expire-unreachable=now --all && git gc --prune=now --aggressive
 
+  # Quick commit checkout using fzf
+	co = !git log --oneline --decorate --all | fzf --height 40% --reverse | awk \"{print \\$1}\" | xargs git checkout
+
 [difftool "nvimdiff"]
   cmd = nvim -d "$LOCAL" "$REMOTE"
 
