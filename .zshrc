@@ -204,7 +204,7 @@ fi
 
 command -v fzf &>/dev/null && eval "$(fzf --zsh)"
 command -v gh &>/dev/null && eval "$(gh completion -s zsh)"
-command -v zoxide &>/dev/null && eval "$(zoxide init --cmd=cd zsh)"
+command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
 
 # Initialize Starship prompt theme
 if command -v starship &>/dev/null && [[ -e "$XDG_CONFIG_HOME/topgrade.toml" ]]; then
