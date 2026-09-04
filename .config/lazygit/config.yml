@@ -5,6 +5,12 @@ customCommands:
     context: "files"
     loadingText: "opening commitizen commit tool"
     output: terminal
+
+  - key: "E"
+    context: "files"
+    description: "Edit last commit"
+    command: "git commit --edit"
+    output: terminal
 gui:
   nerdFontsVersion: "3"
   theme:
