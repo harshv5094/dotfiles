@@ -1,6 +1,0 @@
-{
-  "diagnostics.globals": [
-    "wezterm"
-  ],
-  "workspace.checkThirdParty": false
-}
