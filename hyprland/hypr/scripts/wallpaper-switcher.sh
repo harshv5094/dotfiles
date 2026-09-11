@@ -13,7 +13,9 @@ if [ ! -d "$WALLPAPER_DIR" ]; then
 fi
 
 # Selecting wallpaper
-wallpaper=$(find "$WALLPAPER_DIR" -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" \) |
+misc_wall_dir="$(dirname "$WALLPAPER_DIR")/misc"
+
+wallpaper=$(find "$WALLPAPER_DIR" "$misc_wall_dir" -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" \) |
   awk -F/ '{print $NF "\0icon\x1f" $0}' |
   rofi -dmenu -i -p "" -location 0 \
     -show-icons \
@@ -29,7 +31,7 @@ wallpaper=$(find "$WALLPAPER_DIR" -type f \( -iname "*.png" -o -iname "*.jpg" -o
 # Important: Because Rofi now returns the "Display Text" (the basename),
 # we must ensure we use the full path.
 # To do this safely, we search for the full path based on the filename:
-wallpaper_full_path=$(find "$WALLPAPER_DIR" -name "$wallpaper" -print | head -n1)
+wallpaper_full_path=$(find "$WALLPAPER_DIR" "$misc_wall_dir" -name "$wallpaper" -print | head -n1)
 
 killall hyprpaper
 
