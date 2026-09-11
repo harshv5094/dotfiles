@@ -97,6 +97,11 @@ if [[ -n "$AUR_HELPER" ]]; then
   }
 fi
 
+if [[ -n "$WSL_DISTRO_NAME" ]] || grep -qi microsoft /proc/version &>/dev/null; then
+  # Color fix for wsl machines
+  export COLORTERM="truecolor"
+fi
+
 # Alias for quickly listening a single song
 if command -v fzf &>/dev/null; then
   is_wsl() {
@@ -167,7 +172,7 @@ fi
 
 command -v fzf &>/dev/null && eval "$(fzf --bash)"
 command -v gh &>/dev/null && eval "$(gh completion -s bash)"
-command -v zoxide &>/dev/null && eval "$(zoxide init --cmd=cd bash)"
+command -v zoxide &>/dev/null && eval "$(zoxide init bash)"
 
 [[ -d $HOME/.config/nvm ]] && export NVM_DIR="$HOME/.config/nvm"
 [[ ! -f $NVM_DIR/default-packages ]] && printf "%b" "commitizen\ncz-git" | tee "$NVM_DIR/default-packages" &>/dev/null

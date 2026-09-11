@@ -138,6 +138,11 @@ if [[ -n "$AUR_HELPER" ]]; then
   }
 fi
 
+if [[ -n "$WSL_DISTRO_NAME" ]] || grep -qi microsoft /proc/version &>/dev/null; then
+  # Color fix for wsl machines
+  export COLORTERM="truecolor"
+fi
+
 # Alias for quickly listening a single song
 if command -v fzf &>/dev/null; then
   is_wsl() {
@@ -198,7 +203,7 @@ fi
 
 command -v fzf &>/dev/null && eval "$(fzf --zsh)"
 command -v gh &>/dev/null && eval "$(gh completion -s zsh)"
-command -v zoxide &>/dev/null && eval "$(zoxide init --cmd=cd zsh)"
+command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
 
 # Initialize Starship prompt theme
 if command -v starship &>/dev/null && [[ -e "$XDG_CONFIG_HOME/topgrade.toml" ]]; then
