@@ -95,6 +95,7 @@ alias l='ls -CF --color=auto'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias cpa="cp -rf"
+alias rma='rm -rf'
 alias ..='../'
 alias .2='../..'
 alias .3='../../..'
