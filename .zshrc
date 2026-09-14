@@ -18,7 +18,7 @@ export FZF_DEFAULT_OPTS="--reverse --border --bind 'alt-j:down,alt-k:up'"
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 
 # Adding home binary path
-export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.config/emacs/bin:$HOME/.cargo/bin:/opt/homebrew/opt/man-db/libexec/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.config/emacs/bin:$HOME/.cargo/bin:$HOME/.local/share/pnpm/bin:/opt/homebrew/opt/man-db/libexec/bin:$PATH"
 
 # set up XDG folders
 export XDG_DATA_HOME="$HOME/.local/share"
