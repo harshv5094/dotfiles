@@ -1,21 +1,17 @@
 return {
-	-- Treesitter
+	-- NOTE: Utility plugin to autoinstall treesitter parsers
 	{
-		"nvim-treesitter/nvim-treesitter",
-		opts = function(_, opts)
-			-- add tsx and treesitter
-			vim.list_extend(opts.ensure_installed, {
-				"html",
-				"css",
-				"json",
-				"query",
-				"regex",
-				"vim",
-				"ssh_config",
-				"gitcommit",
-				"ini",
-				"zsh",
-			})
+		"mks-h/treesitter-autoinstall.nvim",
+		opts = {
+			-- A list of *treesitter languages* to ignore.
+			ignore = {},
+			-- Auto-enable highlighting for installed languages.
+			highlight = true,
+			-- A list of *treesitter languages* to also enable regex highlighting for
+			regex = {},
+		},
+		config = function(_, opts)
+			require("treesitter-autoinstall").setup(opts)
 		end,
 	},
 }
