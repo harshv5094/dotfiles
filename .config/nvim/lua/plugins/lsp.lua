@@ -6,24 +6,6 @@ return {
 			"moyiz/blink-emoji.nvim",
 		},
 		opts = {
-			fuzzy = {
-				implementation = "prefer_rust",
-			},
-			completion = {
-				menu = {
-					-- winblend = vim.o.pumblend,
-					-- border = "rounded",
-				},
-			},
-			signature = {
-				window = {
-					-- winblend = vim.o.pumblend,
-					-- border = "rounded",
-				},
-			},
-			cmdline = {
-				enabled = false,
-			},
 			sources = {
 				providers = {
 					emoji = {
