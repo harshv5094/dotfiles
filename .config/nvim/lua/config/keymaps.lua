@@ -1,3 +1,6 @@
+-- Custom Utility function
+local git = require("utils.git")
+local base = require("utils.base")
 local discipline = require("utils.discipline")
 
 -- Cowboy mode
@@ -6,28 +9,23 @@ discipline.cowboy()
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
--- Custom Utility function
-local git = require("utils.git")
-local hex2rgba = require("utils.hex2rgba")
-local base = require("utils.base")
-
 -- New tab
-map("n", "te", ":tabedit<CR>")
-map("n", "<tab>", ":tabnext<CR>", opts)
-map("n", "<s-tab>", ":tabprev<CR>", opts)
+map("n", "te", "<CMD>tabedit<CR>")
+map("n", "<tab>", "<CMD>tabnext<CR>", opts)
+map("n", "<s-tab>", "<CMD>tabprev<CR>", opts)
 
 -- Delete a word backwards
-map("n", "dw", 'vb"_d')
+map("n", "dw", 'vb"_d', opts)
 
 -- Split window
-map("n", "ss", ":split<CR>", opts)
-map("n", "sv", ":vsplit<CR>", opts)
+map("n", "ss", "<CMD>split<CR>", opts)
+map("n", "sv", "<CMD>vsplit<CR>", opts)
 
 -- Move window
-map("n", "sh", "<C-w>h")
-map("n", "sk", "<C-w>k")
-map("n", "sj", "<C-w>j")
-map("n", "sl", "<C-w>l")
+map("n", "sh", "<C-w>h", opts)
+map("n", "sk", "<C-w>k", opts)
+map("n", "sj", "<C-w>j", opts)
+map("n", "sl", "<C-w>l", opts)
 
 -- Resize window
 map("n", "<C-h>", "<C-w><", opts)
@@ -43,22 +41,18 @@ map("n", "<C-d>", "<C-d>zz", opts)
 map("n", "<leader>gi", git.init, { desc = "Git init (root)" })
 
 -- Automatic find and replace
-map("n", "<localleader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "String auto replace" })
+map("n", "<localleader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
-map("n", "<leader>fx", function()
+-- Setup executable permission
+map("n", "<localleader>x", function()
 	base.chmod()
 end, { desc = "chmod +x <current-buffer>" })
-map("n", "<leader>fX", function()
+map("n", "<localleader>X", function()
 	base.chmod("-")
 end, { desc = "chmod -x <current-buffer>" })
 
--- adding lazy extras keybind
+-- Adding LazyExtras Quick Access Keybind
 map("n", "<localleader>l", "<cmd>LazyExtras<CR>", { desc = "LazyExtras", silent = true })
-
--- Custom utility to convert hex to rgba
-map("n", "<localleader>cs", function()
-	hex2rgba.Set()
-end, { desc = "Convert Hex to RGBA", silent = true, noremap = true })
 
 -- Rename whole variables in the buffer
 map("n", "rn", function()

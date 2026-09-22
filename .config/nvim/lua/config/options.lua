@@ -13,17 +13,8 @@ vim.scriptencoding = "utf-8"
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 
-local has = function(x)
-	return vim.fn.has(x) == 1
-end
-
-if has("win32") then
+if vim.fn.has("win32") == 1 then
 	opt.shell = "pwsh"
-	opt.clipboard:prepend({ "unnamed", "unnamedplus" })
-end
-
-if has("macunix") then
-	opt.clipboard:append({ "unnamedplus" })
 end
 
 opt.title = true
@@ -52,7 +43,6 @@ opt.path:append({ "**" }) -- Finding files - Search down into subfolders
 opt.wildignore:append({ "*/node_modules/*" })
 opt.splitbelow = true -- Put new windows below current
 opt.splitright = true -- Put new windows right of current
-opt.splitkeep = "cursor"
 -- opt.mouse = "a"
 
 -- Undercurl
