@@ -56,7 +56,7 @@ return {
 	-- NOTE: Git wrapper done right by "tpope"
 	{
 		"tpope/vim-fugitive",
-		event = "BufReadPre",
+		event = { "BufReadPre", "BufNewFile" },
 		keys = {
 			{
 				"<localleader>gss",
@@ -69,14 +69,14 @@ return {
 				desc = "Git status (short)",
 			},
 			{
+				"<localleader>gab",
+				"<CMD>Git add %<CR>",
+				desc = "Git add (Current Buffer)",
+			},
+			{
 				"<localleader>gaa",
 				"<CMD>Git add *<CR>",
 				desc = "Git add (All)",
-			},
-			{
-				"<localleader>gab",
-				"<CMD>Git add %<CR>",
-				desc = "Git add (Buffer)",
 			},
 			{
 				"<localleader>gaf",
@@ -97,6 +97,11 @@ return {
 				"<localleader>gp",
 				"<CMD>Git pull --no-edit<CR>",
 				desc = "Git pull (no-edit)",
+			},
+			{
+				"<localleader>gr",
+				"<CMD>Git reset --hard HEAD<CR>",
+				desc = "Git reset (--hard) HEAD",
 			},
 			{
 				"<localleader>gP",
