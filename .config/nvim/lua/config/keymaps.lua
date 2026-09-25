@@ -9,8 +9,7 @@ discipline.cowboy()
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
--- New tab
-map("n", "te", "<CMD>tabedit<CR>")
+-- Tab navigation Keymaps
 map("n", "<tab>", "<CMD>tabnext<CR>", opts)
 map("n", "<s-tab>", "<CMD>tabprev<CR>", opts)
 

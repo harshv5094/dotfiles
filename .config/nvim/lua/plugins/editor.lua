@@ -4,7 +4,7 @@ return {
 		event = "BufReadPre",
 		keys = {
 			{
-				"<leader>fu",
+				"<localleader>u",
 				"<CMD>UndotreeToggle<CR>",
 				desc = "Open undotree",
 			},
@@ -28,21 +28,6 @@ return {
 					})
 				end,
 				desc = "Telescope -> Find files from Lazy config root",
-			},
-			{
-				"<localleader>tc",
-				function()
-					local builtin = require("telescope.builtin")
-					builtin.lsp_incoming_calls()
-				end,
-				desc = "Telescope -> LSP incoming calls",
-			},
-			{
-				"<localleader>tr",
-				function()
-					require("telescope.builtin").resume()
-				end,
-				desc = "Telescope -> Resume",
 			},
 			{
 				"sf",

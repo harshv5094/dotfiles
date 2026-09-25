@@ -2,11 +2,12 @@ local g = vim.g
 local opt = vim.opt
 
 -- Lazyvim Options
-g.snacks_animate = false
+g.snacks_animate = false -- Turn off animation for snacks.nvim
 g.lazyvim_picker = "telescope"
 g.lazyvim_cmp = "blink.cmp"
 g.lazyvim_prettier_needs_config = true
 g.autoformat = true
+g.deprecation_warnings = false -- Hide deprecation warnings
 g.trouble_lualine = false
 
 vim.scriptencoding = "utf-8"
@@ -22,10 +23,7 @@ opt.autoindent = true
 opt.smartindent = true
 opt.autoread = true
 opt.hlsearch = true
-opt.backup = false
 opt.showcmd = true
-opt.cmdheight = 1
-opt.laststatus = 3
 opt.expandtab = true
 opt.scrolloff = 10
 opt.backupskip = { "/tmp/*", "/private/tmp/*" }
@@ -35,9 +33,6 @@ opt.smarttab = true
 opt.breakindent = true
 opt.shiftwidth = 2
 opt.tabstop = 2
-opt.wrap = false -- No Wrap lines
-opt.swapfile = true -- Toggle swap files
-opt.undofile = true -- Toggle undofile
 opt.backspace = { "start", "eol", "indent" }
 opt.path:append({ "**" }) -- Finding files - Search down into subfolders
 opt.wildignore:append({ "*/node_modules/*" })
