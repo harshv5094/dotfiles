@@ -14,4 +14,19 @@ return {
 			require("treesitter-autoinstall").setup(opts)
 		end,
 	},
+
+	-- NOTE: Removing some default treesitter installation from the list
+	{
+		"nvim-treesitter/nvim-treesitter",
+		opts = function(_, opts)
+			local drop = {
+				"javascript",
+				"tsx",
+				"typescript",
+			}
+			opts.ensure_installed = vim.tbl_filter(function(lang)
+				return not vim.tbl_contains(drop, lang)
+			end, opts.ensure_installed)
+		end,
+	},
 }
