@@ -115,7 +115,7 @@ if command -v fzf &>/dev/null; then
     if is_wsl; then
       player="ffplay -nodisp -autoexit"
     else
-      player="mpv"
+      player="play"
     fi
 
     if pgrep kitty &>/dev/null; then
