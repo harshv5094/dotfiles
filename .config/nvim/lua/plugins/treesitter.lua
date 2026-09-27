@@ -24,6 +24,7 @@ return {
 				"tsx",
 				"typescript",
 				"python",
+				"xml",
 			}
 			opts.ensure_installed = vim.tbl_filter(function(lang)
 				return not vim.tbl_contains(drop, lang)
