@@ -2,12 +2,9 @@ return {
 	{
 		"mbbill/undotree",
 		event = "BufReadPre",
+    -- stylua: ignore
 		keys = {
-			{
-				"<localleader>u",
-				"<CMD>UndotreeToggle<CR>",
-				desc = "Open undotree",
-			},
+			{ "<localleader>u", "<CMD>UndotreeToggle<CR>", desc = "Open undotree", },
 		},
 	},
 	{

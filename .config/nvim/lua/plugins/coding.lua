@@ -57,57 +57,18 @@ return {
 	{
 		"tpope/vim-fugitive",
 		event = { "BufReadPre", "BufNewFile" },
+    -- stylua: ignore
 		keys = {
-			{
-				"<localleader>gss",
-				"<CMD>Git status<CR>",
-				desc = "Git status",
-			},
-			{
-				"<localleader>gsq",
-				"<CMD>Git status --short<CR>",
-				desc = "Git status (short)",
-			},
-			{
-				"<localleader>gab",
-				"<CMD>Git add %<CR>",
-				desc = "Git add (Current Buffer)",
-			},
-			{
-				"<localleader>gaa",
-				"<CMD>Git add *<CR>",
-				desc = "Git add (All)",
-			},
-			{
-				"<localleader>gaf",
-				":Git add ",
-				desc = "Git add (Manual)",
-			},
-			{
-				"<localleader>gce",
-				"<CMD>Git commit --edit<CR>",
-				desc = "Git commit (edit)",
-			},
-			{
-				"<localleader>gca",
-				"<CMD>Git commit --amend<CR>",
-				desc = "Git commit (amend)",
-			},
-			{
-				"<localleader>gp",
-				"<CMD>Git pull --no-edit<CR>",
-				desc = "Git pull (no-edit)",
-			},
-			{
-				"<localleader>gr",
-				"<CMD>Git reset --hard HEAD<CR>",
-				desc = "Git reset (--hard) HEAD",
-			},
-			{
-				"<localleader>gP",
-				"<CMD>Git push --force-with-lease<CR>",
-				desc = "Git push (force-with-lease)",
-			},
+			{ "<localleader>gss", "<CMD>Git status<CR>", desc = "Git status", },
+			{ "<localleader>gsq", "<CMD>Git status --short<CR>", desc = "Git status (short)", },
+			{ "<localleader>gab", "<CMD>Git add %<CR>", desc = "Git add (Current Buffer)", },
+			{ "<localleader>gaa", "<CMD>Git add *<CR>", desc = "Git add (All)", },
+			{ "<localleader>gaf", ":Git add ", desc = "Git add (Manual)", },
+			{ "<localleader>gce", "<CMD>Git commit --edit<CR>", desc = "Git commit (edit)", },
+			{ "<localleader>gca", "<CMD>Git commit --amend<CR>", desc = "Git commit (amend)", },
+			{ "<localleader>gp", "<CMD>Git pull --no-edit<CR>", desc = "Git pull (no-edit)", },
+			{ "<localleader>gr", "<CMD>Git reset --hard HEAD<CR>", desc = "Git reset (--hard) HEAD", },
+			{ "<localleader>gP", "<CMD>Git push --force-with-lease<CR>", desc = "Git push (force-with-lease)", },
 		},
 	},
 }
