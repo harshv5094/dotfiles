@@ -2,10 +2,8 @@ return {
 	-- NOTE: blink.cmp - Code completion made easy
 	{
 		"saghen/blink.cmp",
-		opts = {
-			cmdline = {
-				enabled = false,
-			},
-		},
+		opts = function(_, opts)
+			opts.cmdline.enabled = false
+		end,
 	},
 }
