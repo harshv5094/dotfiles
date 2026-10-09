@@ -44,17 +44,6 @@ copyFolders() {
   done
 }
 
-# -- Extract Colors -- #
-extractGruvboxColors() {
-  printf "%b\n" "** Clonning Gruvbox GTK Theme **"
-  if [[ ! -d $HOME/Gruvbox-GTK-Theme ]]; then
-    git clone https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme "$HOME/Gruvbox-GTK-Theme"
-  fi
-  "$HOME/Gruvbox-GTK-Theme/themes/install.sh" -l
-  sleep 0.4s
-  rm -rf "$HOME/Gruvbox-GTK-Theme"
-}
-
 # -- My wallpapers -- #
 cloneWallpapers() {
   if [[ ! -d $HOME/Pictures/wallpapers/ ]]; then
@@ -159,6 +148,7 @@ installAndConfigureHyprland() {
     "wiremix" "brightnessctl" "iwd" "impala" "bluetui" "bluez" "bluez-utils" "playerctl" "gnome-keyring" "topgrade"
     "wl-clipboard" "copyq" "mako" "waybar" "mate-polkit" "mpd" "mpd-mpris" "mpc" "rmpc" "mpv" "nwg-look" "flatpak" "ncdu"
     "libgepub" "libopenraw" "breeze" "libadwaita" "qt5ct" "qt6ct" "qt6-wayland" "speech-dispatcher" "cronie" "usbutils"
+    "gnome-themes-extra"
     # GUI tools
     "firefox" "gnome-disk-utility" "gnome-characters" "easyeffects"
     "transmission-gtk" "seahorse" "timeshift" "gnome-calculator" "ristretto" "evince"
@@ -215,6 +205,5 @@ printf "%b\n" "*** Starting Hyprland Setup ***"
 loginSetup
 installAndConfigureHyprland
 copyFolders
-extractGruvboxColors
 cloneWallpapers
 printf "%b\n" "*** Hyprland Setup is finished ***"

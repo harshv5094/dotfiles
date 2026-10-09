@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-gtk_theme="Gruvbox-Dark"
+gtk_theme="Adwaita"
 gtk_color_scheme="prefer-dark"
 icon_theme="Papirus-Dark"
 vscode_theme="Gruvbox Dark Medium"
