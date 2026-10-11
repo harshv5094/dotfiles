@@ -9,10 +9,6 @@ discipline.cowboy()
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
--- Tab navigation Keymaps
-map("n", "<tab>", "<CMD>tabnext<CR>", opts)
-map("n", "<s-tab>", "<CMD>tabprev<CR>", opts)
-
 -- Delete a word backwards
 map("n", "dw", 'vb"_d', opts)
 
