@@ -9,7 +9,8 @@ g.lazyvim_prettier_needs_config = true
 g.trouble_lualine = false
 
 if vim.fn.has("win32") == 1 then
-	opt.shell = "pwsh"
+	---@module 'lazyvim'
+	LazyVim.terminal.setup("pwsh")
 end
 
 opt.title = true
