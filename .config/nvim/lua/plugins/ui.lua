@@ -18,6 +18,7 @@ return {
 					{ "<localleader>gc", group = "commit" },
 					{ "<localleader>gs", group = "status" },
 					{ "<localleader>ga", group = "add" },
+					{ "<localleader>gl", group = "log" },
 					{ "<localleader>t", group = "telescope" },
 				},
 			},

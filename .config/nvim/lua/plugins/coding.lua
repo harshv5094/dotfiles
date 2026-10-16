@@ -69,6 +69,7 @@ return {
 			{ "<localleader>gp", "<CMD>Git pull --no-edit<CR>", desc = "Git pull (no-edit)", },
 			{ "<localleader>gr", "<CMD>Git reset --hard HEAD<CR>", desc = "Git reset (--hard) HEAD", },
 			{ "<localleader>gP", "<CMD>Git push --force-with-lease<CR>", desc = "Git push (force-with-lease)", },
+			{ "<localleader>gll", "<CMD>Git log<CR>", desc = "Git log", },
 		},
 	},
 }
