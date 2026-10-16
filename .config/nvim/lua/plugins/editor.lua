@@ -1,4 +1,5 @@
 return {
+	-- NOTE: A undo history plugin, I love and never gonna delete it
 	{
 		"mbbill/undotree",
 		event = "BufReadPre",
@@ -7,6 +8,8 @@ return {
 			{ "<localleader>u", "<CMD>UndotreeToggle<CR>", desc = "Open undotree", },
 		},
 	},
+
+	-- NOTE: My custom values for neovim
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
