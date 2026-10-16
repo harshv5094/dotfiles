@@ -35,6 +35,9 @@ map("n", "<C-d>", "<C-d>zz", opts)
 -- Git init current open file root dir
 map("n", "<leader>gi", git.init, { desc = "Git init (root)" })
 
+-- Escape from terminal
+map({ "n", "t" }, "<ESC><ESC>", "<C-\\><C-n>", opts)
+
 -- Automatic find and replace
 map("n", "<localleader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
