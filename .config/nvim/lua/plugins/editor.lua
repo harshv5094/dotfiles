@@ -28,7 +28,7 @@ return {
 						cwd = require("lazy.core.config").options.root,
 					})
 				end,
-				desc = "Telescope -> Find files from Lazy config root",
+				desc = "Telescope -> Find files (lazy.nvim)",
 			},
 			{
 				"sf",
@@ -47,9 +47,6 @@ return {
 						grouped = true,
 						previewer = true,
 						initial_mode = "normal",
-						-- layout_config = {
-						-- 	height = 0.60,
-						-- },
 					})
 				end,
 				desc = "Telescope -> Browse File",
@@ -71,10 +68,7 @@ return {
 				layout_config = {
 					horizontal = {
 						prompt_position = "top",
-						previewer_width = 0.55,
 					},
-					width = 0.87,
-					height = 0.80,
 				},
 				sorting_strategy = "ascending",
 				winblend = 0,
@@ -85,28 +79,6 @@ return {
 				},
 			})
 
-			-- TODO: Find a permanent way to set default theme for picker
-
-			-- local custom_style = {
-			-- 	theme = "ivy",
-			-- 	layout_config = { height = 0.60 },
-			-- }
-			--
-			-- opts.pickers = {
-			-- 	diagnostics = vim.tbl_extend("force", custom_style, {
-			-- 		layout_config = { preview_cutoff = 9999 },
-			-- 	}),
-			-- 	buffers = custom_style,
-			-- 	find_files = custom_style,
-			-- 	live_grep = custom_style,
-			-- 	keymaps = custom_style,
-			-- 	help_tags = custom_style,
-			-- 	command_history = custom_style,
-			-- 	colorscheme = custom_style,
-			-- 	git_status = custom_style,
-			-- 	man_pages = custom_style,
-			-- }
-			--
 			opts.extensions = {
 				file_browser = {
 					-- theme = "ivy",
