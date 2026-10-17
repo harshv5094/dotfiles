@@ -156,9 +156,6 @@ if command -v nvim &>/dev/null; then
   export SUDO_EDITOR='nvim'
   export VISUAL='nvim'
   export MANPAGER='nvim +Man!'
-
-  # My custom nvim config
-  [[ -d $XDG_CONFIG_HOME/mnvim/ ]] && alias mnvim='NVIM_APPNAME=mnvim nvim'
 fi
 
 # My tools initialization
