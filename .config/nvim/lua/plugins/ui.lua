@@ -114,7 +114,7 @@ return {
 		end,
 	},
 
-	-- Statusline
+	-- NOTE: My Statusline config
 	{
 		"nvim-lualine/lualine.nvim",
 		opts = function(_, opts)
