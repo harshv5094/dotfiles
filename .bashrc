@@ -1,3 +1,4 @@
+# shellcheck disable=SC2148
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -173,7 +174,7 @@ fi
 
 command -v fzf &>/dev/null && eval "$(fzf --bash)"
 command -v gh &>/dev/null && eval "$(gh completion -s bash)"
-command -v zoxide &>/dev/null && eval "$(zoxide init bash)"
+command -v zoxide &>/dev/null && eval "$(zoxide init --cmd cd bash)"
 
 [[ -d $HOME/.config/nvm ]] && export NVM_DIR="$HOME/.config/nvm"
 [[ ! -f $NVM_DIR/default-packages ]] && printf "%b" "commitizen\ncz-git" | tee "$NVM_DIR/default-packages" &>/dev/null
