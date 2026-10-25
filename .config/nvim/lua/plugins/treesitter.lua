@@ -19,7 +19,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		init = function()
-			if vim.fn.has("win32") then
+			if vim.fn.has("win32") == 1 then
 				-- HACK: Using gcc as default compiler instead of `cl.exe`
 				vim.env.CC = "gcc"
 			end
@@ -34,7 +34,7 @@ return {
 				"xml",
 			}
 
-			if vim.fn.has("win32") then
+			if vim.fn.has("win32") == 1 then
 				vim.list_extend(drop, {
 					"bash",
 					"vim",

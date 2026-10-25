@@ -41,18 +41,24 @@ map({ "n", "t" }, "<ESC><ESC>", "<C-\\><C-n>", opts)
 -- Automatic find and replace
 map("n", "<localleader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
--- Setup executable permission
-map("n", "<localleader>x", function()
-	base.chmod()
-end, { desc = "chmod +x <current-buffer>" })
-map("n", "<localleader>X", function()
-	base.chmod("-")
-end, { desc = "chmod -x <current-buffer>" })
+-- Special chmod keymaps for windows and mac only
+if vim.fn.has("linux") == 1 or vim.fn.has("mac") == 1 then
+	-- chmod +x <current-buffer>
+	map("n", "<leader>fx", function()
+		base.chmod()
+	end, { desc = "chmod +x <current-buffer>" })
+
+	-- chmod -x <current-buffer>
+	map("n", "<leader>fX", function()
+		base.chmod("-")
+	end, { desc = "chmod -x <current-buffer>" })
+
+	-- A custom command for tab
+	vim.api.nvim_create_user_command("Vhelp", "tab help <args>", {
+		nargs = "?",
+		complete = "help",
+	})
+end
 
 -- Adding LazyExtras Quick Access Keybind
 map("n", "<localleader>l", "<cmd>LazyExtras<CR>", { desc = "LazyExtras", silent = true })
-
--- Rename whole variables in the buffer
-map("n", "rn", function()
-	vim.lsp.buf.rename()
-end, { desc = "rename buffer", silent = true })
