@@ -33,6 +33,14 @@ return {
 				"python",
 				"xml",
 			}
+
+			if vim.fn.has("win32") then
+				vim.list_extend(drop, {
+					"bash",
+					"vim",
+				})
+			end
+
 			opts.ensure_installed = vim.tbl_filter(function(lang)
 				return not vim.tbl_contains(drop, lang)
 			end, opts.ensure_installed)
