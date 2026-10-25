@@ -28,7 +28,7 @@ return {
 						cwd = require("lazy.core.config").options.root,
 					})
 				end,
-				desc = "Telescope -> Find files (lazy.nvim)",
+				desc = "Find files (lazy.nvim)",
 			},
 			{
 				"sf",
