@@ -99,8 +99,8 @@ if [[ -n "$AUR_HELPER" ]]; then
   }
 fi
 
+# Color fix for wsl machines
 if [[ -n "$WSL_DISTRO_NAME" ]] || grep -qi microsoft /proc/version &>/dev/null; then
-  # Color fix for wsl machines
   export COLORTERM="truecolor"
 fi
 
@@ -119,11 +119,7 @@ if command -v fzf &>/dev/null; then
       player="play"
     fi
 
-    if pgrep kitty &>/dev/null && ! pgrep tmux &>/dev/null; then
-      file=$(kitten choose-files ~/Music)
-    else
-      file=$(find ~/Music -iname "*.mp3" | fzf --header='** Select a Song **' --height=60% --prompt="Play > ")
-    fi
+    file=$(find ~/Music -iname "*.mp3" | fzf --header='** Select a Song **' --height=60% --prompt="Play > ")
 
     if [[ -n $file ]]; then
       $player "$file"
