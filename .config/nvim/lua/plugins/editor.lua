@@ -1,4 +1,9 @@
 return {
+
+	{
+		"mini-nvim/mini.ai",
+		enabled = false,
+	},
 	-- NOTE: A undo history plugin, I love and never gonna delete it
 	{
 		"mbbill/undotree",
