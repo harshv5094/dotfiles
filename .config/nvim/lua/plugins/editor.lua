@@ -3,9 +3,16 @@ return {
 	{
 		"mbbill/undotree",
 		event = "BufReadPre",
-    -- stylua: ignore
 		keys = {
-			{ "<localleader>u", "<CMD>UndotreeToggle<CR>", desc = "Open undotree", },
+			{
+				"<localleader>u",
+				function()
+					vim.cmd("UndotreeToggle")
+					vim.cmd("UndotreeFocus")
+				end,
+				desc = "Open undotree",
+				mode = { "n" },
+			},
 		},
 	},
 
@@ -13,10 +20,7 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "make",
-			},
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			"nvim-telescope/telescope-file-browser.nvim",
 		},
 		keys = {
