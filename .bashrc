@@ -156,6 +156,7 @@ if command -v nvim &>/dev/null; then
 
   # My custom nvim config
   [[ -d $XDG_CONFIG_HOME/mnvim/ ]] && alias mnvim='NVIM_APPNAME=mnvim nvim'
+  [[ -d $XDG_CONFIG_HOME/tnvim/ ]] && alias tnvim='NVIM_APPNAME=tnvim nvim'
 fi
 
 # My tools initialization
@@ -171,6 +172,14 @@ fi
 command -v fzf &>/dev/null && eval "$(fzf --bash)"
 command -v gh &>/dev/null && eval "$(gh completion -s bash)"
 command -v zoxide &>/dev/null && eval "$(zoxide init --cmd cd bash)"
+
+# Create my projects directory automagically, if not exist
+projects_dirs=('fun' 'personal' 'work')
+for projects_dir in "${projects_dirs[@]}"; do
+  if [[ ! -d $HOME/Projects/$projects_dir/ ]]; then
+    mkdir -p "$HOME/Projects/$projects_dir"
+  fi
+done
 
 [[ -d $HOME/.config/nvm ]] && export NVM_DIR="$HOME/.config/nvm"
 [[ ! -f $NVM_DIR/default-packages ]] && printf "%b" "commitizen\ncz-git" | tee "$NVM_DIR/default-packages" &>/dev/null

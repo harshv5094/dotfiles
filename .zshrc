@@ -196,8 +196,11 @@ if command -v nvim &>/dev/null; then
 
   # My custom nvim config
   [[ -d $HOME/.config/mnvim/ ]] && alias mnvim="NVIM_APPNAME=mnvim nvim"
+  [[ -d $HOME/.config/tnvim/ ]] && alias tnvim="NVIM_APPNAME=tnvim nvim"
 fi
 
+# My dotfiles directory set as env variable
+[[ -d "$HOME/dotfiles/" ]] && export DOTFILES="$HOME/dotfiles"
 command -v fzf &>/dev/null && eval "$(fzf --zsh)"
 command -v gh &>/dev/null && eval "$(gh completion -s zsh)"
 command -v zoxide &>/dev/null && eval "$(zoxide init --cmd cd zsh)"
@@ -210,8 +213,13 @@ else
   PROMPT='%n@%m%f:%~%f$ '
 fi
 
-# My dotfiles directory set as env variable
-[[ -d "$HOME/dotfiles/" ]] && export DOTFILES="$HOME/dotfiles"
+# Create my projects directory automagically, if not exist
+projects_dirs=('fun' 'personal' 'work')
+for projects_dir in "${projects_dirs[@]}"; do
+  if [[ ! -d $HOME/Projects/$projects_dir/ ]]; then
+    mkdir -p "$HOME/Projects/$projects_dir"
+  fi
+done
 
 # NVM Directory
 [[ -d "$HOME/.config/nvm" ]] && export NVM_DIR="$HOME/.config/nvm"
