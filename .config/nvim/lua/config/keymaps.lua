@@ -29,8 +29,8 @@ map("n", "<C-k>", "<C-w>+", opts)
 map("n", "<C-j>", "<C-w>-", opts)
 
 -- Major Navigation
-map("n", "<C-u>", "<C-u>zz", opts)
-map("n", "<C-d>", "<C-d>zz", opts)
+map("n", "<M-j>", "<C-d>zz", opts)
+map("n", "<M-k>", "<C-u>zz", opts)
 
 -- Git init current open file root dir
 map("n", "<leader>gi", git.init, { desc = "Git init (root)" })
