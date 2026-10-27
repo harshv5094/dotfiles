@@ -1,9 +1,11 @@
 return {
 
+	-- NOTE: Don't need it, so I'm disabling it
 	{
 		"mini-nvim/mini.ai",
 		enabled = false,
 	},
+
 	-- NOTE: A undo history plugin, I love and never gonna delete it
 	{
 		"mbbill/undotree",
@@ -15,7 +17,7 @@ return {
 					vim.cmd("UndotreeToggle")
 					vim.cmd("UndotreeFocus")
 				end,
-				desc = "Open undotree",
+				desc = "Toggle undotree",
 				mode = { "n" },
 			},
 		},
