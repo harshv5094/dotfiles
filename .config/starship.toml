@@ -6,15 +6,6 @@ add_newline = false
 
 palette = 'gruvbox_dark'
 
-[palettes.gruvbox_light]
-blue = '#076678'
-cyan = '#427b58'
-green = '#79740e'
-red = '#cc241d'
-yellow = '#d79921'
-gray = '#665c54'
-purple = '#8f3f71'
-
 [palettes.gruvbox_dark]
 blue = '#83a598'
 cyan = '#8ec07c'
