@@ -196,7 +196,6 @@ if command -v nvim &>/dev/null; then
 
   # My custom nvim config
   [[ -d $HOME/.config/mnvim/ ]] && alias mnvim="NVIM_APPNAME=mnvim nvim"
-  [[ -d $HOME/.config/tnvim/ ]] && alias tnvim="NVIM_APPNAME=tnvim nvim"
 fi
 
 # My dotfiles directory set as env variable
@@ -214,7 +213,7 @@ else
 fi
 
 # Create my projects directory automagically, if not exist
-projects_dirs=('fun' 'personal' 'work')
+projects_dirs=('development' 'fun' 'personal' 'work')
 for projects_dir in "${projects_dirs[@]}"; do
   if [[ ! -d $HOME/Projects/$projects_dir/ ]]; then
     mkdir -p "$HOME/Projects/$projects_dir"
