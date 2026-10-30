@@ -146,6 +146,7 @@ fi
 
 command -v fastfetch &>/dev/null && alias neofetch="fastfetch -c examples/13"
 command -v lazygit &>/dev/null && alias lg="lazygit"
+command -v emacs &>/dev/null && alias tmacs="emacs -nw"
 
 # Changing default editor also setting up default man pager
 if command -v nvim &>/dev/null; then
