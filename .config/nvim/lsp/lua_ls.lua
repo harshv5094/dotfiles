@@ -6,8 +6,15 @@ return {
 	cmd = { "lua-language-server" },
 	filetypes = { "lua" },
 	root_markers = { ".luarc.json", ".luarc.jsonc", ".git" },
+	single_file_support = true,
 	settings = {
 		Lua = {
+			diagnostics = {
+				workspaceEvent = "OnSave",
+				workspaceDelay = 3000,
+				disable = { "incomplete-signature-doc", "trailing-space" },
+				unusedLocalExclude = { "_*" },
+			},
 			codeLens = {
 				enable = true,
 			},
@@ -25,11 +32,17 @@ return {
 				semicolon = "Disable",
 				arrayIndex = "Disable",
 			},
+			telemetry = {
+				enable = false,
+			},
 			runtime = {
 				version = "LuaJIT",
 			},
 			workspace = {
+				preloadFileSize = 1000,
+				maxPreload = 2000,
 				checkThirdParty = false,
+				ignoreDir = { ".git", ".node_modules", "build", "dist", "generated" },
 			},
 		},
 	},
