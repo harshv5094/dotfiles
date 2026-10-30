@@ -22,11 +22,6 @@ if vim.fn.has("win32") == 1 then
 	opt.shell = "pwsh"
 end
 
--- NOTE: Encoding
-vim.scriptencoding = "utf-8"
-opt.encoding = "utf-8"
-opt.fileencoding = "utf-8"
-
 -- NOTE: Clipboard
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
 
@@ -39,15 +34,12 @@ opt.sidescrolloff = 8 -- Columns of context
 opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 opt.shiftround = true -- Round indent
 opt.laststatus = 3 -- Single global statusline
-opt.cmdheight = 1 -- Height of the command line
-opt.showcmd = true -- Show partial commands in the last line
 opt.scrolloff = 10 -- Keep 10 lines visible above/below cursor
 opt.smoothscroll = true -- Setting up smooth scrolling
 opt.conceallevel = 2 -- Hide markup (e.g. bold/italic markers) unless it has substitutions
 -- opt.mouse = "a" -- Enable mouse support (disabled)
 
 -- NOTE: Search
-opt.hlsearch = true -- Highlight all search matches
 opt.ignorecase = true -- Case-insensitive search UNLESS /C or capitals are used
 opt.smartcase = true -- Override 'ignorecase' when the search has capitals
 opt.inccommand = "split" -- Live preview of :substitute in a split
@@ -59,8 +51,6 @@ opt.wildignore:append({ "*/node_modules/*", "*/.git/*" }) -- Ignore node_modules
 opt.expandtab = true -- Use spaces instead of tabs
 opt.shiftwidth = 2 -- Indent size (>>, <<, autoindent)
 opt.tabstop = 2 -- Width of a tab character
-opt.smarttab = true -- Use shiftwidth at line start, tabstop elsewhere
-opt.autoindent = true -- Copy indent from current line on new line
 opt.smartindent = true -- Smart auto-indenting for C-like code
 opt.breakindent = true -- Wrapped lines keep the same indent level
 
@@ -79,11 +69,8 @@ opt.pumborder = "rounded" -- border for the menu (newer versions; check :h 'pumb
 
 -- NOTE: Files / Persistence
 opt.autowrite = true -- Auto-save when switching buffers / running commands
-opt.autoread = true -- Reload files changed outside of Neovim
-opt.backup = false -- Do not create backup files
 opt.writebackup = false -- Do not write a backup file before overwriting
 opt.backupskip = { "/tmp/*", "/private/tmp/*" } -- Skip backups for temp files
-opt.swapfile = true -- Use swap files for crash recovery
 opt.undofile = true -- Persist undo history across sessions
 
 -- NOTE: Windows & Splits
@@ -93,7 +80,6 @@ opt.splitkeep = "screen" -- Keep text on screen when splitting
 
 -- NOTE: Editing behavior
 opt.confirm = true -- Ask to save before discarding modified buffers
-opt.backspace = { "start", "eol", "indent" } -- Allow backspace over everything
 opt.foldlevel = 99 -- Start with folds close with
 opt.foldmethod = "indent" -- Fold based on indentation
 opt.fillchars = {
