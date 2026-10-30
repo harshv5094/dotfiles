@@ -197,6 +197,18 @@ end
 ok, plugin = pcall(require, "persistence")
 
 if ok then
+	-- HACK: Automatically delete oil.nvim buffer from the list just when you save any session
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "PersistenceSavePre",
+		callback = function()
+			for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+				if vim.bo[buf].filetype == "oil" then
+					vim.api.nvim_buf_delete(buf, { force = true })
+				end
+			end
+		end,
+	})
+
   -- stylua: ignore
   local keys = {
     { "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
