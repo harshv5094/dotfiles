@@ -206,6 +206,6 @@ fi
 
 # NVM Directory
 [[ -d "$HOME/.config/nvm" ]] && export NVM_DIR="$HOME/.config/nvm"
-[[ ! -f "$NVM_DIR/default-packages" ]] && printf "%b" "commitizen\ncz-git" | tee "$NVM_DIR/default-packages" &>/dev/null
+[[ ! -f $NVM_DIR/default-packages ]] && printf "%b" "yarn" | tee "$NVM_DIR/default-packages" &>/dev/null
 # shellcheck disable=SC1091
 [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh" # This loads nvm
