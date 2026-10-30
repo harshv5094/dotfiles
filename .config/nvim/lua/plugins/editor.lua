@@ -9,24 +9,36 @@ if ok then
 	local fb_actions = extensions.file_browser.actions
 
 	-- Builtin keymaps
-	map("n", "<leader><space>", builtin.find_files, { desc = "Telescope: Find Files" })
-	map("n", "<leader>/", builtin.live_grep, { desc = "Telescope: Live Grep" })
 	map("n", "<leader>,", builtin.buffers, { desc = "Telescope: Switch Buffers" })
 	map("n", "<leader>sa", builtin.help_tags, { desc = "Telescope: Autocmds" })
 	map("n", "<leader>sb", builtin.current_buffer_fuzzy_find, { desc = "Telescope: Buffer Lines" })
 	map("n", "<leader>sd", builtin.diagnostics, { desc = "Telescope: Diagnostics" })
-	map("n", "<leader>sg", builtin.grep_string, { desc = "Telescope: Grep" })
 	map("n", "<leader>sh", builtin.help_tags, { desc = "Telescope: Help Tags" })
 	map("n", "<leader>sH", builtin.highlights, { desc = "Telescope: Search Highlights Group" })
 	map("n", "<leader>sj", builtin.jumplist, { desc = "Telescope: Jumplist" })
 	map("n", "<leader>sk", builtin.keymaps, { desc = "Telescope: Keymaps" })
 	map("n", "<leader>sl", builtin.loclist, { desc = "Telescope: loclist" })
-	map("n", "<leader>sm", builtin.marks, { desc = "Telescope: Jump to Mark" })
-	map("n", "<leader>sM", builtin.man_pages, { desc = "Telescope: Man Pages" })
+	map("n", "<leader>sm", builtin.man_pages, { desc = "Telescope: Man Pages" })
 	map("n", "<leader>so", builtin.vim_options, { desc = "Telescope: Options" })
+	map("n", "<leader>sO", builtin.oldfiles, { desc = "Telescope: Oldfiles" })
 	map("n", "<leader>sq", builtin.quickfix, { desc = "Telescope: Quick Fix list" })
+	map("n", "<leader>sr", builtin.resume, { desc = "Telescope: Resume" })
 	map("n", "<leader>:", builtin.command_history, { desc = "Telescope: Command History" })
 	map("n", "<leader>gst", builtin.git_status, { desc = "Telescope: Git Status" })
+
+	map("n", "<leader><space>", function()
+		builtin.find_files({
+			hidden = true,
+			respect_gitignore = false,
+		})
+	end, { desc = "Telescope: Find Files" })
+
+	map("n", "<leader>/", function()
+		builtin.live_grep({
+			hidden = false,
+			respect_gitignore = false,
+		})
+	end, { desc = "Telescope: Live Grep" })
 
 	-- Keymap for searching lazy.nvim plugin directory
 	map("n", "<leader>fP", function()
@@ -58,7 +70,7 @@ if ok then
 		extensions.file_browser.file_browser({
 			path = "%:p:h",
 			cwd = telescope_buffer_dir(),
-			respect_gitignore = true,
+			respect_gitignore = false,
 			hidden = true,
 			follow_symlinks = true,
 			grouped = true,
@@ -242,6 +254,9 @@ if ok then
 		},
 		-- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
 		delete_to_trash = true,
+		view_options = {
+			show_hidden = true,
+		},
 		columns = {
 			-- "permissions",
 			-- "size",
