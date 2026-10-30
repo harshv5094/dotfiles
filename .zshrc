@@ -179,11 +179,7 @@ if command -v eza &>/dev/null; then
   alias lla="eza -lga --icons=auto"
 fi
 
-if command -v trash &>/dev/null; then
-  alias del="trash -v"
-  alias sdel="sudo trash -v"
-fi
-
+command -v trash &>/dev/null && alias del="trash -v"
 command -v fastfetch &>/dev/null && alias neofetch="fastfetch -c examples/13"
 command -v lazygit &>/dev/null && alias lg="lazygit"
 command -v emacs &>/dev/null && alias tmacs="emacs -nw"
@@ -196,27 +192,17 @@ if command -v nvim &>/dev/null; then
   export MANPAGER="nvim +Man!"
 fi
 
-# My dotfiles directory set as env variable
-[[ -d "$HOME/dotfiles/" ]] && export DOTFILES="$HOME/dotfiles"
 command -v fzf &>/dev/null && eval "$(fzf --zsh)"
 command -v gh &>/dev/null && eval "$(gh completion -s zsh)"
 command -v zoxide &>/dev/null && eval "$(zoxide init --cmd cd zsh)"
 
 # Initialize Starship prompt theme
-if command -v starship &>/dev/null && [[ -e "$XDG_CONFIG_HOME/topgrade.toml" ]]; then
+if command -v starship &>/dev/null && [[ -e $HOME/.config/topgrade.toml ]]; then
   eval "$(starship init zsh)"
 else
   # A simple fallback prompt
   PROMPT='%n@%m%f:%~%f$ '
 fi
-
-# Create my projects directory automagically, if not exist
-projects_dirs=('development' 'fun' 'personal' 'work')
-for projects_dir in "${projects_dirs[@]}"; do
-  if [[ ! -d $HOME/Projects/$projects_dir/ ]]; then
-    mkdir -p "$HOME/Projects/$projects_dir"
-  fi
-done
 
 # NVM Directory
 [[ -d "$HOME/.config/nvm" ]] && export NVM_DIR="$HOME/.config/nvm"

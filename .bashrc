@@ -139,11 +139,7 @@ if command -v eza &>/dev/null; then
   alias lla="eza -lga --icons=auto"
 fi
 
-if command -v trash &>/dev/null; then
-  alias del="trash -v"
-  alias sdel="sudo trash -v"
-fi
-
+command -v trash &>/dev/null && alias del="trash -v"
 command -v fastfetch &>/dev/null && alias neofetch="fastfetch -c examples/13"
 command -v lazygit &>/dev/null && alias lg="lazygit"
 command -v emacs &>/dev/null && alias tmacs="emacs -nw"
@@ -163,20 +159,9 @@ else
   PS1='[\u@\h \W]\$ '
 fi
 
-# My dotfiles directory set as env variable
-[[ -d $HOME/dotfiles/ ]] && export DOTFILES="$HOME/dotfiles"
-
 command -v fzf &>/dev/null && eval "$(fzf --bash)"
 command -v gh &>/dev/null && eval "$(gh completion -s bash)"
 command -v zoxide &>/dev/null && eval "$(zoxide init --cmd cd bash)"
-
-# Create my projects directory automagically, if not exist
-projects_dirs=('development' 'fun' 'personal' 'work')
-for projects_dir in "${projects_dirs[@]}"; do
-  if [[ ! -d $HOME/Projects/$projects_dir/ ]]; then
-    mkdir -p "$HOME/Projects/$projects_dir"
-  fi
-done
 
 [[ -d $HOME/.config/nvm ]] && export NVM_DIR="$HOME/.config/nvm"
 [[ ! -f $NVM_DIR/default-packages ]] && printf "%b" "commitizen\ncz-git" | tee "$NVM_DIR/default-packages" &>/dev/null
