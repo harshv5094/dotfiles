@@ -194,9 +194,6 @@ if command -v nvim &>/dev/null; then
   export SUDO_EDITOR="nvim"
   export VISUAL=nvim
   export MANPAGER="nvim +Man!"
-
-  # My custom nvim config
-  [[ -d $HOME/.config/mnvim/ ]] && alias mnvim="NVIM_APPNAME=mnvim nvim"
 fi
 
 # My dotfiles directory set as env variable

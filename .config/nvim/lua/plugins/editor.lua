@@ -1,152 +1,241 @@
-return {
+local ok, plugin = pcall(require, "telescope")
 
-	-- NOTE: Don't need it, so I'm disabling it
-	{
-		"mini-nvim/mini.ai",
-		enabled = false,
-	},
+if ok then
+	local map = vim.keymap.set
+	local builtin = require("telescope.builtin")
+	local actions = require("telescope.actions")
+	local themes = require("telescope.themes")
+	local extensions = plugin.extensions
+	local fb_actions = extensions.file_browser.actions
 
-	-- NOTE: A undo history plugin, I love and never gonna delete it
-	{
-		"mbbill/undotree",
-		event = "BufReadPre",
-		keys = {
-			{
-				"<localleader>u",
-				function()
-					vim.cmd("UndotreeToggle")
-					vim.cmd("UndotreeFocus")
-				end,
-				desc = "Toggle undotree",
-				mode = { "n" },
+	-- Builtin keymaps
+	map("n", "<leader><space>", builtin.find_files, { desc = "Telescope: Find Files" })
+	map("n", "<leader>/", builtin.live_grep, { desc = "Telescope: Live Grep" })
+	map("n", "<leader>,", builtin.buffers, { desc = "Telescope: Switch Buffers" })
+	map("n", "<leader>sa", builtin.help_tags, { desc = "Telescope: Autocmds" })
+	map("n", "<leader>sb", builtin.current_buffer_fuzzy_find, { desc = "Telescope: Buffer Lines" })
+	map("n", "<leader>sd", builtin.diagnostics, { desc = "Telescope: Diagnostics" })
+	map("n", "<leader>sg", builtin.grep_string, { desc = "Telescope: Grep" })
+	map("n", "<leader>sh", builtin.help_tags, { desc = "Telescope: Help Tags" })
+	map("n", "<leader>sH", builtin.highlights, { desc = "Telescope: Search Highlights Group" })
+	map("n", "<leader>sj", builtin.jumplist, { desc = "Telescope: Jumplist" })
+	map("n", "<leader>sk", builtin.keymaps, { desc = "Telescope: Keymaps" })
+	map("n", "<leader>sl", builtin.loclist, { desc = "Telescope: loclist" })
+	map("n", "<leader>sm", builtin.marks, { desc = "Telescope: Jump to Mark" })
+	map("n", "<leader>sM", builtin.man_pages, { desc = "Telescope: Man Pages" })
+	map("n", "<leader>so", builtin.vim_options, { desc = "Telescope: Options" })
+	map("n", "<leader>sq", builtin.quickfix, { desc = "Telescope: Quick Fix list" })
+	map("n", "<leader>:", builtin.command_history, { desc = "Telescope: Command History" })
+	map("n", "<leader>gst", builtin.git_status, { desc = "Telescope: Git Status" })
+
+	-- Keymap for searching lazy.nvim plugin directory
+	map("n", "<leader>fP", function()
+		builtin.find_files({
+			prompt_title = "Find Files (vim.pack plugins)",
+			cwd = vim.fn.stdpath("data") .. "/site/pack/core/opt/",
+		})
+	end, { desc = "Telescope: vim.pack plugins" })
+
+	-- Colorscheme keymap
+	map("n", "<leader>uC", function()
+		builtin.colorscheme({ enable_preview = true })
+	end, { desc = "Colorscheme" })
+
+	-- Neovim Config file keymap
+	map("n", "<leader>fc", function()
+		require("telescope.builtin").find_files({
+			prompt_title = "Neovim Config Files",
+			cwd = vim.fn.stdpath("config"),
+		})
+	end, { desc = "Telescope: Config Files" })
+
+	-- Telescope file browser
+	map("n", "sf", function()
+		local function telescope_buffer_dir()
+			return vim.fn.expand("%:p:h")
+		end
+
+		extensions.file_browser.file_browser({
+			path = "%:p:h",
+			cwd = telescope_buffer_dir(),
+			respect_gitignore = true,
+			hidden = true,
+			follow_symlinks = true,
+			grouped = true,
+			previewer = true,
+			initial_mode = "normal",
+		})
+	end, { desc = "File Browser" })
+
+	plugin.setup({
+		defaults = {
+			file_ignore_patterns = {
+				"%.git/",
+				"node_modules",
+				-- "%.git$",
 			},
-		},
-	},
-
-	-- NOTE: My custom values for neovim
-	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = {
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-			"nvim-telescope/telescope-file-browser.nvim",
-		},
-		keys = {
-			{
-				"<leader>fP",
-				function()
-					require("telescope.builtin").find_files({
-						prompt_title = "Find Files (lazy.nvim plugins)",
-						cwd = require("lazy.core.config").options.root,
-					})
-				end,
-				desc = "Find files (lazy.nvim)",
-			},
-			{
-				"sf",
-				function()
-					local telescope = require("telescope")
-					local function telescope_buffer_dir()
-						return vim.fn.expand("%:p:h")
-					end
-
-					telescope.extensions.file_browser.file_browser({
-						path = "%:p:h",
-						cwd = telescope_buffer_dir(),
-						respect_gitignore = true,
-						hidden = true,
-						follow_symlinks = true,
-						grouped = true,
-						previewer = true,
-						initial_mode = "normal",
-					})
-				end,
-				desc = "Telescope -> Browse File",
-			},
-		},
-		config = function(_, opts)
-			local telescope = require("telescope")
-			local actions = require("telescope.actions")
-			local fb_actions = require("telescope").extensions.file_browser.actions
-
-			opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
-				file_ignore_patterns = {
-					"%.git/",
-					"node_modules",
-					-- "%.git$",
+			wrap_results = true,
+			layout_stategy = "horizontal",
+			layout_config = {
+				horizontal = {
+					prompt_position = "top",
 				},
-				wrap_results = true,
-				layout_strategy = "horizontal",
-				layout_config = {
-					horizontal = {
-						prompt_position = "top",
-					},
+			},
+			sorting_strategy = "ascending",
+			winblend = 0,
+			mappings = {
+				n = {
+					["q"] = actions.close,
 				},
-				sorting_strategy = "ascending",
-				winblend = 0,
+			},
+		},
+		extensions = {
+			fzf = {
+				fuzzy = true, -- false will only do exact matching
+				override_generic_sorter = true, -- override the generic sorter
+				override_file_sorter = true, -- override the file sorter
+				case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+			},
+			file_browser = {
+				-- theme = "ivy",
+				-- disables netrw and use telescope-file-browser in its place
+				hijack_netrw = false,
 				mappings = {
-					n = {
+					-- your custom insert mode mappings
+					["n"] = {
+						-- your custom normal mode mappings
+						["N"] = fb_actions.create,
+						["h"] = fb_actions.goto_parent_dir,
 						["q"] = actions.close,
+						["H"] = fb_actions.toggle_hidden,
+						["/"] = function()
+							vim.cmd("startinsert")
+						end,
+						["<C-u>"] = function(prompt_bufnr)
+							for i = 1, 10 do
+								actions.move_selection_previous(prompt_bufnr)
+							end
+						end,
+						["<C-d>"] = function(prompt_bufnr)
+							for i = 1, 10 do
+								actions.move_selection_next(prompt_bufnr)
+							end
+						end,
+						["<PageUp>"] = actions.preview_scrolling_up,
+						["<PageDown>"] = actions.preview_scrolling_down,
 					},
 				},
-			})
-
-			opts.extensions = {
-				file_browser = {
-					-- theme = "ivy",
-					-- disables netrw and use telescope-file-browser in its place
-					hijack_netrw = false,
-					mappings = {
-						-- your custom insert mode mappings
-						["n"] = {
-							-- your custom normal mode mappings
-							["N"] = fb_actions.create,
-							["h"] = fb_actions.goto_parent_dir,
-							["q"] = actions.close,
-							["H"] = fb_actions.toggle_hidden,
-							["/"] = function()
-								vim.cmd("startinsert")
-							end,
-							["<C-u>"] = function(prompt_bufnr)
-								for i = 1, 10 do
-									actions.move_selection_previous(prompt_bufnr)
-								end
-							end,
-							["<C-d>"] = function(prompt_bufnr)
-								for i = 1, 10 do
-									actions.move_selection_next(prompt_bufnr)
-								end
-							end,
-							["<PageUp>"] = actions.preview_scrolling_up,
-							["<PageDown>"] = actions.preview_scrolling_down,
-						},
-					},
-				},
-			}
-			telescope.setup(opts)
-			require("telescope").load_extension("fzf")
-			require("telescope").load_extension("file_browser")
-		end,
-	},
-
-	-- Multiple close buffer plugin
-	{
-		"kazhala/close-buffers.nvim",
-		event = "BufReadPre",
-		keys = {
-			{
-				"<leader>bh",
-				function()
-					require("close_buffers").delete({ type = "hidden" })
-				end,
-				desc = "Close Hidden Buffers",
 			},
-			{
-				"<leader>bu",
-				function()
-					require("close_buffers").delete({ type = "nameless" })
-				end,
-				desc = "Close Nameless Buffers",
+			frecency = {
+				show_filter_column = true,
 			},
+			["ui-select"] = themes.get_dropdown({}),
 		},
-	},
-}
+	})
+
+	plugin.load_extension("fzf")
+	plugin.load_extension("file_browser")
+	plugin.load_extension("ui-select")
+end
+
+ok, _ = pcall(require, "close_buffers")
+
+if ok then
+	local keys = {
+		{
+			"<leader>bh",
+			function()
+				require("close_buffers").delete({ type = "hidden" })
+			end,
+			desc = "Close Hidden Buffers",
+		},
+		{
+			"<leader>bd",
+			function()
+				require("close_buffers").delete({ type = "this" })
+			end,
+			desc = "Close Current Buffer",
+		},
+		{
+			"<leader>bu",
+			function()
+				require("close_buffers").delete({ type = "nameless" })
+			end,
+			desc = "Close Nameless Buffers",
+		},
+	}
+
+	for _, key in ipairs(keys) do
+		vim.keymap.set("n", key[1], key[2], { desc = key.desc })
+	end
+end
+
+ok, plugin = pcall(require, "grug-far")
+
+if ok then
+	vim.keymap.set({ "n", "x" }, "<leader>sr", function()
+		local grug = require("grug-far")
+		local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
+		grug.open({
+			transient = true,
+			prefills = {
+				filesFilter = ext and ext ~= "" and "*." .. ext or nil,
+			},
+		})
+	end, { desc = "Search and Replace (Global)" })
+end
+
+local path_check = vim.fn.isdirectory(vim.fn.stdpath("data") .. "/site/pack/core/opt/undotree/")
+
+if path_check then
+	vim.keymap.set("n", "<leader>fu", function()
+		vim.cmd("UndotreeToggle")
+		vim.cmd("UndotreeFocus")
+	end, { desc = "Undotree Toggle" })
+end
+
+ok, plugin = pcall(require, "persistence")
+
+if ok then
+  -- stylua: ignore
+  local keys = {
+    { "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
+    { "<leader>qS", function() require("persistence").select() end,desc = "Select Session" },
+    { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
+    { "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
+  }
+
+	for _, key in ipairs(keys) do
+		vim.keymap.set("n", key[1], key[2], { desc = key.desc })
+	end
+
+	plugin.setup()
+end
+
+ok, plugin = pcall(require, "oil")
+
+if ok then
+	plugin.setup({
+		default_file_explorer = true, -- Set oil.nvim as the default file explorer
+		-- Oil will automatically delete hidden buffers after this delay
+		cleanup_delay_ms = 3000,
+		lsp_file_methods = {
+			-- Enable or disable LSP file operations
+			enabled = true,
+			-- Time to wait for LSP file operations to complete before skipping
+			timeout_ms = 1000,
+			-- Set to true to autosave buffers that are updated with LSP willRenameFiles
+			-- Set to "unmodified" to only save unmodified buffers
+			autosave_changes = false,
+		},
+		-- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
+		delete_to_trash = true,
+		columns = {
+			-- "permissions",
+			-- "size",
+			-- "mtime",
+			"icon",
+		},
+	})
+	vim.keymap.set("n", "<leader>e", "<CMD>Oil<CR>", { noremap = true, silent = true })
+end
