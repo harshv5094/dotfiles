@@ -11,15 +11,11 @@ return {
 		Lua = {
 			diagnostics = {
 				workspaceEvent = "OnSave",
-				workspaceDelay = 3000,
 				disable = { "incomplete-signature-doc", "trailing-space" },
 				unusedLocalExclude = { "_*" },
 			},
 			codeLens = {
 				enable = true,
-			},
-			completion = {
-				callSnippet = "Replace",
 			},
 			doc = {
 				privateName = { "^_" },
@@ -39,10 +35,8 @@ return {
 				version = "LuaJIT",
 			},
 			workspace = {
-				preloadFileSize = 1000,
-				maxPreload = 2000,
 				checkThirdParty = false,
-				ignoreDir = { ".git", ".node_modules", "build", "dist", "generated" },
+				library = { vim.env.VIMRUNTIME },
 			},
 		},
 	},
