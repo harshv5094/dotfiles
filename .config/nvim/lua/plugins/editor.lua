@@ -35,7 +35,7 @@ if ok then
 
 	map("n", "<leader>/", function()
 		builtin.live_grep({
-			hidden = false,
+			hidden = true,
 			respect_gitignore = false,
 		})
 	end, { desc = "Telescope: Live Grep" })
@@ -81,6 +81,17 @@ if ok then
 
 	plugin.setup({
 		defaults = {
+			vimgrep_arguments = {
+				"rg",
+				"--color=never",
+				"--no-heading",
+				"--with-filename",
+				"--line-number",
+				"--column",
+				"--smart-case",
+				"--hidden",
+				"--glob=!.git/",
+			},
 			file_ignore_patterns = {
 				"%.git/",
 				"node_modules",

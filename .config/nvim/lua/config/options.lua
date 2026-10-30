@@ -51,6 +51,7 @@ opt.hlsearch = true -- Highlight all search matches
 opt.ignorecase = true -- Case-insensitive search UNLESS /C or capitals are used
 opt.smartcase = true -- Override 'ignorecase' when the search has capitals
 opt.inccommand = "split" -- Live preview of :substitute in a split
+opt.grepprg = "rg --vimgrep" -- Setting up ripgrep as default
 opt.path:append({ "**" }) -- Search recursively into subfolders (gf, :find)
 opt.wildignore:append({ "*/node_modules/*", "*/.git/*" }) -- Ignore node_modules and .git in searches
 
