@@ -63,13 +63,9 @@ if ok then
 
 	-- Telescope file browser
 	map("n", "sf", function()
-		local function telescope_buffer_dir()
-			return vim.fn.expand("%:p:h")
-		end
-
 		extensions.file_browser.file_browser({
 			path = "%:p:h",
-			cwd = telescope_buffer_dir(),
+			cwd = vim.fn.expand("%:p:h"), -- It just opens based on cwd
 			respect_gitignore = false,
 			hidden = true,
 			follow_symlinks = true,
