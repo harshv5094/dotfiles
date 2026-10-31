@@ -64,6 +64,14 @@ map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
+-- Buffer based keymaps
+map("n", "<leader>bn", function()
+	vim.cmd("bnext")
+end, { desc = "Next Buffer" })
+map("n", "<leader>bp", function()
+	vim.cmd("bprevious")
+end, { desc = "Previous Buffer" })
+
 -- Special chmod keymaps for windows and mac only
 if vim.fn.has("linux") == 1 or vim.fn.has("mac") == 1 then
 	-- chmod +x <current-buffer>
