@@ -94,11 +94,13 @@ end, { desc = "Restart neovim", noremap = true })
 -- Toggle inlay hints globally (on by default; no-op on servers without support)
 map("n", "<leader>uh", function()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+	vim.notify("Inlay hints: " .. (vim.lsp.inlay_hint.is_enabled() and "on" or "off"))
 end, { desc = "Toggle inlay hints", noremap = true })
 
 -- Toggle codelens (global)
 map("n", "<leader>uc", function()
 	vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled())
+	vim.notify("Codelens: " .. (vim.lsp.codelens.is_enabled() and "on" or "off"))
 end, { desc = "Toggle Codelens", noremap = true })
 
 -- Toggle terminal
