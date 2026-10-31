@@ -38,12 +38,12 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = augroup("UserLspAttach"),
 	callback = function(ev)
-		local client = vim.lsp.get_client_by_id(ev.data.client_id)
-
-		---@diagnostic disable-next-line: need-check-nil
-		if client.server_capabilities.codeLensProvider then
-			vim.lsp.codelens.enable(true)
-		end
+		-- local client = vim.lsp.get_client_by_id(ev.data.client_id)
+		--
+		-- ---@diagnostic disable-next-line: need-check-nil
+		-- if client.server_capabilities.codeLensProvider then
+		-- 	vim.lsp.codelens.enable(true)
+		-- end
 
 		-- Delete default keymaps (buffer-local, so only where LSP attached)
 		local default_keymaps = {
