@@ -124,10 +124,6 @@ if ok then
 	---@type MasonToolInstallerSettings
 	plugin.setup({
 		ensure_installed = {
-			-- Installed first: required by nvim-treesitter to
-			-- compile/install parsers (see plugins/treesitter.lua).
-			{ "tree-sitter-cli", auto_update = true },
-
 			-- LSP servers
 			"lua-language-server",
 			"bash-language-server",

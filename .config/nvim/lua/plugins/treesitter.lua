@@ -21,31 +21,16 @@ if ok then
 		"luadoc",
 	}
 
-	-- Define a local function to install parsers
-	local function install_parsers()
-		if vim.fn.executable("tree-sitter") == 1 then
-			plugin.install(parsers)
-		else
-			vim.notify(
-				"tree-sitter CLI not found; skipping parser install",
-				vim.log.levels.WARN,
-				{ title = "nvim-treesitter" }
-			)
+	plugin.install(parsers)
+
+	-- A build hook for updating parsers
+	local hooks = function(ev)
+		local name, kind = ev.data.spec.name, ev.data.kind
+		if name == "nvim-treesitter" and (kind == "install" or kind == "update") then
+			vim.cmd("TSUpdate")
 		end
 	end
-
-	-- Calling this function based on treesitter installation
-	if vim.fn.executable("tree-sitter") == 1 then
-		install_parsers()
-	else
-		-- FIX: Don't know why but this autocmd is not running properly after `vim.pack` migration
-		-- I'll see this in the future
-		vim.api.nvim_create_autocmd("User", {
-			pattern = "MasonToolsUpdateCompleted",
-			once = true,
-			callback = install_parsers,
-		})
-	end
+	vim.api.nvim_create_autocmd("PackChanged", { callback = hooks })
 end
 
 ok, plugin = pcall(require, "treesitter-context")
