@@ -39,6 +39,11 @@ if ok then
 		mode = "cursor",
 		max_lines = 3,
 	})
+
+	vim.keymap.set("n", "<leader>ut", function()
+		vim.cmd("TSContext toggle")
+		vim.notify("treesitter context: " .. (plugin.enabled and "on" or "off"))
+	end, { desc = "Toggle Treesitter Context" })
 end
 
 ok, plugin = pcall(require, "treesitter-autoinstall")

@@ -27,7 +27,7 @@ local opts = {
 vim.diagnostic.config(opts)
 
 -- Toggle virtual text (keeps the custom spacing/source/prefix settings intact)
-vim.keymap.set("n", "<leader>ut", function()
+vim.keymap.set("n", "<leader>uv", function()
 	virtual_text_on = not virtual_text_on
 	vim.diagnostic.config({ virtual_text = virtual_text_on and virtual_text_opts or false })
 end, { desc = "Toggle Virtual Text", noremap = true })
