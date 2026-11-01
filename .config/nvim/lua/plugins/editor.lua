@@ -79,14 +79,14 @@ if ok then
 		defaults = {
 			vimgrep_arguments = {
 				"rg",
-				"--color=never",
+				"--color=auto",
 				"--no-heading",
 				"--with-filename",
 				"--line-number",
 				"--column",
 				"--smart-case",
 				"--hidden",
-				"--glob=!.git/",
+				"--glob=!{.git,node_modules}/",
 			},
 			file_ignore_patterns = {
 				"%.git/",
