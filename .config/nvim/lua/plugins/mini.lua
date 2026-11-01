@@ -1,4 +1,9 @@
-local ok, plugin = pcall(require, "mini.pairs")
+local ok, plugin = pcall(require, "mini.starter")
+if ok then
+	plugin.setup()
+end
+
+ok, plugin = pcall(require, "mini.pairs")
 if ok then
 	plugin.setup()
 end
