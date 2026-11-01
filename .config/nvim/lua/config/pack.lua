@@ -1,8 +1,10 @@
--- pack_user_commands.lua
+-- NOTE:
+-- pack.lua
 -- User commands for managing plugins with vim.pack (Neovim 0.12+).
 -- Load from init.lua with: require('pack_user_command')
---
 -- Verify the vim.pack API against `:h vim.pack` in your version.
+
+-- TODO: Keep it until there is any default name after v0.13 release
 
 local function installed_names()
 	local names = {}
@@ -70,12 +72,12 @@ end, {
 	desc = "Update vim.pack plugins",
 })
 
--- :PackUninstall[!] name ...
-vim.api.nvim_create_user_command("PackUninstall", function(opts)
+-- :PackDelete[!] name ...
+vim.api.nvim_create_user_command("PackDelete", function(opts)
 	local known = installed_names()
 	for _, name in ipairs(opts.fargs) do
 		if not vim.tbl_contains(known, name) then
-			vim.notify(('PackUninstall: "%s" is not installed'):format(name), vim.log.levels.WARN)
+			vim.notify(('PackDelete: "%s" is not installed'):format(name), vim.log.levels.WARN)
 		elseif confirm(("Uninstall %s?"):format(name)) then
 			local ok, err = pcall(vim.pack.del, { name }, { force = opts.bang })
 			if ok then
@@ -91,3 +93,8 @@ end, {
 	complete = complete_names,
 	desc = "Uninstall vim.pack plugins",
 })
+
+vim.keymap.set("n", "<leader>pi", "<CMD>PackInstall ", { desc = "Pack Add" })
+vim.keymap.set("n", "<leader>pd", "<CMD>PackDelete ", { desc = "Pack Delete" })
+vim.keymap.set("n", "<leader>pu", "<CMD>PackUpdate<CR>", { desc = "Pack Update" })
+vim.keymap.set("n", "<leader>pl", "<CMD>PackList<CR>", { desc = "Pack List" })

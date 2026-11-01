@@ -82,6 +82,7 @@ if ok then
 			{ "<leader>gl", group = "log" },
 			{ "<leader>s", group = "search" },
 			{ "<leader>u", group = "ui" },
+			{ "<leader>p", group = "vim.pack" },
 			{ "<leader>f", group = "file/find" },
 			{ "<leader>x", group = "diagnostics/quickfix" },
 			{ "<leader>t", group = "Terminal" },
