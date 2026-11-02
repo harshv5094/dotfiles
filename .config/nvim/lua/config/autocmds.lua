@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Set up LSP servers.
--- Reference: https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim
+-- Reference: https://github.com/MariaSolOs/dotfiles/blob/0c5e0cd3ac699bf3eba3e5a89d19c9447b3de096/.config/nvim/lua/lsp.lua#L259
 vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
 	once = true,
 	callback = function()
