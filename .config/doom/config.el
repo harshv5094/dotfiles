@@ -16,7 +16,7 @@
 ; NOTE: Setting Basic Font Family and Font Size
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 15)
       doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font Mono" :size 15)
-      doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
+      doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 15))
 
 ; NOTE: Basic font style
 (after! doom-themes

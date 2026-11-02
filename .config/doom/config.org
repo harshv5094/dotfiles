@@ -1,5 +1,6 @@
 #+title: My Custom Doom Emacs configuration
 #+author: Harsh Vyapari (harshv5094)
+#+description: This is my literate config for my doom emacs file
 #+date: <2024-10-25 Fri>
 #+startup: showeverything
 
@@ -66,7 +67,7 @@ Settings related to fonts within Doom Emacs:
 ; NOTE: Setting Basic Font Family and Font Size
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 15)
       doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font Mono" :size 15)
-      doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 20))
+      doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 15))
 
 ; NOTE: Basic font style
 (after! doom-themes
