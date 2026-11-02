@@ -1,21 +1,22 @@
-local ok, plugin = pcall(require, "mini.starter")
-if ok then
-	plugin.setup()
-end
+-- Just declaring local variable openly
+local ok, plugin
 
-ok, plugin = pcall(require, "mini.pairs")
-if ok then
-	plugin.setup()
-end
+-- List of mini plugins that I want to load with default settings
+local mini_plugins = {
+	"mini.starter",
+	"mini.pairs",
+	"mini.indentscope",
+	"mini.diff",
+	"mini.icons",
+}
 
-ok, plugin = pcall(require, "mini.indentscope")
-if ok then
-	plugin.setup()
-end
-
-ok, plugin = pcall(require, "mini.diff")
-if ok then
-	plugin.setup()
+-- HACK: A loop for just loading mini plugins with their default settings.
+-- It just saves me some repetitive writing.
+for _, mini_plugin in ipairs(mini_plugins) do
+	ok, plugin = pcall(require, mini_plugin)
+	if ok then
+		plugin.setup()
+	end
 end
 
 ok, plugin = pcall(require, "mini.notify")
@@ -99,11 +100,6 @@ if ok then
 		},
 		use_icons = true,
 	})
-end
-
-ok, plugin = pcall(require, "mini.icons")
-if ok then
-	plugin.setup()
 end
 
 ok, plugin = pcall(require, "mini.git")
