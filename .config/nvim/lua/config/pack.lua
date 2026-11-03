@@ -94,7 +94,8 @@ end, {
 	desc = "Uninstall vim.pack plugins",
 })
 
-vim.keymap.set("n", "<leader>pi", "<CMD>PackInstall ", { desc = "Pack Add" })
-vim.keymap.set("n", "<leader>pd", "<CMD>PackDelete ", { desc = "Pack Delete" })
+-- Keymaps for commands
+vim.keymap.set("n", "<leader>pi", ":PackInstall ", { desc = "Pack Add" })
+vim.keymap.set("n", "<leader>pd", ":PackDelete ", { desc = "Pack Delete" })
 vim.keymap.set("n", "<leader>pu", "<CMD>PackUpdate<CR>", { desc = "Pack Update" })
 vim.keymap.set("n", "<leader>pl", "<CMD>PackList<CR>", { desc = "Pack List" })
