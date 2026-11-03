@@ -1,3 +1,4 @@
+-- A masterpiece plugin to load lua_ls modules lazily
 local ok, plugin = pcall(require, "lazydev")
 
 if ok then
@@ -8,6 +9,7 @@ if ok then
 	})
 end
 
+-- A very simple autocompletion implementation by saghen
 ok, plugin = pcall(require, "blink.cmp")
 
 if ok then
@@ -90,6 +92,7 @@ if ok then
 	})
 end
 
+-- A Utility to install different types of servers, formatters, etc.
 ok, plugin = pcall(require, "mason")
 
 if ok then
@@ -106,18 +109,19 @@ if ok then
 
 	vim.keymap.set("n", "<leader>cm", "<CMD>Mason<CR>", { desc = "Mason" })
 
-	-- A custom hook to add Mason
+	-- A custom hook to update mason server registries based on plugin install/update status
 	vim.api.nvim_create_autocmd("PackChanged", {
-		desc = "Mason Command",
+		desc = "Mason Update command after updating",
 		callback = function(ev)
 			local name, kind = ev.data.spec.name, ev.data.kind
 			if name == "mason.nvim" and (kind == "install" or kind == "update") then
-				vim.cmd("Mason")
+				vim.cmd("MasonUpdate")
 			end
 		end,
 	})
 end
 
+-- A very useful tool to install mason servers automatically
 ok, plugin = pcall(require, "mason-tool-installer")
 
 if ok then

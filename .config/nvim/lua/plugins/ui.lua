@@ -1,3 +1,4 @@
+-- A ui tool for showing lsp, diagnostics progress.
 local ok, plugin = pcall(require, "fidget")
 
 if ok then
@@ -18,6 +19,8 @@ if ok then
 	})
 end
 
+-- A small buffer window telling me which file I've opened now
+-- Sits in top right, so I don't need to see my statusline
 ok, plugin = pcall(require, "incline")
 
 if ok then
@@ -65,6 +68,7 @@ if ok then
 	})
 end
 
+-- A beautiful implementation of emacs which-key by folke
 ok, plugin = pcall(require, "which-key")
 
 if ok then
@@ -106,6 +110,7 @@ if ok then
 	})
 end
 
+-- A beautiful implementation of todo highlights by folke
 ok, plugin = pcall(require, "todo-comments")
 if ok then
   -- stylua: ignore
@@ -125,6 +130,7 @@ if ok then
 	plugin.setup()
 end
 
+-- Rendering markdown files to see preview as shown in browser
 ok, plugin = pcall(require, "render-markdown")
 if ok then
 	plugin.setup({
@@ -144,9 +150,10 @@ if ok then
 
 	vim.keymap.set("n", "<leader>um", function()
 		plugin.toggle()
-	end, { desc = "Toggle Markdown" })
+	end, { desc = "Toggle Markdown Rendering" })
 end
 
+-- A beautiful bufferline that is way better than neovim default one
 ok, plugin = pcall(require, "bufferline")
 
 if ok then

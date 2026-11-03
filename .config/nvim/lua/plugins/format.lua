@@ -1,3 +1,4 @@
+-- A file formatter which is way better and simple
 local ok, plugin = pcall(require, "conform")
 
 if ok then

@@ -1,10 +1,12 @@
 ---@param plugin_name string
 ---@return string
+-- NOTE: A local function for just using `username/plugin_name` in vim.pack.install
 local function gh(plugin_name)
 	return "https://github.com/" .. plugin_name
 end
 
--- A custom build hook for telescope-fzf-native.nvim
+-- HACK: A custom build hook for telescope-fzf-native.nvim
+-- I need to run this since it builds itself
 vim.api.nvim_create_autocmd("PackChanged", {
 	desc = "telescope-fzf-native.nvim build hook",
 	callback = function(ev)
@@ -15,6 +17,7 @@ vim.api.nvim_create_autocmd("PackChanged", {
 	end,
 })
 
+-- Adding the plugins here so they can be installed/loaded
 vim.pack.add({
 	-- Coding
 	{ src = gh("folke/trouble.nvim") },

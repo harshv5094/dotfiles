@@ -1,3 +1,4 @@
+-- Gruvbox colorscheme: I can't leave without this
 local ok, plugin = pcall(require, "gruvbox")
 
 if ok then

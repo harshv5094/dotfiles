@@ -1,3 +1,4 @@
+-- Linter, just checking if what I'm writing is correct or not
 local ok, plugin = pcall(require, "lint")
 
 if ok then

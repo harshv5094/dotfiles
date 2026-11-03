@@ -1,3 +1,4 @@
+-- A plugin to install and load treessitter
 local ok, plugin = pcall(require, "nvim-treesitter")
 if ok then
 	---@type nvim-ts.parsers
@@ -46,6 +47,9 @@ if ok then
 	end, { desc = "Toggle Treesitter Context" })
 end
 
+-- A very useful plugin to autoinstall treesitter parsers based on
+-- filed open on buffer
+-- Author: https://github.com/mks-h
 ok, plugin = pcall(require, "treesitter-autoinstall")
 if ok then
 	plugin.setup({

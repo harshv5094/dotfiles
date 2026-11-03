@@ -1,3 +1,4 @@
+-- A diagnostics panel by folke
 local ok, plugin = pcall(require, "trouble")
 
 if ok then
@@ -17,6 +18,7 @@ if ok then
 	plugin.setup()
 end
 
+-- Hiding env secrets, very useful when showing my screen to someone
 ok, plugin = pcall(require, "cloak")
 
 if ok then

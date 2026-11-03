@@ -19,6 +19,7 @@ for _, mini_plugin in ipairs(mini_plugins) do
 	end
 end
 
+-- A lightweight vim.notify implementation by echanovski
 ok, plugin = pcall(require, "mini.notify")
 if ok then
 	plugin.setup({
@@ -28,6 +29,7 @@ if ok then
 	})
 end
 
+-- A lightweight statusline implementation by echanovski
 ok, plugin = pcall(require, "mini.statusline")
 if ok then
 	-- Format mini.diff counts with your icons
@@ -102,6 +104,7 @@ if ok then
 	})
 end
 
+-- A light weight git wrapper/vim-fugitive alternative by echanovski
 ok, plugin = pcall(require, "mini.git")
 if ok then
 	local keys = {

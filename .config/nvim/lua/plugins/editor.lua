@@ -1,3 +1,4 @@
+-- Telescope: my heart of this setup.
 local ok, plugin = pcall(require, "telescope")
 
 if ok then
@@ -157,6 +158,7 @@ if ok then
 	plugin.load_extension("ui-select")
 end
 
+-- A plugin to close buffers based on scenario
 ok, _ = pcall(require, "close_buffers")
 
 if ok then
@@ -189,6 +191,7 @@ if ok then
 	end
 end
 
+-- A global search and replace plugin
 ok, plugin = pcall(require, "grug-far")
 
 if ok then
