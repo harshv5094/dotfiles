@@ -1,6 +1,6 @@
 ---@param plugin_name string
 ---@return string
--- NOTE: A local function for just using `username/plugin_name` in vim.pack.install
+-- NOTE: A local function for just using `username/plugin_name` in vim.pack
 local function gh(plugin_name)
 	return "https://github.com/" .. plugin_name
 end
