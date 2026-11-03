@@ -10,7 +10,6 @@ return {
 	settings = {
 		Lua = {
 			diagnostics = {
-				workspaceEvent = "OnSave",
 				disable = { "incomplete-signature-doc", "trailing-space" },
 				unusedLocalExclude = { "_*" },
 			},
