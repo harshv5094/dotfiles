@@ -69,7 +69,6 @@ opt.pumborder = "rounded" -- border for the menu (newer versions; check :h 'pumb
 -- NOTE: Files / Persistence
 opt.autowrite = true -- Auto-save when switching buffers / running commands
 opt.writebackup = false -- Do not write a backup file before overwriting
-opt.backupskip = { "/tmp/*", "/private/tmp/*" } -- Skip backups for temp files
 opt.undofile = true -- Persist undo history across sessions
 
 -- NOTE: Windows & Splits
