@@ -27,6 +27,9 @@ if ok then
 			enable = false,
 		},
 	})
+	vim.keymap.set("n", "<leader>n", function()
+		MiniNotify.show_history()
+	end, { desc = "Notification History" })
 end
 
 -- A lightweight statusline implementation by echanovski
