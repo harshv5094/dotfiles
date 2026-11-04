@@ -50,6 +50,7 @@ opt.wildignore:append({ "*/node_modules/*", "*/.git/*" }) -- Ignore node_modules
 opt.expandtab = true -- Use spaces instead of tabs
 opt.shiftwidth = 2 -- Indent size (>>, <<, autoindent)
 opt.tabstop = 2 -- Width of a tab character
+opt.softtabstop = 2 -- Width of a soft tab character
 opt.smartindent = true -- Smart auto-indenting for C-like code
 opt.breakindent = true -- Wrapped lines keep the same indent level
 
