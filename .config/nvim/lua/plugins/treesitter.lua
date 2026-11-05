@@ -34,6 +34,7 @@ if ok then
 	vim.api.nvim_create_autocmd("PackChanged", { callback = hooks })
 end
 
+-- A context view of current file open in neovim
 ok, plugin = pcall(require, "treesitter-context")
 if ok then
 	plugin.setup({
@@ -47,17 +48,13 @@ if ok then
 	end, { desc = "Toggle Treesitter Context" })
 end
 
--- A very useful plugin to autoinstall treesitter parsers based on
--- filed open on buffer
+-- A very useful plugin to autoinstall treesitter parsers based on current file in buffer
 -- Author: https://github.com/mks-h
 ok, plugin = pcall(require, "treesitter-autoinstall")
 if ok then
 	plugin.setup({
-		-- A list of *treesitter languages* to ignore.
 		ignore = {},
-		-- Auto-enable highlighting for installed languages.
 		highlight = true,
-		-- A list of *treesitter languages* to also enable regex highlighting for
 		regex = {},
 	})
 end

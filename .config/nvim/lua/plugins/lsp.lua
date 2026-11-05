@@ -49,7 +49,7 @@ if ok then
 					should_show_items = function()
 						-- Enable emoji completion only for git commits and markdown.
 						-- By default, enabled for all file-types.
-						return vim.tbl_contains({ "gitcommit", "markdown" }, vim.o.filetype)
+						return vim.tbl_contains({ "gitcommit", "markdown", "txt" }, vim.o.filetype)
 					end,
 				},
 			},
@@ -109,7 +109,7 @@ if ok then
 
 	vim.keymap.set("n", "<leader>cm", "<CMD>Mason<CR>", { desc = "Mason" })
 
-	-- A custom hook to update mason server registries based on plugin install/update status
+	-- HACK: A custom hook to update mason server registries based on plugin install/update status
 	vim.api.nvim_create_autocmd("PackChanged", {
 		desc = "Mason Update command after updating",
 		callback = function(ev)
