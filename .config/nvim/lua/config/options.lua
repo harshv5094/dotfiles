@@ -43,7 +43,6 @@ opt.foldlevel = 99 -- open all folds by default
 
 -- appearance
 opt.title = true -- set the terminal window title
-opt.number = true -- show absolute line numbers
 opt.relativenumber = true -- show line numbers relative to the cursor
 opt.cursorline = true -- highlight the line the cursor is on
 opt.signcolumn = "yes" -- always reserve space for the sign column
