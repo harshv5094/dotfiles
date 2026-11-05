@@ -3,7 +3,7 @@ local ok, plugin = pcall(require, "nvim-treesitter")
 if ok then
 	---@type nvim-ts.parsers
 	-- HACK: Setting up gcc for windows
-	if vim.fn.has("win32") == 1 then
+	if vim.fn.has("win32") == 1 and vim.fn.executable("cl.exe") == 0 then
 		vim.env.CC = "gcc"
 	end
 
