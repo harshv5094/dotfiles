@@ -64,6 +64,11 @@ map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
+-- yank, copy without changing system clipboard
+map({ "n", "v" }, "<localleader>d", "_d", { desc = "delete (without clipboard)" })
+map({ "n", "v" }, "<localleader>c", "_c", { desc = "cut (without clipboard)" })
+map({ "n", "v" }, "<localleader>p", "0p", { desc = "paste (without clipboard)" })
+
 -- Buffer based keymaps
 map("n", "<leader>bn", function()
 	vim.cmd("bnext")
