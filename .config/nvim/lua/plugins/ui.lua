@@ -92,6 +92,7 @@ if ok then
 			{ "<leader>t", group = "Terminal" },
 			{ "<leader>q", group = "quit/session" },
 			{ "<leader><Tab>", group = "tab" },
+			{ "<localleader>r", group = "registers" },
 			{ "[", group = "prev" },
 			{ "]", group = "next" },
 			{ "g", group = "goto" },
