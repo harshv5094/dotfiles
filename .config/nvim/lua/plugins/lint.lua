@@ -3,9 +3,10 @@ local ok, plugin = pcall(require, "lint")
 
 if ok then
 	plugin.linters_by_ft = {
+		lua = { "luacheck" },
 		sh = { "shellcheck" },
 		bash = { "shellcheck" },
-		lua = { "luacheck" },
+		markdown = { "markdownlint-cli2" },
 	}
 
 	-- Turn on by default

@@ -134,12 +134,14 @@ if ok then
 			"yaml-language-server",
 			"json-lsp",
 			"taplo",
+			"marksman",
 
 			-- Formatters / linters
 			"stylua",
 			"shellcheck",
 			"shfmt",
 			"luacheck",
+			"markdownlint-cli2",
 		},
 	})
 end
