@@ -72,11 +72,6 @@ map({ "n", "v" }, "<localleader>rC", '"_C')
 map({ "n", "v" }, "<localleader>rd", '"_d')
 map({ "n", "v" }, "<localleader>rD", '"_D')
 
--- Moving Higlighted line like vscode
--- My old PR: https://github.com/craftzdog/dotfiles/pull/140
-map("v", "J", ":m '>+1<CR>gv=gv")
-map("v", "K", ":m '<-2<CR>gv=gv")
-
 -- Buffer based keymaps
 map("n", "<leader>bn", function()
 	vim.cmd("bnext")

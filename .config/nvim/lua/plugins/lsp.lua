@@ -134,15 +134,26 @@ if ok then
 			"yaml-language-server",
 			"json-lsp",
 			"taplo",
-			"marksman",
+			{
+				"marksman",
+				condition = function()
+					return vim.bo.filetype == "markdown"
+				end,
+			},
 
 			-- Formatters / linters
 			"stylua",
 			"shellcheck",
 			"shfmt",
 			"luacheck",
-			"markdownlint-cli2",
 			"prettier",
+			{
+				"markdownlint-cli2",
+				condition = function()
+					return vim.bo.filetype == "markdown"
+				end,
+			},
 		},
+		run_on_start = true,
 	})
 end
