@@ -149,9 +149,7 @@ if ok then
 		},
 	})
 
-	vim.keymap.set("n", "<leader>um", function()
-		plugin.toggle()
-	end, { desc = "Toggle Markdown Rendering" })
+	vim.keymap.set("n", "<leader>um", plugin.toggle, { desc = "Toggle Markdown Rendering" })
 end
 
 -- A beautiful bufferline that is way better than neovim default one
