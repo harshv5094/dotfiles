@@ -10,19 +10,23 @@ if ok then
 	}
 
 	-- Turn on by default
-	local lint_status = true
+	vim.g.lint_enabled = true
 
-	if lint_status == true then
-		vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
-			group = vim.api.nvim_create_augroup("Lint", { clear = true }),
-			callback = function()
+	vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+		callback = function()
+			if vim.g.lint_enabled then
 				plugin.try_lint()
-			end,
-		})
-	end
+			end
+		end,
+	})
 
-	vim.keymap.set("n", "<leader>cl", function()
-		lint_status = not lint_status
-		vim.notify("nvim-lint: " .. (lint_status and "on" or "off"))
-	end, { desc = "Toggle Lint" })
+	vim.keymap.set("n", "<leader>ul", function()
+		vim.g.lint_enabled = not vim.g.lint_enabled
+		if vim.g.lint_enabled then
+			plugin.try_lint()
+		else
+			vim.diagnostic.reset(nil, 0) -- clear current buffer's lint diagnostics
+		end
+		vim.notify("nvim-lint: " .. (vim.g.lint_enabled and "on" or "off"))
+	end, { desc = "Toggle nvim-lint" })
 end
