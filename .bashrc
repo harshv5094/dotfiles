@@ -119,7 +119,11 @@ if command -v fzf &>/dev/null; then
       player="play"
     fi
 
-    file=$(find ~/Music -iname "*.mp3" | fzf --header='** Select a Song **' --height=60% --prompt="Play > ")
+    if pgrep kitty &>/dev/null && ! pgrep tmux &>/dev/null; then
+      file=$(kitten choose-files ~/Music/)
+    else
+      file=$(find ~/Music -iname "*.mp3" | fzf --header='** Select a Song **' --height=60% --prompt="Play > ")
+    fi
 
     if [[ -n $file ]]; then
       $player "$file"
