@@ -17,6 +17,7 @@ _darcs
 
 # Ignore this custom folders
 \.github
+hyprland
 
 .+~          # emacs backup files
 \#.*\#       # emacs autosave files
