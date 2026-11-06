@@ -7,7 +7,7 @@ if ok then
 			lua = { "stylua" },
 			sh = { "shfmt" },
 			bash = { "shfmt" },
-			markdown = { "markdownlint-cli2" },
+			markdown = { "prettier" },
 		},
 		format_on_save = {
 			timeout_ms = 500,

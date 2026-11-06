@@ -142,6 +142,7 @@ if ok then
 			"shfmt",
 			"luacheck",
 			"markdownlint-cli2",
+			"prettier",
 		},
 	})
 end
