@@ -7,6 +7,7 @@ if ok then
 			lua = { "stylua" },
 			sh = { "shfmt" },
 			bash = { "shfmt" },
+			yaml = { "prettier" },
 			markdown = { "prettier" },
 		},
 		format_on_save = {
