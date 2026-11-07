@@ -1,9 +1,10 @@
 local M = {
 	-- Misc Icons
 	misc = {
-		clock = " ",
+		clock = "  ",
 		bug = "",
 		vim = " ",
+		nvim = " ",
 		dashed_bar = "┊",
 		ellipsis = "…",
 		palette = "󰏘",
@@ -25,7 +26,7 @@ local M = {
 
 	-- Git Icons
 	git = {
-		branch = "",
+		branch = "",
 		added = " ",
 		modified = " ",
 		removed = " ",

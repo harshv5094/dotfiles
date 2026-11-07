@@ -64,7 +64,7 @@ if ok then
 				local filename = MiniStatusline.section_filename({ trunc_width = 140 })
 
 				return MiniStatusline.combine_groups({
-					{ hl = mode_hl, strings = { my_utils.icons.misc.vim .. mode } },
+					{ hl = mode_hl, strings = { my_utils.icons.misc.nvim .. mode } },
 					{ hl = "MiniStatuslineDevinfo", strings = { git, diagnostics } },
 					"%<",
 					{ hl = "MiniStatuslineFilename", strings = { filename } },
