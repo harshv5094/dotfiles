@@ -26,6 +26,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
 
+# Changing password store directory path
+export PASSWORD_STORE_DIR="$HOME/.password/"
+
 # If user is mac
 if [[ "$OSTYPE" == "darwin"* && -x "/opt/homebrew/bin/brew" ]]; then
     export HOMEBREW_PREFIX="/opt/homebrew"

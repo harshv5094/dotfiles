@@ -38,6 +38,9 @@ export PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
 # shellcheck disable=SC2031
 export FZF_DEFAULT_OPTS="--reverse --border --bind 'alt-j:down,alt-k:up'"
 
+# Changing password store directory path
+export PASSWORD_STORE_DIR="$HOME/.password/"
+
 # Bash shell options
 shopt -s autocd         # change to named directory
 shopt -s cdspell        # autocorrects cd misspellings
