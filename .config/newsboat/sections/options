@@ -12,7 +12,7 @@ auto-reload yes
 refresh-on-startup yes
 
 # Setting up default browser
-browser firefox
+browser xdg-open
 
 # Max arcticle limit
 max-items 15
