@@ -26,10 +26,13 @@
   amend = commit --amend --no-edit --allow-empty
 
   # A multi push command for my ease
-  push-all = !git remote | xargs -L1 git push --all
+  push-all = !git remote | xargs -L1 git push --all --force-with-lease
+
+  # A force push option with some restrictions
+	pushf = push --force-with-lease
 
   # A pull option with some rebases
-  quick-pull = !git pull --rebase --no-edit
+	pullr = pull --rebase --no-edit
 
   # edit conflicted file on merge
   edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; nvim `f`"
@@ -38,6 +41,7 @@
 
   # removing reflog content 
   ref-prune-now = !git reflog expire --expire=now --expire-unreachable=now --all && git gc --prune=now --aggressive
+
 
 [difftool "nvimdiff"]
   cmd = nvim -d "$LOCAL" "$REMOTE"
