@@ -2,6 +2,7 @@
 
 gtk_theme="Adwaita"
 gtk_color_scheme="prefer-dark"
+gtk_prefer_dark="1"
 icon_theme="Papirus-Dark"
 vscode_theme="Gruvbox Dark Medium"
 vscode_extension="jdinhlife.gruvbox"

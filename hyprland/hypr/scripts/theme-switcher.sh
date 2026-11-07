@@ -52,6 +52,9 @@ update_starship() {
 
 # Updates GTK and icon themes.
 update_gtk() {
+  # Fall back to dark when a theme does not define this variable.
+  gtk_prefer_dark=${gtk_prefer_dark:-1}
+
   if command -v gsettings &>/dev/null; then
     # shellcheck disable=SC2154
     gsettings set org.gnome.desktop.interface gtk-theme "$gtk_theme"
@@ -60,6 +63,18 @@ update_gtk() {
     # shellcheck disable=SC2154
     gsettings set org.gnome.desktop.interface icon-theme "$icon_theme"
   fi
+
+  # gtk-application-prefer-dark-theme is a GTK settings.ini key, not a
+  # gsettings schema key. gsettings has no equivalent option; the closest is
+  # org.gnome.desktop.interface color-scheme (set above).
+  for gtk_settings in "$XDG_CONFIG_HOME/gtk-3.0/settings.ini" "$XDG_CONFIG_HOME/gtk-4.0/settings.ini"; do
+    [ -f "$gtk_settings" ] || continue
+    if grep -q '^gtk-application-prefer-dark-theme=' "$gtk_settings"; then
+      sed -i "s/^gtk-application-prefer-dark-theme=.*/gtk-application-prefer-dark-theme=$gtk_prefer_dark/" "$gtk_settings"
+    else
+      printf 'gtk-application-prefer-dark-theme=%s\n' "$gtk_prefer_dark" >>"$gtk_settings"
+    fi
+  done
 
   # Link GTK4 assets
   gtk_theme_dir="$HOME/.themes/$gtk_theme"
