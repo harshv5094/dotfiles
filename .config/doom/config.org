@@ -29,7 +29,9 @@
 * Basic Configuration
 
 ** Clipboard
+Enable global clipboard here.
 #+begin_src emacs-lisp :tangle yes
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 ; NOTE: Setup clipboard
 (setq select-enable-clipboard t)
 #+end_src

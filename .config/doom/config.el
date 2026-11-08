@@ -1,3 +1,4 @@
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 ; NOTE: Setup clipboard
 (setq select-enable-clipboard t)
 

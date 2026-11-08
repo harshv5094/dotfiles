@@ -4,5 +4,8 @@
 # Every Json files in neovim
 .config/nvim/*.json
 
+# Ignore lexical binding file
+.config/doom/custom.el
+
 # All btop logs file
 .config/btop/btop.log
