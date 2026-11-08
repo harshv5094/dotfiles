@@ -1,82 +1,103 @@
-;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+; NOTE: Setup clipboard
+(setq select-enable-clipboard t)
 
-;; Doom exposes five (optional) variables for controlling fonts in Doom:
-;;
-;; - `doom-font' -- the primary font to use
-;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)
-;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for
-;;   presentations or streaming.
-;; - `doom-symbol-font' -- for symbols
-;; - `doom-serif-font' -- for the `fixed-pitch-serif' face
-;;
-;; See 'C-h v doom-font' for documentation and more examples of what they
-;; accept. For example:
-;;
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 13)
-     doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 13))
-;;
-;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
-;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
-;; refresh your font settings. If Emacs still can't find your font, it likely
-;; wasn't installed correctly. Font issues are rarely Doom issues!
+;NOTE: Color Scheme
+(setq doom-theme 'doom-gruvbox)
 
-;; Some functionality uses this to identify you, e.g. GPG configuration, email
-;; clients, file templates and snippets. It is optional.
+; NOTE: Custom doom emacs config keymaps
+(map! :leader
+      (:prefix ("=" . "open file")
+       :desc "Edit agenda file"      "a" #'(lambda () (interactive) (find-file "~/org/agenda.org"))
+       :desc "Edit doom config.org"  "c" #'(lambda () (interactive) (find-file "~/.config/doom/config.org"))
+       :desc "Edit doom config.el"   "e" #'(lambda () (interactive) (find-file "~/.config/doom/config.el"))
+       :desc "Edit doom init.el"     "i" #'(lambda () (interactive) (find-file "~/.config/doom/init.el"))
+       :desc "Edit doom packages.el" "p" #'(lambda () (interactive) (find-file "~/.config/doom/packages.el"))))
+
+; NOTE: Setting Basic Font Family and Font Size
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 15)
+      doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font Mono" :size 15)
+      doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 15))
+
+; NOTE: Basic font style
+(after! doom-themes
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t))
+
+; NOTE: This are custom font faces for text
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic))
+  ;'(font-lock-keyword-face :slant italic))
+
+; NOTE: global revert mode settings
+(setq global-auto-revert-mode 1)
+(setq global-auto-revert-non-file-buffers t)
+
+; NOTE: add lsp delays
+(after! flycheck (setq flycheck-idle-change-delay 0.1))
+(after! lsp-mode
+  (setq lsp-idle-delay 0.1)
+  :custom
+  (setq lsp-completion-enable-additional-text-edit t)
+  (setq lsp-modeline-code-actions-enable t))
+
+; NOTE: Customizing modeline design
+(setq doom-modeline-height 30                    ;; Sets modeline height
+      doom-modeline-bar-width 5                  ;; sets right bar width
+      doom-modeline-buffer-file-name-style 'auto ;; auto setup doom modeline filename
+      doom-modeline-persp-name t                 ;; adds perspective name to modeline
+      doom-modeline-persp-icon t)                ;; adds folder icon next to persp name
+
+; NOTE: User information for Emacs to use
 (setq user-full-name "Harsh Vyapari"
       user-mail-address "harshvy5094@proton.me")
 
-;; Place your private configuration here! Remember, you do not need to run 'doom
-;; sync' after modifying this file!
-
-
-;; There are two ways to load a theme. Both assume the theme is installed and
-;; available. You can either set `doom-theme' or manually load a theme with the
-;; `load-theme' function. This is the default:
-(setq doom-theme '(doom-gruvbox . doom-gruvbox-light))
-;; Specify both a dark and light theme, like so and Doom will choose which one
-;; to load based on your system light/dark setting:
-;;
-;;   (setq doom-theme '(doom-one   . doom-one-light))   ; (DARK . LIGHT)
-;;
-;; If you want more pro-active theme switching based on OS light/dark mode, look
-;; up the `auto-dark' package.
-
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
+; NOTE: setting relative line number
 (setq display-line-numbers-type 'relative)
 
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
+; NOTE: Add which key delay for searching
+(setq which-key-idle-delay 0.5)
+
+; NOTE: Setting up split window rules for evil mode
+(setq evil-vsplit-window-right t)
+(setq evil-split-window-below t)
+
+; NOTE: Setting up custom markdown header
+(custom-set-faces
+ '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight bold :family "FiraCode Nerd Font Mono"))))
+ '(markdown-header-face-1 ((t (:inherit markdown-header-face :height 1.7))))
+ '(markdown-header-face-2 ((t (:inherit markdown-header-face :height 1.6))))
+ '(markdown-header-face-3 ((t (:inherit markdown-header-face :height 1.5))))
+ '(markdown-header-face-4 ((t (:inherit markdown-header-face :height 1.4))))
+ '(markdown-header-face-5 ((t (:inherit markdown-header-face :height 1.3))))
+ '(markdown-header-face-6 ((t (:inherit markdown-header-face :height 1.2)))))
+
+; NOTE: Enable mouse mode
+(setq xterm-mouse-mode 1)
+
+; NOTE: Setting up org agenda file
+(after! org
+  (setq org-agenda-files '("~/org/agenda.org")))
+
+; NOTE Custom function to change header size
+(custom-theme-set-faces! nil
+'(org-level-8 :inherit outline-3 :height 1.0)
+'(org-level-7 :inherit outline-3 :height 1.0)
+'(org-level-6 :inherit outline-3 :height 1.1)
+'(org-level-5 :inherit outline-3 :height 1.2)
+'(org-level-4 :inherit outline-3 :height 1.3)
+'(org-level-3 :inherit outline-3 :height 1.4)
+'(org-level-2 :inherit outline-2 :height 1.5)
+'(org-level-1 :inherit outline-1 :height 1.6)
+'(org-document-title  :height 1.8 :bold t :underline nil))
+
+; NOTE Default Org Directory
 (setq org-directory "~/org/")
+; NOTE Default Note File
+(setq org-default-notes-file (concat org-directory "/notes.org"))
 
-
-;; Whenever you reconfigure a package, make sure to wrap your config in an
-;; `with-eval-after-load' block, otherwise Doom's defaults may override your
-;; settings. E.g.
-;;
-;;   (with-eval-after-load 'PACKAGE
-;;     (setq x y))
-;;
-;; The exceptions to this rule:
-;;
-;;   - Setting file/directory variables (like `org-directory')
-;;   - Setting variables which explicitly tell you to set them before their
-;;     package is loaded (see 'C-h v VARIABLE' to look them up).
-;;   - Setting doom variables (which start with 'doom-' or '+').
-;;
-;; Here are some additional functions/macros that will help you configure Doom.
-;;
-;; - `load!' for loading external *.el files relative to this one
-;; - `add-load-path!' for adding directories to the `load-path', relative to
-;;   this file. Emacs searches the `load-path' when you load packages with
-;;   `require' or `use-package'.
-;; - `map!' for binding new keys
-;;
-;; To get information about any of these functions/macros, move the cursor over
-;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
-;; This will open documentation for it, including demos of how they are used.
-;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,
-;; etc).
-;;
-;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
-;; they are implemented.
+; NOTE Setting up org journal directory
+(setq org-journal-dir "~/org/journal/"
+      org-journal-date-prefix "* "
+      org-journal-time-prefix "** "
+      org-journal-date-format "%B %d, %Y (%A) "
+      org-journal-file-format "%Y-%m-%d.org")
