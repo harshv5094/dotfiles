@@ -15,9 +15,9 @@
        :desc "Edit doom packages.el" "p" #'(lambda () (interactive) (find-file "~/.config/doom/packages.el"))))
 
 ; NOTE: Setting Basic Font Family and Font Size
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 15)
-      doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font Mono" :size 15)
-      doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 15))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 15 :weight 'normal)
+      doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 15 :weight 'normal)
+      doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 15 :weight 'normal))
 
 ; NOTE: Basic font style
 (after! doom-themes
