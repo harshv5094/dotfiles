@@ -1,7 +1,7 @@
 local g = vim.g
 local opt = vim.opt
 
--- Path setup for undodir
+-- Path setup for undodir (For persistence undo file record)
 local undodir_path = vim.fn.stdpath("cache") .. "/undodir"
 vim.fn.mkdir(undodir_path, "p")
 
@@ -74,7 +74,7 @@ opt.breakindent = true -- keep indentation on wrapped lines
 
 -- session
 opt.undofile = true -- persist undo history across sessions
-opt.undodir = undodir_path
+opt.undodir = undodir_path -- using my custom directory path for undo files
 opt.swapfile = false -- Don't need swapfile backup never asked for it
 opt.writebackup = false -- Disable writing backup file for config
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" } -- choose what a session saves
