@@ -52,7 +52,6 @@ vim.pack.add({
 	{ src = gh("moyiz/blink-emoji.nvim") },
 	{ src = gh("folke/lazydev.nvim") },
 	{ src = gh("mason-org/mason.nvim") },
-	{ src = gh("mason-org/mason.nvim") },
 	{ src = gh("WhoIsSethDaniel/mason-tool-installer.nvim") },
 
 	-- Mini
