@@ -7,6 +7,7 @@ if ok then
 		sh = { "shellcheck" },
 		bash = { "shellcheck" },
 		markdown = { "markdownlint-cli2" },
+		python = { "ruff" },
 	}
 
 	-- Turn on by default

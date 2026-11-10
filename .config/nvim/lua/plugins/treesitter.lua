@@ -20,6 +20,8 @@ if ok then
 		"vimdoc",
 		"lua",
 		"luadoc",
+		"python",
+		"requirements",
 	}
 
 	plugin.install(parsers)
