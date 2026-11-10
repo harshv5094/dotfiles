@@ -57,6 +57,11 @@ vim.pack.add({
 	-- Mini
 	{ src = gh("nvim-mini/mini.nvim") },
 
+	-- DAP
+	{ src = gh("mfussenegger/nvim-dap") },
+	{ src = gh("igorlfs/nvim-dap-view") },
+	{ src = gh("jay-babu/mason-nvim-dap.nvim") },
+
 	-- Treesitter
 	{ src = gh("nvim-treesitter/nvim-treesitter") },
 	{ src = gh("nvim-treesitter/nvim-treesitter-context") },
@@ -78,6 +83,7 @@ require("plugins.editor")
 require("plugins.format")
 require("plugins.lint")
 require("plugins.lsp")
+require("plugins.dap")
 require("plugins.mini")
 require("plugins.treesitter")
 require("plugins.ui")
