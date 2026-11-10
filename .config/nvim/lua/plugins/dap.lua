@@ -2,6 +2,11 @@
 local ok, plugin = pcall(require, "mason-nvim-dap")
 
 if ok then
+	plugin.setup({
+		automatic_installation = true,
+		ensure_installed = { "debugpy" },
+		handlers = {},
+	})
 end
 
 -- The Debug adapter protocol
