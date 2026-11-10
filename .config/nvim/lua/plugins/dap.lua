@@ -3,8 +3,8 @@ local ok, plugin = pcall(require, "mason-nvim-dap")
 
 if ok then
 	plugin.setup({
-		automatic_installation = true,
-		ensure_installed = { "debugpy" },
+		automatic_installation = false,
+		ensure_installed = {},
 		handlers = {},
 	})
 end

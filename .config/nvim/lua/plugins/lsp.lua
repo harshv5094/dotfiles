@@ -145,6 +145,9 @@ if ok then
 			"prettier",
 			"markdownlint-cli2",
 			"ruff",
+
+			-- Debuggers
+			"debugpy",
 		},
 		run_on_start = true,
 	})
