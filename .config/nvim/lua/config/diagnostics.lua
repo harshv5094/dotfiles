@@ -30,6 +30,7 @@ vim.diagnostic.config(opts)
 vim.keymap.set("n", "<leader>uv", function()
 	virtual_text_on = not virtual_text_on
 	vim.diagnostic.config({ virtual_text = virtual_text_on and virtual_text_opts or false })
+	vim.notify("Virtual text: " .. (virtual_text_on and "on" or "off"))
 end, { desc = "Toggle Virtual Text", noremap = true })
 
 -- Previous Diagnostics
