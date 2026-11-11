@@ -100,13 +100,6 @@ if ok then
 			{ "z", group = "fold" },
 			{ "y", group = "yank" },
 			{ "d", group = "delete" },
-			{
-				"<leader>b",
-				group = "buffer",
-				expand = function()
-					return require("which-key.extras").expand.buf()
-				end,
-			},
 		},
 	})
 
@@ -114,6 +107,7 @@ if ok then
 	plugin.add({
 		{ "<leader>p", group = "vim.pack", icon = { icon = my_utils.icons.misc.box, color = "green" } },
 		{ "<leader>e", group = "explore", icon = { icon = my_utils.icons.misc.tree, color = "purple" } },
+		{ "<leader>b", group = "buffer", icon = { icon = my_utils.icons.misc.buffers, color = "blue" } },
 	})
 end
 

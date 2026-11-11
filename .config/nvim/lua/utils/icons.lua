@@ -15,6 +15,7 @@ local M = {
 		vertical_bar = "│",
 		box = "󰏗",
 		tree = "󰙅",
+		buffers = "",
 	},
 
 	-- Diagnostics Icons
