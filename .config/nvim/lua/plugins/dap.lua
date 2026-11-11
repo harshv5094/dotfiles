@@ -42,9 +42,6 @@ if ok then
 		numhl = "String",
 	})
 
-	-- Setting up adapter for python, using the Mason-managed debugpy
-	local debugpy_python = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
-
 	plugin.adapters.python = function(cb, config)
 		if config.request == "attach" then
 			---@diagnostic disable-next-line: undefined-field
@@ -62,7 +59,7 @@ if ok then
 		else
 			cb({
 				type = "executable",
-				command = debugpy_python,
+				command = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python",
 				args = { "-m", "debugpy.adapter" },
 				options = {
 					source_filetype = "python",
@@ -103,6 +100,37 @@ if ok then
 					return "/usr/bin/python"
 				end
 			end,
+		},
+	}
+
+	-- Bash Debugger adapter
+	plugin.adapters.bashdb = {
+		type = "executable",
+		command = vim.fn.stdpath("data") .. "/mason/packages/bash-debug-adapter/bash-debug-adapter",
+		name = "bashdb",
+	}
+
+	-- Bash configuration
+	plugin.configurations.sh = {
+		{
+			type = "bashdb",
+			request = "launch",
+			name = "Launch file",
+			showDebugOutput = true,
+			pathBashdb = vim.fn.stdpath("data") .. "/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb",
+			pathBashdbLib = vim.fn.stdpath("data") .. "/mason/packages/bash-debug-adapter/extension/bashdb_dir",
+			trace = true,
+			file = "${file}",
+			program = "${file}",
+			cwd = "${workspaceFolder}",
+			pathCat = "cat",
+			pathBash = "/bin/bash",
+			pathMkfifo = "mkfifo",
+			pathPkill = "pkill",
+			args = {},
+			argsString = "",
+			env = {},
+			terminalKind = "integrated",
 		},
 	}
 
