@@ -8,6 +8,7 @@ end
 local packages_list = {
 	"debugpy",
 	"bash-debug-adapter",
+	"local-lua-debugger-vscode",
 }
 for _, name in ipairs(packages_list) do
 	if not registry.is_installed(name) then
@@ -19,6 +20,7 @@ local mason_paths = {
 	debugpy = registry.get_package("debugpy"):get_install_path() .. "/venv/bin/python",
 	bashdb_adapter = registry.get_package("bash-debug-adapter"):get_install_path() .. "/bash-debug-adapter",
 	bashdb_dir = registry.get_package("bash-debug-adapter"):get_install_path() .. "/extension/bashdb_dir",
+	lua_debugger = registry.get_package("local-lua-debugger-vscode"):get_install_path(),
 }
 
 -- Icon sign definition
@@ -122,6 +124,37 @@ if ok then
 			argsString = "",
 			env = {},
 			terminalKind = "integrated",
+		},
+	}
+
+	-- Lua debugger adapter
+	plugin.adapters["local-lua"] = {
+		type = "executable",
+		command = "node",
+		args = { mason_paths.lua_debugger .. "/extension/extension/debugAdapter.js" },
+		-- The adapter needs `extensionPath` to locate `lldebugger.lua`
+		enrich_config = function(config, on_config)
+			if not config.extensionPath then
+				local c = vim.deepcopy(config)
+				c.extensionPath = mason_paths.lua_debugger .. "/extension"
+				on_config(c)
+			else
+				on_config(config)
+			end
+		end,
+	}
+
+	-- Lua configuration
+	plugin.configurations.lua = {
+		{
+			type = "local-lua",
+			request = "launch",
+			name = "Launch file (luajit)",
+			program = {
+				lua = "luajit",
+				file = "${file}",
+			},
+			cwd = "${workspaceFolder}",
 		},
 	}
 

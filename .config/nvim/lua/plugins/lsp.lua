@@ -148,7 +148,8 @@ if ok then
 
 			-- Debuggers
 			"debugpy",
-      "bash-debug-adapter",
+			"bash-debug-adapter",
+			"local-lua-debugger-vscode",
 		},
 		run_on_start = true,
 	})
