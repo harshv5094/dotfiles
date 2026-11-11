@@ -39,6 +39,7 @@ vim.pack.add({
 	{ src = gh("kazhala/close-buffers.nvim") },
 	{ src = gh("mbbill/undotree") },
 	{ src = gh("folke/persistence.nvim") },
+	{ src = gh("linux-cultist/venv-selector.nvim") },
 
 	-- Format
 	{ src = gh("stevearc/conform.nvim") },

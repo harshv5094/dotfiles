@@ -78,6 +78,7 @@ if ok then
 		spec = {
 			mode = { "n", "x" },
 			{ "<leader>c", group = "code" },
+			{ "<leader>d", group = "debug" },
 			{ "<leader>g", group = "git" },
 			{ "<leader>ga", group = "add" },
 			{ "<leader>gh", group = "hunks" },

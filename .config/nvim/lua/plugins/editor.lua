@@ -272,3 +272,11 @@ if ok then
 	})
 	vim.keymap.set("n", "<leader>e", "<CMD>Oil<CR>", { noremap = true, silent = true })
 end
+
+-- venv selector for python
+ok, plugin = pcall(require, "venv-selector")
+
+if ok then
+	plugin.setup()
+	vim.keymap.set("n", "<leader>cv", "<cmd>VenvSelect<cr>", { desc = "Select VirtualEnv" })
+end
