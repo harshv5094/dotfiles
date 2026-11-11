@@ -61,7 +61,6 @@ vim.pack.add({
 	-- DAP
 	{ src = gh("mfussenegger/nvim-dap") },
 	{ src = gh("igorlfs/nvim-dap-view") },
-	{ src = gh("jay-babu/mason-nvim-dap.nvim") },
 
 	-- Treesitter
 	{ src = gh("nvim-treesitter/nvim-treesitter") },

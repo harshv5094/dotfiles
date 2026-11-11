@@ -1,47 +1,42 @@
--- The bridge between nvim-dap and mason
-local ok, plugin = pcall(require, "mason-nvim-dap")
+-- Mason install locations, resolved once at startup
+local registry = require("mason-registry")
 
-if ok then
-	plugin.setup({
-		automatic_installation = false,
-		ensure_installed = { "debugpy" },
-		handlers = {
-			-- Use the default handler, which registers dap.adapters.* for you
-			function(config)
-				require("mason-nvim-dap").default_setup(config)
-			end,
-		},
-	})
-end
+local debugpy = registry.get_package("debugpy")
+local bash_debug = registry.get_package("bash-debug-adapter")
+
+local mason_paths = {
+	debugpy = debugpy:get_install_path() .. "/venv/bin/python",
+	bashdb_adapter = bash_debug:get_install_path() .. "/bash-debug-adapter",
+	bashdb_dir = bash_debug:get_install_path() .. "/extension/bashdb_dir",
+}
+
+-- Icon sign definition
+vim.fn.sign_define("DapBreakpoint", {
+	text = my_utils.icons.dap.breakpoint,
+	texthl = "DiagnosticSignError",
+})
+vim.fn.sign_define("DapBreakpointCondition", {
+	text = my_utils.icons.dap.conditional_breakpoint,
+	texthl = "DiagnosticSignWarn",
+})
+vim.fn.sign_define("DapBreakpointRejected", {
+	text = my_utils.icons.dap.rejected_breakpoint,
+	texthl = "Comment",
+})
+vim.fn.sign_define("DapLogPoint", {
+	text = my_utils.icons.dap.log_point,
+	texthl = "DiagnosticSignInfo",
+})
+vim.fn.sign_define("DapStopped", {
+	text = my_utils.icons.dap.stopped,
+	texthl = "String",
+	linehl = "CursorLine",
+	numhl = "String",
+})
 
 -- The Debug adapter protocol
-ok, plugin = pcall(require, "dap")
-
+local ok, plugin = pcall(require, "dap")
 if ok then
-	-- Icon sign definition
-	vim.fn.sign_define("DapBreakpoint", {
-		text = my_utils.icons.dap.breakpoint,
-		texthl = "DiagnosticSignError",
-	})
-	vim.fn.sign_define("DapBreakpointCondition", {
-		text = my_utils.icons.dap.conditional_breakpoint,
-		texthl = "DiagnosticSignWarn",
-	})
-	vim.fn.sign_define("DapBreakpointRejected", {
-		text = my_utils.icons.dap.rejected_breakpoint,
-		texthl = "Comment",
-	})
-	vim.fn.sign_define("DapLogPoint", {
-		text = my_utils.icons.dap.log_point,
-		texthl = "DiagnosticSignInfo",
-	})
-	vim.fn.sign_define("DapStopped", {
-		text = my_utils.icons.dap.stopped,
-		texthl = "String",
-		linehl = "CursorLine",
-		numhl = "String",
-	})
-
 	plugin.adapters.python = function(cb, config)
 		if config.request == "attach" then
 			---@diagnostic disable-next-line: undefined-field
@@ -59,7 +54,7 @@ if ok then
 		else
 			cb({
 				type = "executable",
-				command = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python",
+				command = mason_paths.debugpy,
 				args = { "-m", "debugpy.adapter" },
 				options = {
 					source_filetype = "python",
@@ -90,7 +85,7 @@ if ok then
 	-- Bash Debugger adapter
 	plugin.adapters.bashdb = {
 		type = "executable",
-		command = vim.fn.stdpath("data") .. "/mason/packages/bash-debug-adapter/bash-debug-adapter",
+		command = mason_paths.bashdb_adapter,
 		name = "bashdb",
 	}
 
@@ -101,8 +96,8 @@ if ok then
 			request = "launch",
 			name = "Launch file",
 			showDebugOutput = true,
-			pathBashdb = vim.fn.stdpath("data") .. "/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb",
-			pathBashdbLib = vim.fn.stdpath("data") .. "/mason/packages/bash-debug-adapter/extension/bashdb_dir",
+			pathBashdb = mason_paths.bashdb_dir .. "/bashdb",
+			pathBashdbLib = mason_paths.bashdb_dir,
 			trace = true,
 			file = "${file}",
 			program = "${file}",
