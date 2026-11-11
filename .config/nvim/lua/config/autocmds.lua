@@ -98,6 +98,6 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 
 -- Turn on wrap for specific files only
 vim.api.nvim_create_autocmd({ "BufNew", "BufReadPre", "BufNewFile" }, {
-	pattern = { "*.md", "*.markdown" },
+	pattern = { "*.md", "*.markdown", "*LICENSE*" },
 	command = "set wrap",
 })
