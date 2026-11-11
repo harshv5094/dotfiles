@@ -47,6 +47,7 @@ opt.relativenumber = true -- show line numbers relative to the cursor
 opt.cursorline = true -- highlight the line the cursor is on
 opt.signcolumn = "yes" -- always reserve space for the sign column
 opt.conceallevel = 2 -- hide concealed text unless it has a custom replacement
+opt.concealcursor = "nvc" -- excluding insert mode for conceal text
 opt.fillchars = { -- customize the characters used for window fills
 	foldopen = "",
 	foldclose = "",
