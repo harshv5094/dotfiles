@@ -1,5 +1,19 @@
 -- Mason install locations, resolved once at startup
-local registry = require("mason-registry")
+local status, registry = pcall(require, "mason-registry")
+if not status then
+	return
+end
+
+-- Don't configure until every package is on disk
+local packages_list = {
+	"debugpy",
+	"bash-debug-adapter",
+}
+for _, name in ipairs(packages_list) do
+	if not registry.is_installed(name) then
+		return
+	end
+end
 
 local mason_paths = {
 	debugpy = registry.get_package("debugpy"):get_install_path() .. "/venv/bin/python",
@@ -155,6 +169,7 @@ if ok then
 	local map = vim.keymap.set
 
 	map("n", "<leader>du", plugin.toggle, { desc = "Toggle UI" })
+
 	local state = require("dap-view.state")
 	map("n", "<leader>dr", function()
 		if not (state.winnr and vim.api.nvim_win_is_valid(state.winnr)) then
@@ -166,6 +181,7 @@ if ok then
 			plugin.jump_to_view("repl")
 		end
 	end, { desc = "Toggle REPL" })
+
 	map({ "n", "x" }, "<leader>dh", plugin.hover, { desc = "Hover Variable" })
 	map({ "n", "x" }, "<leader>dw", plugin.add_expr, { desc = "Watch Expression" })
 	map("n", "<leader>de", plugin.virtual_text_toggle, { desc = "Toggle Virtual Text" })
