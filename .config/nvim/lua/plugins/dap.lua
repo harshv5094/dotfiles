@@ -18,6 +18,30 @@ end
 ok, plugin = pcall(require, "dap")
 
 if ok then
+	-- Icon sign definition
+	vim.fn.sign_define("DapBreakpoint", {
+		text = my_utils.icons.dap.breakpoint,
+		texthl = "DiagnosticSignError",
+	})
+	vim.fn.sign_define("DapBreakpointCondition", {
+		text = my_utils.icons.dap.conditional_breakpoint,
+		texthl = "DiagnosticSignWarn",
+	})
+	vim.fn.sign_define("DapBreakpointRejected", {
+		text = my_utils.icons.dap.rejected_breakpoint,
+		texthl = "Comment",
+	})
+	vim.fn.sign_define("DapLogPoint", {
+		text = my_utils.icons.dap.log_point,
+		texthl = "DiagnosticSignInfo",
+	})
+	vim.fn.sign_define("DapStopped", {
+		text = my_utils.icons.dap.stopped,
+		texthl = "String",
+		linehl = "CursorLine",
+		numhl = "String",
+	})
+
 	-- Setting up adapter for python, using the Mason-managed debugpy
 	local debugpy_python = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
 

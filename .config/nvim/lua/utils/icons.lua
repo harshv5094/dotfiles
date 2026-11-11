@@ -24,6 +24,15 @@ local M = {
 		Prefix = "●",
 	},
 
+	-- Dap Icons
+	dap = {
+		breakpoint = "●",
+		conditional_breakpoint = "◆",
+		rejected_breakpoint = "○",
+		log_point = "◉",
+		stopped = "▶",
+	},
+
 	-- Git Icons
 	git = {
 		branch = "",

@@ -6,8 +6,6 @@ local mini_plugins = {
 	"mini.starter",
 	"mini.pairs",
 	"mini.indentscope",
-	"mini.diff",
-	"mini.icons",
 }
 
 -- HACK: A loop for just loading mini plugins with their default settings.
@@ -17,6 +15,16 @@ for _, mini_plugin in ipairs(mini_plugins) do
 	if ok then
 		plugin.setup()
 	end
+end
+
+ok, plugin = pcall(require, "mini.diff")
+if ok then
+	plugin.setup({
+		view = {
+			style = "sign",
+			priority = 5, -- default is 199; breakpoints use 10
+		},
+	})
 end
 
 -- A lightweight vim.notify implementation by echanovski
