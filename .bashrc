@@ -102,6 +102,21 @@ if [[ -n "$AUR_HELPER" ]]; then
   }
 fi
 
+# Checking for .virtualenvs for python venv
+if [[ ! -d $HOME/.virtualenvs ]]; then
+  mkdir -p "$HOME/.virtualenvs"
+fi
+
+# Activating my default base python venv
+if [[ ! -d $HOME/.virtualenvs/base ]]; then
+  python -m venv "$HOME/.virtualenvs/base"
+  #shellcheck disable=SC1091
+  source "$HOME/.virtualenvs/base/bin/activate"
+else
+  #shellcheck disable=SC1091
+  source "$HOME/.virtualenvs/base/bin/activate"
+fi
+
 # Color fix for wsl machines
 if [[ -n "$WSL_DISTRO_NAME" ]] || grep -qi microsoft /proc/version &>/dev/null; then
   export COLORTERM="truecolor"

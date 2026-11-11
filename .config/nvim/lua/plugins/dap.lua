@@ -71,34 +71,18 @@ if ok then
 	-- Setting up configuration for python
 	plugin.configurations.python = {
 		{
-			-- The first three options are required by nvim-dap
-			type = "python", -- the type here established the link to the adapter definition: `dap.adapters.python`
+			type = "python",
 			request = "launch",
 			name = "Launch file",
 
-			-- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
-
-			program = "${file}", -- This configuration will launch the current file if used.
+			program = "${file}",
 			pythonPath = function()
-				-- The interpreter that runs your code (not the debugger).
-				-- Uses the venv selected with :VenvSelect when venv-selector is available.
-				local ok_vs, selector = pcall(require, "venv-selector")
-				if ok_vs then
-					local python = selector.python()
-					if python and vim.fn.executable(python) == 1 then
-						return python
-					end
+				-- Use the active venv if one is set, otherwise fall back to base
+				local venv = vim.env.VIRTUAL_ENV
+				if venv and venv ~= "" then
+					return venv .. "/bin/python"
 				end
-
-				-- Fallback: look for a venv or .venv in the current directory
-				local cwd = vim.fn.getcwd()
-				if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
-					return cwd .. "/venv/bin/python"
-				elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
-					return cwd .. "/.venv/bin/python"
-				else
-					return "/usr/bin/python"
-				end
+				return vim.fn.expand("~/.virtualenvs/base/bin/python")
 			end,
 		},
 	}
