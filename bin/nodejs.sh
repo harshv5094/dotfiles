@@ -40,7 +40,6 @@ fi
 ## -- Adding default package for nvm -- #
 if [[ ! -f "$HOME/.config/nvm/default-packages" ]]; then
   cat <<EOF | tee -a "$HOME/.config/nvm/default-packages"
-commitizen
-cz-git
+yarn
 EOF
 fi
