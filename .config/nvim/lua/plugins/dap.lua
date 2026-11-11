@@ -37,6 +37,7 @@ vim.fn.sign_define("DapStopped", {
 -- The Debug adapter protocol
 local ok, plugin = pcall(require, "dap")
 if ok then
+	-- Python Debug Adapters
 	plugin.adapters.python = function(cb, config)
 		if config.request == "attach" then
 			---@diagnostic disable-next-line: undefined-field
@@ -63,7 +64,7 @@ if ok then
 		end
 	end
 
-	-- Setting up configuration for python
+	-- Python configuration
 	plugin.configurations.python = {
 		{
 			type = "python",
@@ -127,8 +128,7 @@ if ok then
 	map("n", "<leader>dB", function()
 		vim.ui.input({ prompt = "Breakpoint condition: " }, function(condition)
 			if condition and condition ~= "" then
-				-- (Re)required here because the `plugin` variable is reused below
-				require("dap").set_breakpoint(condition)
+				plugin.set_breakpoint(condition)
 			end
 		end)
 	end, { desc = "Conditional Breakpoint" })

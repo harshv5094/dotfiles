@@ -83,7 +83,7 @@ require("plugins.editor")
 require("plugins.format")
 require("plugins.lint")
 require("plugins.lsp")
-require("plugins.dap")
+require("plugins.dap") -- Since I'm using mason-registry, I need to run this after mason
 require("plugins.mini")
 require("plugins.treesitter")
 require("plugins.ui")
