@@ -1,13 +1,10 @@
 -- Mason install locations, resolved once at startup
 local registry = require("mason-registry")
 
-local debugpy = registry.get_package("debugpy")
-local bash_debug = registry.get_package("bash-debug-adapter")
-
 local mason_paths = {
-	debugpy = debugpy:get_install_path() .. "/venv/bin/python",
-	bashdb_adapter = bash_debug:get_install_path() .. "/bash-debug-adapter",
-	bashdb_dir = bash_debug:get_install_path() .. "/extension/bashdb_dir",
+	debugpy = registry.get_package("debugpy"):get_install_path() .. "/venv/bin/python",
+	bashdb_adapter = registry.get_package("bash-debug-adapter"):get_install_path() .. "/bash-debug-adapter",
+	bashdb_dir = registry.get_package("bash-debug-adapter"):get_install_path() .. "/extension/bashdb_dir",
 }
 
 -- Icon sign definition
