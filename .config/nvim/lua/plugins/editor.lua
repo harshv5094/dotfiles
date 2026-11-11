@@ -278,5 +278,5 @@ ok, plugin = pcall(require, "venv-selector")
 
 if ok then
 	plugin.setup()
-	vim.keymap.set("n", "<leader>cv", "<cmd>VenvSelect<cr>", { desc = "Select VirtualEnv" })
+	vim.keymap.set("n", "<leader>cv", "<cmd>VenvSelect<cr>", { desc = "Select Python VirtualEnv" })
 end
