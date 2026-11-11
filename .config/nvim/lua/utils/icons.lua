@@ -13,6 +13,8 @@ local M = {
 		terminal = "",
 		toolbox = "󰦬",
 		vertical_bar = "│",
+		box = "󰏗",
+		tree = "󰙅",
 	},
 
 	-- Diagnostics Icons

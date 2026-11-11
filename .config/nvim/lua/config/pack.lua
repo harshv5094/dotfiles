@@ -94,7 +94,7 @@ end, {
 })
 
 -- Keymaps for commands
-vim.keymap.set("n", "<leader>pi", ":PackInstall ", { desc = "Pack Add" })
-vim.keymap.set("n", "<leader>pd", ":PackDelete ", { desc = "Pack Delete" })
-vim.keymap.set("n", "<leader>pu", "<CMD>PackUpdate<CR>", { desc = "Pack Update" })
-vim.keymap.set("n", "<leader>pl", "<CMD>PackList<CR>", { desc = "Pack List" })
+vim.keymap.set("n", "<leader>pi", ":PackInstall ", { desc = "Add" })
+vim.keymap.set("n", "<leader>pd", ":PackDelete ", { desc = "Delete" })
+vim.keymap.set("n", "<leader>pu", "<CMD>PackUpdate<CR>", { desc = "Update" })
+vim.keymap.set("n", "<leader>pl", "<CMD>PackList<CR>", { desc = "List" })

@@ -87,7 +87,6 @@ if ok then
 			{ "<leader>gl", group = "log" },
 			{ "<leader>s", group = "search" },
 			{ "<leader>u", group = "ui" },
-			{ "<leader>p", group = "vim.pack" },
 			{ "<leader>f", group = "file/find" },
 			{ "<leader>x", group = "diagnostics/quickfix" },
 			{ "<leader>t", group = "Terminal" },
@@ -109,6 +108,12 @@ if ok then
 				end,
 			},
 		},
+	})
+
+	-- Adding custom groups for my which-key config
+	plugin.add({
+		{ "<leader>p", group = "vim.pack", icon = { icon = my_utils.icons.misc.box, color = "green" } },
+		{ "<leader>e", group = "explore", icon = { icon = my_utils.icons.misc.tree, color = "purple" } },
 	})
 end
 
