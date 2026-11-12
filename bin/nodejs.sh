@@ -13,7 +13,7 @@ cat <<'EOF'
 EOF
 
 # -- Running installation script -- #
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.41.0/install.sh | bash
 
 # -- Checking bashrc for nvm variables and paths -- #
 if ! grep -q -A3 "NVM_DIR" ~/.bashrc; then
