@@ -33,7 +33,7 @@ if have pacman; then
     wget curl zip unzip ripgrep fzf sox bat eza lazygit btop fd \
     zoxide yt-dlp xsel fastfetch openssh tldr ncdu \
     trash-cli usbutils imagemagick man-db vdpauinfo \
-    starship bash-completion neovim base-devel pass jq cmake net-tools e2fsprogs pacman-contrib devtools
+    starship bash-completion neovim base-devel pass jq cmake net-tools e2fsprogs pacman-contrib namcap devtools
 elif have apt; then
   $ESCALATION_TOOL apt update && $ESCALATION_TOOL apt upgrade
   $ESCALATION_TOOL apt install -y stow neovim tree pass git gh starship trash-cli \
