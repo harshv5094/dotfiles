@@ -132,7 +132,7 @@ if command -v fzf &>/dev/null; then
     local file player
 
     if is_wsl; then
-      player="ffplay -nodisp -autoexit"
+      player="ffplay.exe -nodisp -autoexit"
     else
       player="play"
     fi
