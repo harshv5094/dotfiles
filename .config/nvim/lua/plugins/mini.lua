@@ -7,6 +7,7 @@ local mini_plugins = {
 	"mini.pairs",
 	"mini.indentscope",
 	"mini.icons",
+	"mini.bracketed",
 }
 
 -- HACK: A loop for just loading mini plugins with their default settings.
