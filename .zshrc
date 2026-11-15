@@ -150,11 +150,9 @@ fi
 # Activating my default base python venv
 if [[ ! -d $HOME/.virtualenvs/base ]]; then
   python -m venv "$HOME/.virtualenvs/base"
-  #shellcheck disable=SC1091
-  source "$HOME/.virtualenvs/base/bin/activate"
+  alias venv_on='source "$HOME/.virtualenvs/base/bin/activate"'
 else
-  #shellcheck disable=SC1091
-  source "$HOME/.virtualenvs/base/bin/activate"
+  alias venv_on='source "$HOME/.virtualenvs/base/bin/activate"'
 fi
 
 # Color fix for wsl machines
