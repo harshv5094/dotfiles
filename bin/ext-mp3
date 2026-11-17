@@ -33,7 +33,7 @@ EOF
     --embed-metadata \
     --sponsorblock-remove all \
     --parse-metadata "%(title)s:%(title)s" \
-    --parse-metadata "%(uploader)s:%(artist)s" \
+    --parse-metadata "%(artist)s:%(artist)s" \
     --output "${music_directory}%(title)s.%(ext)s" \
     "$1"
   exit 0
