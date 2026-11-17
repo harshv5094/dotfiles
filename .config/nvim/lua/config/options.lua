@@ -59,7 +59,7 @@ opt.fillchars = { -- customize the characters used for window fills
 
 -- ui
 opt.laststatus = 3 -- use one global statusline for all windows
-opt.mouse = "" -- disable mouse support
+-- opt.mouse = "" -- disable mouse support
 opt.pumheight = 10 -- limit the popup menu to 10 items
 opt.pumblend = 10 -- make the popup menu slightly transparent
 
