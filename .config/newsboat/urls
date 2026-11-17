@@ -1,15 +1,15 @@
 # News
-https://itsfoss.com/rss/           # Its Foss
-https://archlinux.org/feeds/news/  # Archlinux News Feeds
-# https://dotfyle.com/this-week-in-neovim/rss # This week in neovim
+https://itsfoss.com/rss/                                "news"    # Its Foss
+https://archlinux.org/feeds/news/                       "news"    # Archlinux News Feeds
 
 # Blogs
-https://blog.vaxry.net/feed # Vaxry's blog
-https://harshv5094.github.io/index.xml # My blog
-https://stephango.com/feed.xml # Stephango's blog (Obsidian Developer)
-https://nvim-mini.org/blog/index.xml # Nvim-Mini blog
-https://linkarzu.com/feed.xml # Linkarzu's blog
-# http://localhost:1313/index.xml # My blog (Localhost testing)
+https://blog.vaxry.net/feed                             "blog"    # Vaxry's Blog
+https://harshv5094.github.io/index.xml                  "blog"    # My Blog
+https://stephango.com/feed.xml                          "blog"    # Stephango's Blog (Obsidian Developer)
+https://nvim-mini.org/blog/index.xml                    "blog"    # Nvim-Mini Blog
+https://echasnovski.com/blog.xml                        "blog"    # Echasnovski Blog
+https://linkarzu.com/feed.xml                           "blog"    # Linkarzu's blog
+# http://localhost:1313/index.xml                       "blog"    # My blog (Localhost testing)
 
 # Reddit Feeds
-https://reddit.com/r/neovim.rss # Neovim RSS
+https://reddit.com/r/neovim.rss                         "reddit"  # Neovim RSS

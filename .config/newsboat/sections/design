@@ -14,3 +14,6 @@ highlight article "https?://[^ ]+" blue default underline
 highlight article "\\[[0-9]+\\]" cyan default bold
 highlight article "\\[image\\ [0-9]+\\]" cyan default bold
 highlight feedlist "^─.*$" color243 default bold
+
+# Feeds name with tag
+feedlist-format "%4i %n %11u %t %?T? (%T)&?"
