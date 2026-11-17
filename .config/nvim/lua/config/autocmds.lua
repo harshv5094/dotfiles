@@ -101,3 +101,9 @@ vim.api.nvim_create_autocmd({ "BufNew", "BufReadPre", "BufNewFile" }, {
 	pattern = { "*.md", "*.markdown", "*LICENSE*" },
 	command = "set wrap",
 })
+
+-- Enable highlight for log filetype
+vim.api.nvim_create_autocmd({ "BufReadPre", "VimEnter" }, {
+	pattern = { "*.log" },
+	command = "set filetype=log",
+})
