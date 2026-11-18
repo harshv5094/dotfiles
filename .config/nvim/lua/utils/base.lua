@@ -1,7 +1,6 @@
-local state = {
-	buf = nil,
-	win = nil,
-	height_fraction = 0.3,
+local term = {
+	buf = nil, -- persistent terminal buffer
+	height_fraction = 0.4,
 }
 
 local lazy = {
@@ -11,56 +10,73 @@ local lazy = {
 
 local M = {}
 
+local function term_alive(buf)
+	if not (buf and vim.api.nvim_buf_is_valid(buf)) then
+		return false
+	end
+	if vim.bo[buf].buftype ~= "terminal" then
+		return false
+	end
+	local chan = vim.bo[buf].channel
+	-- 'channel' stays set after the job exits, so ask jobwait whether it's running
+	return chan ~= 0 and vim.fn.jobwait({ chan }, 0)[1] == -1
+end
+
+-- Non-floating window showing the terminal buffer (any tabpage)
+local function term_win(buf)
+	if not buf or not vim.api.nvim_buf_is_valid(buf) then
+		return nil
+	end
+	for _, win in ipairs(vim.fn.win_findbuf(buf)) do
+		if vim.api.nvim_win_is_valid(win) and vim.api.nvim_win_get_config(win).relative == "" then
+			return win
+		end
+	end
+end
+
 function M.toggle_terminal()
-	-- Hide the terminal if it's visible
-	if state.win and vim.api.nvim_win_is_valid(state.win) then
-		vim.api.nvim_win_close(state.win, true)
-		state.win = nil
+	local root = M.project_root()
+
+	local win = term_win(term.buf)
+	if win then
+		-- Closing the last window isn't allowed; hide the terminal in place instead
+		if not pcall(vim.api.nvim_win_close, win, true) then
+			---@diagnostic disable-next-line "param-type-mismatch"
+			pcall(vim.cmd, "enew")
+			return
+		end
+	end
+
+	local alive = term_alive(term.buf)
+	if not alive then
+		-- Drop a dead terminal (abnormal exit) so a fresh shell is started next time
+		if term.buf and vim.api.nvim_buf_is_valid(term.buf) then
+			vim.api.nvim_buf_delete(term.buf, { force = true })
+		end
+		term.buf = nil
+		-- The terminal was showing: that was the toggle-off
+		if win then
+			return
+		end
+	elseif win then
+		-- Closing the window was the toggle-off
 		return
 	end
 
-	-- Start a shell if there's no live terminal buffer
-	local alive = state.buf
-		and vim.api.nvim_buf_is_valid(state.buf)
-		and vim.bo[state.buf].channel ~= 0
-		and vim.fn.jobwait({ vim.bo[state.buf].channel }, 0)[1] == -1
+	local size = math.max(math.floor(vim.o.lines * term.height_fraction), 5)
+	vim.cmd(("botright %dsplit"):format(size))
 
-	if not alive then
-		if state.buf and vim.api.nvim_buf_is_valid(state.buf) then
-			vim.api.nvim_buf_delete(state.buf, { force = true })
-		end
-		state.buf = vim.api.nvim_create_buf(false, true)
-		vim.api.nvim_buf_call(state.buf, function()
-			vim.api.nvim_buf_call(state.buf, function()
-				vim.fn.jobstart(vim.o.shell, {
-					term = true,
-					on_exit = function()
-						vim.schedule(function()
-							if state.win and vim.api.nvim_win_is_valid(state.win) then
-								vim.api.nvim_win_close(state.win, true)
-							end
-							if state.buf and vim.api.nvim_buf_is_valid(state.buf) then
-								vim.api.nvim_buf_delete(state.buf, { force = true })
-							end
-							state.buf, state.win = nil, nil
-						end)
-					end,
-				})
-			end)
-		end)
+	if alive then
+		-- Resume the existing shell
+		vim.api.nvim_win_set_buf(0, term.buf)
+	else
+		vim.cmd("lcd " .. vim.fn.fnameescape(root))
+		vim.cmd("terminal")
+		term.buf = vim.api.nvim_get_current_buf()
 	end
 
-	-- Open a full-width window at the bottom of the editor
-	state.win = vim.api.nvim_open_win(state.buf, true, {
-		win = -1,
-		split = "below",
-		height = math.floor(vim.o.lines * state.height_fraction),
-	})
-
-	local opts = { win = state.win }
-	vim.api.nvim_set_option_value("number", false, opts)
-	vim.api.nvim_set_option_value("relativenumber", false, opts)
-	vim.api.nvim_set_option_value("signcolumn", "no", opts)
+	-- Keep the terminal from being squashed by later splits
+	vim.wo.winfixheight = true
 
 	vim.cmd.startinsert()
 end
