@@ -259,14 +259,15 @@ if ok then
 			timeout_ms = 1000,
 			autosave_changes = false,
 		},
+		watch_for_changes = true,
 		delete_to_trash = true,
 		view_options = {
 			show_hidden = true,
 		},
 		columns = {
-			-- "permissions",
-			-- "size",
-			-- "mtime",
+			"permissions",
+			"size",
+			"mtime",
 			"icon",
 		},
 	})
