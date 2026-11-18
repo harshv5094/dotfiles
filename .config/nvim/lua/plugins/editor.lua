@@ -9,7 +9,7 @@ if ok then
 	local extensions = plugin.extensions
 	local fb_actions = extensions.file_browser.actions
 
-	-- Builtin keymaps
+	-- Builtin Core keymaps
 	map("n", "<leader>,", builtin.buffers, { desc = "Telescope: Switch Buffers" })
 	map("n", "<leader>sa", builtin.help_tags, { desc = "Telescope: Autocmds" })
 	map("n", "<leader>sb", builtin.current_buffer_fuzzy_find, { desc = "Telescope: Buffer Lines" })
@@ -25,7 +25,6 @@ if ok then
 	map("n", "<leader>sq", builtin.quickfix, { desc = "Telescope: Quick Fix list" })
 	map("n", "<leader>sr", builtin.resume, { desc = "Telescope: Resume" })
 	map("n", "<leader>:", builtin.command_history, { desc = "Telescope: Command History" })
-	map("n", "<leader>gst", builtin.git_status, { desc = "Telescope: Git Status" })
 
 	map("n", "<leader><space>", function()
 		builtin.find_files({
