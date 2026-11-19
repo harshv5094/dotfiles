@@ -9,10 +9,6 @@ return {
 	single_file_support = true,
 	settings = {
 		Lua = {
-			diagnostics = {
-				disable = { "incomplete-signature-doc", "trailing-space" },
-				unusedLocalExclude = { "_*" },
-			},
 			codeLens = {
 				enable = true,
 			},
