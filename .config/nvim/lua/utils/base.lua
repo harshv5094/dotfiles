@@ -3,9 +3,10 @@ local term = {
 	height_fraction = 0.4,
 }
 
-local lazy = {
+local lazygit = {
 	buf = nil,
 	win = nil,
+	root = nil,
 }
 
 local M = {}
@@ -103,38 +104,63 @@ function M.chmod(mode)
 end
 
 function M.toggle_lazygit()
+	local root = M.project_root()
+
+	-- Drop the instance if it died or belongs to another project
+	if lazygit.buf and (not term_alive(lazygit.buf) or lazygit.root ~= root) then
+		if lazygit.win and vim.api.nvim_win_is_valid(lazygit.win) then
+			vim.api.nvim_win_hide(lazygit.win)
+		end
+		if vim.api.nvim_buf_is_valid(lazygit.buf) then
+			vim.api.nvim_buf_delete(lazygit.buf, { force = true })
+		end
+		lazygit.buf, lazygit.win, lazygit.root = nil, nil, nil
+	end
+
 	-- Hide the float but keep lazygit running
-	if lazy.win and vim.api.nvim_win_is_valid(lazy.win) then
-		vim.api.nvim_win_hide(lazy.win)
-		lazy.win = nil
+	if lazygit.win and vim.api.nvim_win_is_valid(lazygit.win) then
+		vim.api.nvim_win_hide(lazygit.win)
+		lazygit.win = nil
 		return
 	end
 
 	-- Start lazygit in a fresh buffer if there isn't a live one
-	if not (lazy.buf and vim.api.nvim_buf_is_valid(lazy.buf)) then
+	if not lazygit.buf then
 		if vim.fn.executable("lazygit") == 0 then
 			vim.notify("lazygit not found in PATH", vim.log.levels.ERROR)
 			return
 		end
 
-		lazy.buf = vim.api.nvim_create_buf(false, true)
-		vim.api.nvim_buf_call(lazy.buf, function()
-			vim.fn.jobstart({ "lazygit" }, {
+		local buf = vim.api.nvim_create_buf(false, true)
+		local job = vim.api.nvim_buf_call(buf, function()
+			return vim.fn.jobstart({ "lazygit" }, {
 				term = true,
-				cwd = M.project_root(),
+				cwd = root,
 				on_exit = function()
 					vim.schedule(function()
-						if lazy.win and vim.api.nvim_win_is_valid(lazy.win) then
-							vim.api.nvim_win_close(lazy.win, true)
+						-- Ignore exits from an instance we already replaced
+						if lazygit.buf ~= buf then
+							return
 						end
-						if lazy.buf and vim.api.nvim_buf_is_valid(lazy.buf) then
-							vim.api.nvim_buf_delete(lazy.buf, { force = true })
+						if lazygit.win and vim.api.nvim_win_is_valid(lazygit.win) then
+							vim.api.nvim_win_close(lazygit.win, true)
 						end
-						lazy.buf, lazy.win = nil, nil
+						if vim.api.nvim_buf_is_valid(buf) then
+							vim.api.nvim_buf_delete(buf, { force = true })
+						end
+						lazygit.buf, lazygit.win, lazygit.root = nil, nil, nil
 					end)
 				end,
 			})
 		end)
+
+		if job <= 0 then
+			vim.api.nvim_buf_delete(buf, { force = true })
+			vim.notify("Failed to start lazygit", vim.log.levels.ERROR)
+			return
+		end
+
+		lazygit.buf, lazygit.root = buf, root
 	end
 
 	-- Usable area: editor minus cmdline and tabline (if shown)
@@ -146,7 +172,7 @@ function M.toggle_lazygit()
 	local outer_w = math.max(20, math.floor(avail_w * 0.9))
 	local outer_h = math.max(5, math.floor(avail_h * 0.9))
 
-	lazy.win = vim.api.nvim_open_win(lazy.buf, true, {
+	lazygit.win = vim.api.nvim_open_win(lazygit.buf, true, {
 		relative = "editor",
 		width = outer_w - 2,
 		height = outer_h - 2,
@@ -155,21 +181,15 @@ function M.toggle_lazygit()
 		style = "minimal",
 		border = "rounded",
 		zindex = 30,
+		noautocmd = true,
 	})
 
-	-- Window-local options, set on this float only
-	local opts = { win = lazy.win }
-	vim.api.nvim_set_option_value("wrap", false, opts)
-	vim.api.nvim_set_option_value("cursorline", false, opts)
-	vim.api.nvim_set_option_value("list", false, opts)
-	vim.api.nvim_set_option_value("number", false, opts)
-	vim.api.nvim_set_option_value("relativenumber", false, opts)
+	-- Window-local options worth setting on top of style="minimal".
+	-- Keep wrap on: lazygit parks the cursor at the right edge, and with 'wrap'
+	-- off 'sidescrolloff' scrolls the view (leftcol > 0), clipping the TUI.
+	local opts = { win = lazygit.win }
+	vim.api.nvim_set_option_value("wrap", true, opts)
 	vim.api.nvim_set_option_value("signcolumn", "no", opts)
-
-	-- Reset any horizontal scroll left over from a previous show
-	vim.api.nvim_win_call(lazy.win, function()
-		vim.fn.winrestview({ leftcol = 0 })
-	end)
 
 	vim.cmd.startinsert()
 end
