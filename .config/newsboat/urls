@@ -9,6 +9,7 @@ https://stephango.com/feed.xml                          "blog"    # Stephango's 
 https://nvim-mini.org/blog/index.xml                    "blog"    # Nvim-Mini Blog
 https://echasnovski.com/blog.xml                        "blog"    # Echasnovski Blog
 https://linkarzu.com/feed.xml                           "blog"    # Linkarzu's blog
+https://gpanders.com/index.xml                          "blog"    # Gregory P Anders blog
 # http://localhost:1313/index.xml                       "blog"    # My blog (Localhost testing)
 
 # Reddit Feeds
