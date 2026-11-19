@@ -94,7 +94,7 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 -- Restart neovim
 map("n", "<leader>qr", function()
 	vim.cmd("restart")
-end, { desc = "Restart neovim", noremap = true })
+end, { desc = "Restart Neovim", noremap = true })
 
 -- Toggle inlay hints globally (on by default; no-op on servers without support)
 map("n", "<leader>uh", function()
