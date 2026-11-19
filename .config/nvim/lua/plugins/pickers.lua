@@ -39,6 +39,10 @@ local function todo_picker(keywords)
 		return
 	end
 
+	if type(keywords) == "table" then
+		keywords = table.concat(keywords, ",")
+	end
+
 	search.search(function(results)
 		local items = {}
 		for _, r in ipairs(results) do
