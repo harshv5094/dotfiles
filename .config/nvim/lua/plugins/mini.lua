@@ -19,24 +19,28 @@ for _, mini_plugin in ipairs(mini_plugins) do
 	end
 end
 
--- Fuzzy picker: replaces telescope.nvim
-ok, plugin = pcall(require, "mini.pick")
-if ok then
-	plugin.setup()
-end
-
--- Extra pickers for mini.pick (must be set up after mini.pick)
-ok, plugin = pcall(require, "mini.extra")
-if ok then
-	plugin.setup()
-end
-
+-- A file picker designed by echanovski (it's better than oil.nvim)
 ok, plugin = pcall(require, "mini.files")
 if ok then
-	plugin.setup()
+	plugin.setup({
+		options = {
+			use_as_default_explorer = true,
+		},
+		-- windows = {
+		-- 	preview = true,
+		-- 	width_preview = 40,
+		-- },
+	})
+
+	local minifiles_toggle = function(...)
+		if MiniFiles.close() == nil then
+			MiniFiles.open(...)
+		end
+	end
+
 	vim.keymap.set("n", "<leader>e", function()
-		MiniFiles.open()
-	end)
+		minifiles_toggle()
+	end, { desc = "Toggle file explorer" })
 end
 
 ok, plugin = pcall(require, "mini.diff")
