@@ -45,7 +45,7 @@ map("n", "<M-j>", "<C-d>zz", opts)
 map("n", "<M-k>", "<C-u>zz", opts)
 
 -- My custom git initialization function
-map("n", "<leader>gi", my_utils.git.init, { desc = "Git init", noremap = true })
+map("n", "<leader>gi", require('utils').git.init, { desc = "Git init", noremap = true })
 
 -- String auto replace
 map(
@@ -73,12 +73,12 @@ map("v", "<M-k>", ":m '<-2<CR>gv=gv")
 if vim.fn.has("linux") == 1 or vim.fn.has("mac") == 1 then
 	-- chmod +x <current-buffer>
 	map("n", "<leader>fx", function()
-		my_utils.base.chmod()
+		require('utils').base.chmod()
 	end, { desc = "chmod +x <current-buffer>" })
 
 	-- chmod -x <current-buffer>
 	map("n", "<leader>fX", function()
-		my_utils.base.chmod("-")
+		require('utils').base.chmod("-")
 	end, { desc = "chmod -x <current-buffer>" })
 
 	-- A custom command for opening manpage in tab window
@@ -109,10 +109,10 @@ map("n", "<leader>uc", function()
 end, { desc = "Toggle Codelens", noremap = true })
 
 -- Toggle terminal
-map({ "n", "t" }, "<C-`>", my_utils.base.toggle_terminal, { desc = "Toggle Terminal" })
+map({ "n", "t" }, "<C-`>", require('utils').base.toggle_terminal, { desc = "Toggle Terminal" })
 
 -- Toggle Lazygit
-map({ "n", "t" }, "<leader>gg", my_utils.base.toggle_lazygit, { desc = "LazyGit" })
+map({ "n", "t" }, "<leader>gg", require('utils').base.toggle_lazygit, { desc = "LazyGit" })
 
 -- Escape keymap for terminal
 map("t", "<S-Esc>", "<C-\\><C-n>", opts)

@@ -77,7 +77,12 @@ if ok then
 		defaults = {},
 		spec = {
 			mode = { "n", "x" },
-			{ "<leader>/", desc = "Live Grep", icon = { icon = my_utils.icons.misc.search, color = "green" } },
+			{ "<leader>/", desc = "Live Grep", icon = { icon = require("utils").icons.misc.search, color = "green" } },
+			{
+				"<leader>fc",
+				desc = "Neovim Config Files",
+				icon = { icon = require("utils.icons").misc.nvim, color = "green" },
+			},
 			{ "<leader>c", group = "code" },
 			{ "<leader>d", group = "debug" },
 			{ "<leader>g", group = "git" },
@@ -106,9 +111,9 @@ if ok then
 
 	-- Adding custom groups for my which-key config
 	plugin.add({
-		{ "<leader>p", group = "vim.pack", icon = { icon = my_utils.icons.misc.box, color = "green" } },
-		{ "<leader>e", group = "explore", icon = { icon = my_utils.icons.misc.tree, color = "purple" } },
-		{ "<leader>b", group = "buffer", icon = { icon = my_utils.icons.misc.buffers, color = "blue" } },
+		{ "<leader>p", group = "vim.pack", icon = { icon = require("utils").icons.misc.box, color = "green" } },
+		{ "<leader>e", group = "explore", icon = { icon = require("utils").icons.misc.tree, color = "purple" } },
+		{ "<leader>b", group = "buffer", icon = { icon = require("utils").icons.misc.buffers, color = "blue" } },
 	})
 end
 

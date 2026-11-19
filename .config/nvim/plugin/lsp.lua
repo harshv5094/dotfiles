@@ -24,7 +24,7 @@ if ok then
 		},
 		appearance = {
 			nerd_font_variant = "mono",
-			kind_icons = my_utils.icons.kinds,
+			kind_icons = require('utils').icons.kinds,
 		},
 		sources = {
 			default = { "lazydev", "lsp", "path", "snippets", "buffer", "emoji" },

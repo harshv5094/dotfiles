@@ -9,7 +9,7 @@ local undodir_path = vim.fn.stdpath("cache") .. "/undodir"
 vim.fn.mkdir(undodir_path, "p")
 
 -- Better i,j,k,l,-,+ discipline
-my_utils.discipline.cowboy()
+require('utils').discipline.cowboy()
 
 -- use PowerShell on Windows
 if vim.fn.has("win32") == 1 then

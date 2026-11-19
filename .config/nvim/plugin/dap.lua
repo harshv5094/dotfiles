@@ -25,23 +25,23 @@ local mason_paths = {
 
 -- Icon sign definition
 vim.fn.sign_define("DapBreakpoint", {
-	text = my_utils.icons.dap.breakpoint,
+	text = require('utils').icons.dap.breakpoint,
 	texthl = "DiagnosticSignError",
 })
 vim.fn.sign_define("DapBreakpointCondition", {
-	text = my_utils.icons.dap.conditional_breakpoint,
+	text = require('utils').icons.dap.conditional_breakpoint,
 	texthl = "DiagnosticSignWarn",
 })
 vim.fn.sign_define("DapBreakpointRejected", {
-	text = my_utils.icons.dap.rejected_breakpoint,
+	text = require('utils').icons.dap.rejected_breakpoint,
 	texthl = "Comment",
 })
 vim.fn.sign_define("DapLogPoint", {
-	text = my_utils.icons.dap.log_point,
+	text = require('utils').icons.dap.log_point,
 	texthl = "DiagnosticSignInfo",
 })
 vim.fn.sign_define("DapStopped", {
-	text = my_utils.icons.dap.stopped,
+	text = require('utils').icons.dap.stopped,
 	texthl = "String",
 	linehl = "CursorLine",
 	numhl = "String",

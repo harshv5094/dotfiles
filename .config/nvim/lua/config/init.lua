@@ -1,5 +1,4 @@
 -- Bootstrap my config
-_G.my_utils = require("utils")
 require("config.options")
 require("config.autocmds")
 require("config.diagnostics")

@@ -73,9 +73,9 @@ if ok then
 
 	-- Foreground-only diff highlights on the Filename background
 	local diff = {
-		add = { sign = "MiniDiffSignAdd", icon = my_utils.icons.git.added },
-		change = { sign = "MiniDiffSignChange", icon = my_utils.icons.git.modified },
-		delete = { sign = "MiniDiffSignDelete", icon = my_utils.icons.git.removed },
+		add = { sign = "MiniDiffSignAdd", icon = require('utils').icons.git.added },
+		change = { sign = "MiniDiffSignChange", icon = require('utils').icons.git.modified },
+		delete = { sign = "MiniDiffSignDelete", icon = require('utils').icons.git.removed },
 	}
 
 	local function set_diff_hl()
@@ -88,10 +88,10 @@ if ok then
 
 	-- Foreground-only diagnostic highlights on the Devinfo background
 	local diag_levels = {
-		{ severity = vim.diagnostic.severity.ERROR, name = "Error", icon = my_utils.icons.diagnostics.Error },
-		{ severity = vim.diagnostic.severity.WARN, name = "Warn", icon = my_utils.icons.diagnostics.Warn },
-		{ severity = vim.diagnostic.severity.INFO, name = "Info", icon = my_utils.icons.diagnostics.Info },
-		{ severity = vim.diagnostic.severity.HINT, name = "Hint", icon = my_utils.icons.diagnostics.Hint },
+		{ severity = vim.diagnostic.severity.ERROR, name = "Error", icon = require('utils').icons.diagnostics.Error },
+		{ severity = vim.diagnostic.severity.WARN, name = "Warn", icon = require('utils').icons.diagnostics.Warn },
+		{ severity = vim.diagnostic.severity.INFO, name = "Info", icon = require('utils').icons.diagnostics.Info },
+		{ severity = vim.diagnostic.severity.HINT, name = "Hint", icon = require('utils').icons.diagnostics.Hint },
 	}
 
 	local function set_diag_hl()
@@ -125,21 +125,21 @@ if ok then
 		content = {
 			active = function()
 				local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
-				local git = MiniStatusline.section_git({ trunc_width = 40, icon = my_utils.icons.git.branch })
+				local git = MiniStatusline.section_git({ trunc_width = 40, icon = require('utils').icons.git.branch })
 					:gsub("%s*%b()", "")
 				local diff_str = MiniStatusline.is_truncated(75) and "" or (vim.b.minidiff_summary_string or "")
 				local diagnostics = diagnostics_str()
 				local filename = MiniStatusline.section_filename({ trunc_width = 140 })
 
 				return MiniStatusline.combine_groups({
-					{ hl = mode_hl, strings = { my_utils.icons.misc.nvim .. mode } },
+					{ hl = mode_hl, strings = { require('utils').icons.misc.nvim .. mode } },
 					{ hl = "MiniStatuslineDevinfo", strings = { git, diagnostics } },
 					"%<",
 					{ hl = "MiniStatuslineFilename", strings = { filename } },
 					"%=",
 					{ hl = "MiniStatuslineFilename", strings = { diff_str } },
 					{ hl = "MiniStatuslineDevinfo", strings = { "%p%%" } },
-					{ hl = mode_hl, strings = { my_utils.icons.misc.clock .. os.date("%I:%M %p") } },
+					{ hl = mode_hl, strings = { require('utils').icons.misc.clock .. os.date("%I:%M %p") } },
 				})
 			end,
 			inactive = function()
