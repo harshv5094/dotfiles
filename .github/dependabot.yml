@@ -4,6 +4,13 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    # Keep PR volume low: only one grouped PR, and never more than 3 open.
+    open-pull-requests-limit: 3
+    cooldown:
+      # Wait 5 days after an action release before proposing it
+      # (Dependabot's implicit default is 3). Not supported for
+      # security updates, and semver-*-days do not apply to actions.
+      default-days: 5
     commit-message:
       prefix: "ci"
     labels:

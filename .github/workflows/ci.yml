@@ -1,0 +1,64 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate dotfiles
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.x"
+
+      - name: Install linters
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends lua5.1 shellcheck stow
+          python3 -m pip install --disable-pip-version-check yamllint
+
+      - name: Check Lua syntax
+        run: |
+          mapfile -d '' files < <(git ls-files -z -- '*.lua')
+          luac5.1 -p "${files[@]}"
+
+      - name: Check shell syntax
+        run: |
+          status=0
+          while IFS= read -r -d '' file; do
+            [ -f "$file" ] || continue
+            # Only bash scripts: zsh configs are not bash compatible.
+            head -n 1 "$file" | grep -qE '^#!.*\bbash\b' || continue
+            bash -n "$file" || status=1
+          done < <(git ls-files -z)
+          exit "$status"
+
+      - name: Run shellcheck
+        run: |
+          mapfile -d '' files < <(git ls-files -z -- 'bin/*' 'hyprland/hypr/scripts/*.sh' '.config/kitty/scripts/*.sh')
+          # SC2154: theme variables are sourced at runtime from hyprland/themes/*/variable.sh
+          shellcheck --severity=warning --exclude=SC2154 "${files[@]}"
+
+      - name: Lint YAML
+        run: yamllint .
+
+      - name: Check stow packages link cleanly
+        run: |
+          target="$(mktemp -d)"
+          stow --simulate --verbose --target "$target" .

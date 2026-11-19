@@ -4,13 +4,24 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+  schedule:
+    # Weekly full-history scan: catches secrets with newer rule sets.
+    - cron: "0 4 * * 1"
+
+permissions:
+  contents: read
+  # Required for gitleaks-action to comment on pull requests.
+  pull-requests: write
+
+concurrency:
+  group: gitleaks-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   scan:
     name: Scan for secrets
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repository
@@ -23,4 +34,5 @@ jobs:
         uses: gitleaks/gitleaks-action@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_VERSION: 8.30.1
+          # Always scan with the newest gitleaks rules (no manual bumps).
+          GITLEAKS_VERSION: latest

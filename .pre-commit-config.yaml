@@ -1,0 +1,13 @@
+---
+# Local secret scan, so a leak never reaches the remote.
+#
+# Setup (once):
+#   sudo pacman -S pre-commit gitleaks
+#   pre-commit install
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      # Uses the gitleaks binary on PATH (Arch: pacman -S gitleaks),
+      # so no Go toolchain is required.
+      - id: gitleaks-system
