@@ -23,6 +23,9 @@ local opts = {
 	},
 }
 
+-- Enable VS code css virtual color
+vim.lsp.document_color.enable(true, nil, { style = "virtual" })
+
 -- Importing opts
 vim.diagnostic.config(opts)
 
