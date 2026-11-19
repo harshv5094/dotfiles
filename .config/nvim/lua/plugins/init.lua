@@ -18,7 +18,6 @@ vim.pack.add({
 	-- Editor
 	{ src = gh("nvim-lua/plenary.nvim") },
 	{ src = gh("nvim-tree/nvim-web-devicons") },
-	{ src = gh("stevearc/oil.nvim") },
 	{ src = gh("MagicDuck/grug-far.nvim") },
 	{ src = gh("kazhala/close-buffers.nvim") },
 	{ src = gh("mbbill/undotree") },

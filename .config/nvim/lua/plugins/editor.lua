@@ -63,18 +63,6 @@ end
 ok, plugin = pcall(require, "persistence")
 
 if ok then
-	-- HACK: Automatically delete oil.nvim buffer from the list just when you save any session
-	vim.api.nvim_create_autocmd("User", {
-		pattern = "PersistenceSavePre",
-		callback = function()
-			for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-				if vim.bo[buf].filetype == "oil://*" then
-					vim.api.nvim_buf_delete(buf, { force = true })
-				end
-			end
-		end,
-	})
-
   -- stylua: ignore
   local keys = {
     { "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
@@ -88,31 +76,4 @@ if ok then
 	end
 
 	plugin.setup()
-end
-
--- The file manager which uses neovim buffer, just like a file
-ok, plugin = pcall(require, "oil")
-
-if ok then
-	plugin.setup({
-		default_file_explorer = true,
-		cleanup_delay_ms = 3000,
-		lsp_file_methods = {
-			enabled = true,
-			timeout_ms = 1000,
-			autosave_changes = false,
-		},
-		watch_for_changes = true,
-		delete_to_trash = true,
-		view_options = {
-			show_hidden = true,
-		},
-		columns = {
-			"permissions",
-			"size",
-			"mtime",
-			"icon",
-		},
-	})
-	vim.keymap.set("n", "<leader>e", "<CMD>Oil<CR>", { noremap = true, silent = true })
 end

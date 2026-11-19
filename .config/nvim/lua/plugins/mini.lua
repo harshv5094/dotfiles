@@ -31,6 +31,14 @@ if ok then
 	plugin.setup()
 end
 
+ok, plugin = pcall(require, "mini.files")
+if ok then
+	plugin.setup()
+	vim.keymap.set("n", "<leader>e", function()
+		MiniFiles.open()
+	end)
+end
+
 ok, plugin = pcall(require, "mini.diff")
 if ok then
 	plugin.setup({
