@@ -78,7 +78,6 @@ if ok then
 		spec = {
 			mode = { "n", "x" },
 			{ "<leader>/", desc = "Live Grep", icon = { icon = my_utils.icons.misc.search, color = "green" } },
-			{ "<leader>:", desc = "Commands History", icon = { icon = my_utils.icons.misc.search, color = "green" } },
 			{ "<leader>c", group = "code" },
 			{ "<leader>d", group = "debug" },
 			{ "<leader>g", group = "git" },
