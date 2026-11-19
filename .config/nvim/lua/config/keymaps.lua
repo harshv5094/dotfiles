@@ -15,10 +15,10 @@ end, { expr = true, desc = "Escape and Clear hlsearch" })
 map("n", "dw", 'vb"_d', opts)
 
 -- Redo Keymap
-map("n", "<M-U>", "<C-r>", { desc = "Redo" })
+map("n", "<M-u>", "<C-r>", { desc = "Redo" })
 
 -- Save - Save from any mode
-map({ "i", "n", "v" }, "<C-s>", "<ESC><CMD>w<CR>", { desc = "Save" })
+map({ "i", "n", "v" }, "<M-s>", "<ESC><CMD>w<CR>", { desc = "Save" })
 
 -- Split screen keymaps
 map("n", "ss", "<CMD>split<CR>", opts)
