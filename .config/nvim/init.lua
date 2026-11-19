@@ -4,4 +4,4 @@ if vim.loader then
 end
 
 -- Bootstrap my config in one file
-require("config.base")
+require("config")

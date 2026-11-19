@@ -1,3 +1,11 @@
+-- Bootstrap my config
+_G.my_utils = require("utils")
+require("config.options")
+require("config.autocmds")
+require("config.diagnostics")
+require("config.keymaps")
+require("config.pack")
+
 ---@param plugin_name string
 ---@return string
 -- NOTE: A local function for just using `username/plugin_name` in vim.pack
@@ -57,16 +65,3 @@ vim.pack.add({
 	{ src = gh("akinsho/bufferline.nvim") },
 	{ src = gh("b0o/incline.nvim") },
 })
-
--- Importing above plugins config
-require("plugins.coding")
-require("plugins.colorscheme")
-require("plugins.dap")
-require("plugins.editor")
-require("plugins.format")
-require("plugins.lint")
-require("plugins.lsp")
-require("plugins.mini")
-require("plugins.pickers")
-require("plugins.treesitter")
-require("plugins.ui")
