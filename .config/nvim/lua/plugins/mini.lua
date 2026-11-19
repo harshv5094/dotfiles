@@ -19,6 +19,18 @@ for _, mini_plugin in ipairs(mini_plugins) do
 	end
 end
 
+-- Fuzzy picker: replaces telescope.nvim
+ok, plugin = pcall(require, "mini.pick")
+if ok then
+	plugin.setup()
+end
+
+-- Extra pickers for mini.pick (must be set up after mini.pick)
+ok, plugin = pcall(require, "mini.extra")
+if ok then
+	plugin.setup()
+end
+
 ok, plugin = pcall(require, "mini.diff")
 if ok then
 	plugin.setup({

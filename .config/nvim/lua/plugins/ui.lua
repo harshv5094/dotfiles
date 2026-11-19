@@ -77,6 +77,8 @@ if ok then
 		defaults = {},
 		spec = {
 			mode = { "n", "x" },
+			{ "<leader>/", desc = "Live Grep", icon = { icon = my_utils.icons.misc.search, color = "green" } },
+			{ "<leader>:", desc = "Commands History", icon = { icon = my_utils.icons.misc.search, color = "green" } },
 			{ "<leader>c", group = "code" },
 			{ "<leader>d", group = "debug" },
 			{ "<leader>g", group = "git" },
@@ -120,8 +122,6 @@ if ok then
     { "[t", function() plugin.jump_prev() end, desc = "Previous Todo Comment" },
     { "<leader>xt", "<cmd>Trouble todo toggle<cr>", desc = "Todo (Trouble)" },
     { "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
-    { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
-    { "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" },
   }
 
 	for _, key in ipairs(keys) do

@@ -1,0 +1,5 @@
+# Let mini.pick (and other rg-based tools) search hidden files,
+# while still honoring .gitignore.
+--hidden
+--glob=!.git/**
+--glob=!node_modules/**

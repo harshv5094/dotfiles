@@ -1,6 +1,9 @@
 local g = vim.g
 local opt = vim.opt
 
+-- Let ripgrep-based pickers search hidden files while still honoring .gitignore
+vim.env.RIPGREP_CONFIG_PATH = vim.fn.stdpath("config") .. "/.ripgreprc"
+
 -- Path setup for undodir (For persistence undo file record)
 local undodir_path = vim.fn.stdpath("cache") .. "/undodir"
 vim.fn.mkdir(undodir_path, "p")
