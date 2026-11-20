@@ -5,6 +5,20 @@ end
 local map = vim.keymap.set
 
 require("mini.pick").setup({
+	window = {
+		config = function()
+			local height = math.floor(0.4 * vim.o.lines) -- 40% of editor height
+			local width = math.floor(0.5 * vim.o.columns) -- 60% of editor width
+			return {
+				anchor = "NW",
+				height = height,
+				width = width,
+				row = 0, -- On the top edge
+				col = math.floor(0.5 * (vim.o.columns - width)), -- still horizontally centered
+				border = "rounded",
+			}
+		end,
+	},
 	mappings = {
 		move_down = "<M-n>",
 		move_up = "<M-p>",
