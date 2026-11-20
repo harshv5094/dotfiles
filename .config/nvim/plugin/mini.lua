@@ -33,7 +33,7 @@ if pcall(require, "mini.files") then
 			reset = "<BS>",
 			reveal_cwd = "@",
 			show_help = "g?",
-			synchronize = "=",
+			synchronize = "<CR>",
 			trim_left = "<",
 			trim_right = ">",
 		},
@@ -86,7 +86,7 @@ if pcall(require, "mini.files") then
 		end
 	end
 
-	vim.keymap.set("n", "<leader>e", function()
+	vim.keymap.set("n", "sf", function()
 		minifiles_toggle()
 	end, { desc = "Toggle file explorer" })
 end
