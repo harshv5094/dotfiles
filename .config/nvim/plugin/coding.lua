@@ -1,28 +1,22 @@
--- A diagnostics panel by folke
-local ok, plugin = pcall(require, "trouble")
-
-if ok then
-  -- stylua: ignore
-  local keys = {
+if pcall(require, "trouble") then
+	-- stylua: ignore
+	local keys = {
 		{ "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
 		{ "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
 		{ "<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)", },
 		{ "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)", },
 		{ "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols (Trouble)" },
 		{ "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP Definitions / references / ... (Trouble)", },
-  }
+	}
 	for _, key in ipairs(keys) do
 		vim.keymap.set("n", key[1], key[2], { desc = key.desc })
 	end
 
-	plugin.setup()
+	require("trouble").setup()
 end
 
--- Hiding env secrets, very useful when showing my screen to someone
-ok, plugin = pcall(require, "cloak")
-
-if ok then
-	plugin.setup({
+if pcall(require, "cloak") then
+	require("cloak").setup({
 		enabled = true,
 		cloak_character = "*",
 		highlight_group = "Comment",

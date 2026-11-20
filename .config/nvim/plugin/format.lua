@@ -1,8 +1,5 @@
--- A file formatter which is way better and simple
-local ok, plugin = pcall(require, "conform")
-
-if ok then
-	plugin.setup({
+if pcall(require, "conform") then
+	require("conform").setup({
 		formatters_by_ft = {
 			lua = { "stylua" },
 			sh = { "shfmt" },

@@ -1,6 +1,4 @@
--- A plugin to install and load treessitter
-local ok, plugin = pcall(require, "nvim-treesitter")
-if ok then
+if pcall(require, "nvim-treesitter") then
 	---@type nvim-ts.parsers
 	-- HACK: Setting up gcc for windows
 	if vim.fn.has("win32") == 1 and vim.fn.executable("cl.exe") == 0 then
@@ -24,7 +22,7 @@ if ok then
 		"requirements",
 	}
 
-	plugin.install(parsers)
+	require("nvim-treesitter").install(parsers)
 
 	-- A build hook for updating parsers
 	local hooks = function(ev)
@@ -36,25 +34,21 @@ if ok then
 	vim.api.nvim_create_autocmd("PackChanged", { callback = hooks })
 end
 
--- A context view of current file open in neovim
-ok, plugin = pcall(require, "treesitter-context")
-if ok then
-	plugin.setup({
+if pcall(require, "treesitter-context") then
+	require("treesitter-context").setup({
 		mode = "cursor",
 		max_lines = 3,
 	})
 
 	vim.keymap.set("n", "<leader>ut", function()
 		vim.cmd("TSContext toggle")
-		vim.notify("treesitter context: " .. (plugin.enabled and "on" or "off"))
+		vim.notify("treesitter context: " .. (require("treesitter-context").enabled and "on" or "off"))
 	end, { desc = "Toggle Treesitter Context" })
 end
 
--- A very useful plugin to autoinstall treesitter parsers based on current file in buffer
 -- Author: https://github.com/mks-h
-ok, plugin = pcall(require, "treesitter-autoinstall")
-if ok then
-	plugin.setup({
+if pcall(require, "treesitter-autoinstall") then
+	require("treesitter-autoinstall").setup({
 		ignore = {},
 		highlight = true,
 		regex = {},

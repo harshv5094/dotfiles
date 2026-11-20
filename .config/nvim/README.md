@@ -20,16 +20,17 @@ On first launch, [vim.pack](https://neovim.io/doc/user/pack/#_plugin-manager) bo
 ## Structure
 
 ```
-init.lua                 -> entry point, loads config.base, also enables vim.loader based on version number
+init.lua                 -> entry point: enables vim.loader, sources options/autocmds/diagnostics/keymaps/pack, lists plugins for `vim.pack`
 lua/
-  config/
-    init.lua             -> bootstraps my config files
-    options.lua          -> vim options
-    keymaps.lua          -> global + LSP keymaps
-    autocmds.lua         -> autocommands (incl. LSP auto-enable)
-    diagnostics.lua      -> vim.diagnostic config + virtual text toggle
-    pack.lua             -> Custom nvim_user_commands for `vim.pack`
-  utils/                 -> small helper modules
+  options.lua            -> vim options + globals (mapleader, netrw, undodir, ...)
+  autocmds.lua           -> autocommands (incl. LSP auto-enable)
+  diagnostics.lua        -> vim.diagnostic config + virtual text toggle
+  keymaps.lua            -> global + LSP keymaps
+  pack.lua               -> Custom nvim_user_commands for `vim.pack`
+  base.lua               -> terminal / lazygit helpers
+  discipline.lua         -> hjkl throttle ("cowboy" mode)
+  git.lua                -> git init helper
+  icons.lua              -> icon glyph tables (nerd font symbols)
 plugin/                  -> Auto imports plugin specs (one file per concern: lsp, ui, format, ...)
 lsp/                     -> per-server LSP configs (vim.lsp.Config), auto-loaded
 ```

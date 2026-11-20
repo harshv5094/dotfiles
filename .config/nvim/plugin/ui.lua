@@ -1,8 +1,5 @@
--- A ui tool for showing lsp, diagnostics progress.
-local ok, plugin = pcall(require, "fidget")
-
-if ok then
-	plugin.setup({
+if pcall(require, "fidget") then
+	require("fidget").setup({
 		progress = {
 			poll_rate = 0, -- How and when to poll for progress messages
 			display = {
@@ -19,12 +16,8 @@ if ok then
 	})
 end
 
--- A small buffer window telling me which file I've opened now
--- Sits in top right, so I don't need to see my statusline
-ok, plugin = pcall(require, "incline")
-
-if ok then
-	plugin.setup({
+if pcall(require, "incline") then
+	require("incline").setup({
 		debounce_threshold = {
 			falling = 50,
 			rising = 10,
@@ -68,62 +61,11 @@ if ok then
 	})
 end
 
--- A beautiful implementation of emacs which-key by folke
-ok, plugin = pcall(require, "which-key")
-
-if ok then
-	plugin.setup({
-		preset = "helix",
-		defaults = {},
-		spec = {
-			mode = { "n", "x" },
-			{ "<leader>/", desc = "Live Grep", icon = { icon = require("utils").icons.misc.search, color = "green" } },
-			{
-				"<leader>fc",
-				desc = "Neovim Config Files",
-				icon = { icon = require("utils.icons").misc.nvim, color = "green" },
-			},
-			{ "<leader>c", group = "code" },
-			{ "<leader>d", group = "debug" },
-			{ "<leader>g", group = "git" },
-			{ "<leader>ga", group = "add" },
-			{ "<leader>gh", group = "hunks" },
-			{ "<leader>gs", group = "status" },
-			{ "<leader>gc", group = "commit" },
-			{ "<leader>gl", group = "log" },
-			{ "<leader>s", group = "search" },
-			{ "<leader>u", group = "ui" },
-			{ "<leader>f", group = "file/find" },
-			{ "<leader>x", group = "diagnostics/quickfix" },
-			{ "<leader>t", group = "Terminal" },
-			{ "<leader>q", group = "quit/session" },
-			{ "<leader><Tab>", group = "tab" },
-			{ "<localleader>r", group = "registers" },
-			{ "[", group = "prev" },
-			{ "]", group = "next" },
-			{ "g", group = "goto" },
-			{ "gs", group = "surround" },
-			{ "z", group = "fold" },
-			{ "y", group = "yank" },
-			{ "d", group = "delete" },
-		},
-	})
-
-	-- Adding custom groups for my which-key config
-	plugin.add({
-		{ "<leader>p", group = "vim.pack", icon = { icon = require("utils").icons.misc.box, color = "green" } },
-		{ "<leader>e", group = "explore", icon = { icon = require("utils").icons.misc.tree, color = "purple" } },
-		{ "<leader>b", group = "buffer", icon = { icon = require("utils").icons.misc.buffers, color = "blue" } },
-	})
-end
-
--- A beautiful implementation of todo highlights by folke
-ok, plugin = pcall(require, "todo-comments")
-if ok then
+if pcall(require, "todo-comments") then
   -- stylua: ignore
   local keys = {
-    { "]t", function() plugin.jump_next() end, desc = "Next Todo Comment" },
-    { "[t", function() plugin.jump_prev() end, desc = "Previous Todo Comment" },
+    { "]t", function() require("todo-comments").jump_next() end, desc = "Next Todo Comment" },
+    { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous Todo Comment" },
     { "<leader>xt", "<cmd>Trouble todo toggle<cr>", desc = "Todo (Trouble)" },
     { "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
   }
@@ -132,13 +74,11 @@ if ok then
 		vim.keymap.set("n", key[1], key[2], { desc = key.desc })
 	end
 
-	plugin.setup()
+	require("todo-comments").setup()
 end
 
--- Rendering markdown files to see preview as shown in browser
-ok, plugin = pcall(require, "render-markdown")
-if ok then
-	plugin.setup({
+if pcall(require, "render-markdown") then
+	require("render-markdown").setup({
 		code = {
 			sign = false,
 			width = "block",
@@ -153,14 +93,11 @@ if ok then
 		},
 	})
 
-	vim.keymap.set("n", "<leader>um", plugin.toggle, { desc = "Toggle Markdown Rendering" })
+	vim.keymap.set("n", "<leader>um", require("render-markdown").toggle, { desc = "Toggle Markdown Rendering" })
 end
 
--- A beautiful bufferline that is way better than neovim default one
-ok, plugin = pcall(require, "bufferline")
-
-if ok then
-	plugin.setup({
+if pcall(require, "bufferline") then
+	require("bufferline").setup({
 		options = {
 			mode = "tabs", -- set to "tabs" to only show tabpages instead
 			always_show_bufferline = false,

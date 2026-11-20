@@ -1,6 +1,5 @@
--- Mason install locations, resolved once at startup
-local status, registry = pcall(require, "mason-registry")
-if not status then
+-- A safety guard: if mason_registry not present, then skip loading this file.
+if not pcall(require, "mason-registry") then
 	return
 end
 
@@ -11,47 +10,22 @@ local packages_list = {
 	"local-lua-debugger-vscode",
 }
 for _, name in ipairs(packages_list) do
-	if not registry.is_installed(name) then
+	if not require("mason-registry").is_installed(name) then
 		return
 	end
 end
 
 local mason_paths = {
-	debugpy = registry.get_package("debugpy"):get_install_path() .. "/venv/bin/python",
-	bashdb_adapter = registry.get_package("bash-debug-adapter"):get_install_path() .. "/bash-debug-adapter",
-	bashdb_dir = registry.get_package("bash-debug-adapter"):get_install_path() .. "/extension/bashdb_dir",
-	lua_debugger = registry.get_package("local-lua-debugger-vscode"):get_install_path(),
+	debugpy = require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/bin/python",
+	bashdb_adapter = require("mason-registry").get_package("bash-debug-adapter"):get_install_path()
+		.. "/bash-debug-adapter",
+	bashdb_dir = require("mason-registry").get_package("bash-debug-adapter"):get_install_path()
+		.. "/extension/bashdb_dir",
+	lua_debugger = require("mason-registry").get_package("local-lua-debugger-vscode"):get_install_path(),
 }
 
--- Icon sign definition
-vim.fn.sign_define("DapBreakpoint", {
-	text = require('utils').icons.dap.breakpoint,
-	texthl = "DiagnosticSignError",
-})
-vim.fn.sign_define("DapBreakpointCondition", {
-	text = require('utils').icons.dap.conditional_breakpoint,
-	texthl = "DiagnosticSignWarn",
-})
-vim.fn.sign_define("DapBreakpointRejected", {
-	text = require('utils').icons.dap.rejected_breakpoint,
-	texthl = "Comment",
-})
-vim.fn.sign_define("DapLogPoint", {
-	text = require('utils').icons.dap.log_point,
-	texthl = "DiagnosticSignInfo",
-})
-vim.fn.sign_define("DapStopped", {
-	text = require('utils').icons.dap.stopped,
-	texthl = "String",
-	linehl = "CursorLine",
-	numhl = "String",
-})
-
--- The Debug adapter protocol
-local ok, plugin = pcall(require, "dap")
-if ok then
-	-- Python Debug Adapters
-	plugin.adapters.python = function(cb, config)
+if pcall(require, "dap") then
+	require("dap").adapters.python = function(cb, config)
 		if config.request == "attach" then
 			---@diagnostic disable-next-line: undefined-field
 			local port = (config.connect or config).port
@@ -77,8 +51,7 @@ if ok then
 		end
 	end
 
-	-- Python configuration
-	plugin.configurations.python = {
+	require("dap").configurations.python = {
 		{
 			type = "python",
 			request = "launch",
@@ -96,15 +69,13 @@ if ok then
 		},
 	}
 
-	-- Bash Debugger adapter
-	plugin.adapters.bashdb = {
+	require("dap").adapters.bashdb = {
 		type = "executable",
 		command = mason_paths.bashdb_adapter,
 		name = "bashdb",
 	}
 
-	-- Bash configuration
-	plugin.configurations.sh = {
+	require("dap").configurations.sh = {
 		{
 			type = "bashdb",
 			request = "launch",
@@ -127,8 +98,7 @@ if ok then
 		},
 	}
 
-	-- Lua debugger adapter
-	plugin.adapters["local-lua"] = {
+	require("dap").adapters["local-lua"] = {
 		type = "executable",
 		command = "node",
 		args = { mason_paths.lua_debugger .. "/extension/extension/debugAdapter.js" },
@@ -144,8 +114,7 @@ if ok then
 		end,
 	}
 
-	-- Lua configuration
-	plugin.configurations.lua = {
+	require("dap").configurations.lua = {
 		{
 			type = "local-lua",
 			request = "launch",
@@ -161,61 +130,25 @@ if ok then
 	-- Debug keymaps, all under <leader>d
 	local map = vim.keymap.set
 
-	-- Session control
-	map("n", "<leader>dc", plugin.continue, { desc = "Start/Continue" })
-	map("n", "<leader>da", plugin.run_last, { desc = "Run Last" })
-	map("n", "<leader>dp", plugin.pause, { desc = "Pause" })
-	map("n", "<leader>dt", plugin.terminate, { desc = "Terminate" })
+	map("n", "<leader>dc", require("dap").continue, { desc = "Start/Continue" })
+	map("n", "<leader>da", require("dap").run_last, { desc = "Run Last" })
+	map("n", "<leader>dp", require("dap").pause, { desc = "Pause" })
+	map("n", "<leader>dt", require("dap").terminate, { desc = "Terminate" })
 
-	-- Breakpoints
-	map("n", "<leader>db", plugin.toggle_breakpoint, { desc = "Toggle Breakpoint" })
+	map("n", "<leader>db", require("dap").toggle_breakpoint, { desc = "Toggle Breakpoint" })
 	map("n", "<leader>dB", function()
 		vim.ui.input({ prompt = "Breakpoint condition: " }, function(condition)
 			if condition and condition ~= "" then
-				plugin.set_breakpoint(condition)
+				require("dap").set_breakpoint(condition)
 			end
 		end)
 	end, { desc = "Conditional Breakpoint" })
-	map("n", "<leader>dC", plugin.clear_breakpoints, { desc = "Clear All Breakpoints" })
+	map("n", "<leader>dC", require("dap").clear_breakpoints, { desc = "Clear All Breakpoints" })
 
-	-- Stepping
-	map("n", "<leader>di", plugin.step_into, { desc = "Step Into" })
-	map("n", "<leader>do", plugin.step_over, { desc = "Step Over" })
-	map("n", "<leader>dO", plugin.step_out, { desc = "Step Out" })
+	map("n", "<leader>di", require("dap").step_into, { desc = "Step Into" })
+	map("n", "<leader>do", require("dap").step_over, { desc = "Step Over" })
+	map("n", "<leader>dO", require("dap").step_out, { desc = "Step Out" })
 
-	-- Stack frame navigation
-	map("n", "<leader>dj", plugin.down, { desc = "Down Frame" })
-	map("n", "<leader>dk", plugin.up, { desc = "Up Frame" })
-end
-
--- The Lightweight view of nvim-dap
-ok, plugin = pcall(require, "dap-view")
-
-if ok then
-	plugin.setup({
-		auto_toggle = true,
-		virtual_text = {
-			enabled = true,
-		},
-	})
-
-	local map = vim.keymap.set
-
-	map("n", "<leader>du", plugin.toggle, { desc = "Toggle UI" })
-
-	local state = require("dap-view.state")
-	map("n", "<leader>dr", function()
-		if not (state.winnr and vim.api.nvim_win_is_valid(state.winnr)) then
-			plugin.open()
-			plugin.jump_to_view("repl")
-		elseif state.current_section == "repl" then
-			plugin.close()
-		else
-			plugin.jump_to_view("repl")
-		end
-	end, { desc = "Toggle REPL" })
-
-	map({ "n", "x" }, "<leader>dh", plugin.hover, { desc = "Hover Variable" })
-	map({ "n", "x" }, "<leader>dw", plugin.add_expr, { desc = "Watch Expression" })
-	map("n", "<leader>de", plugin.virtual_text_toggle, { desc = "Toggle Virtual Text" })
+	map("n", "<leader>dj", require("dap").down, { desc = "Down Frame" })
+	map("n", "<leader>dk", require("dap").up, { desc = "Up Frame" })
 end

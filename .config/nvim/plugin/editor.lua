@@ -1,10 +1,4 @@
--- Just declaring local variables openly
-local ok, plugin
-
--- A plugin to close buffers based on scenario
-ok, _ = pcall(require, "close_buffers")
-
-if ok then
+if pcall(require, "close_buffers") then
 	local keys = {
 		{
 			"<leader>bh",
@@ -34,14 +28,10 @@ if ok then
 	end
 end
 
--- A global search and replace plugin
-ok, plugin = pcall(require, "grug-far")
-
-if ok then
+if pcall(require, "grug-far") then
 	vim.keymap.set({ "n", "x" }, "<leader>sr", function()
-		local grug = require("grug-far")
 		local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
-		grug.open({
+		require("grug-far").open({
 			transient = true,
 			prefills = {
 				filesFilter = ext and ext ~= "" and "*." .. ext or nil,
@@ -60,20 +50,18 @@ if path_check then
 	end, { desc = "Undotree Toggle" })
 end
 
-ok, plugin = pcall(require, "persistence")
-
-if ok then
-  -- stylua: ignore
-  local keys = {
-    { "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
-    { "<leader>qS", function() require("persistence").select() end,desc = "Select Session" },
-    { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
-    { "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
-  }
+if pcall(require, "persistence") then
+	-- stylua: ignore
+	local keys = {
+		{ "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
+		{ "<leader>qS", function() require("persistence").select() end, desc = "Select Session" },
+		{ "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
+		{ "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
+	}
 
 	for _, key in ipairs(keys) do
 		vim.keymap.set("n", key[1], key[2], { desc = key.desc })
 	end
 
-	plugin.setup()
+	require("persistence").setup()
 end

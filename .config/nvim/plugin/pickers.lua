@@ -1,14 +1,10 @@
--- Pickers powered by mini.pick + mini.extra (replaces telescope.nvim)
-local ok = pcall(require, "mini.pick")
-if not ok then
+if not pcall(require, "mini.pick") then
 	return
 end
 
-local pick = require("mini.pick")
-local extra = require("mini.extra")
 local map = vim.keymap.set
 
-pick.setup({
+require("mini.pick").setup({
 	mappings = {
 		move_down = "<M-n>",
 		move_up = "<M-p>",
@@ -30,12 +26,11 @@ pick.setup({
 })
 
 local function files_in(cwd, name)
-	pick.builtin.files(nil, { source = { name = name, cwd = cwd } })
+	require("mini.pick").builtin.files(nil, { source = { name = name, cwd = cwd } })
 end
 
 local function todo_picker(keywords)
-	local ok_search, search = pcall(require, "todo-comments.search")
-	if not ok_search then
+	if not pcall(require, "todo-comments.search") then
 		return
 	end
 
@@ -43,7 +38,7 @@ local function todo_picker(keywords)
 		keywords = table.concat(keywords, ",")
 	end
 
-	search.search(function(results)
+	require("todo-comments.search").search(function(results)
 		local items = {}
 		for _, r in ipairs(results) do
 			items[#items + 1] = {
@@ -54,31 +49,31 @@ local function todo_picker(keywords)
 			}
 		end
 		vim.fn.setqflist({}, " ", { title = "Todo", items = items })
-		extra.pickers.list({ scope = "quickfix" })
+		require("mini.extra").pickers.list({ scope = "quickfix" })
 	end, { keywords = keywords })
 end
 
 -- stylua: ignore
 local keys = {
-	{ "<leader>,", function() pick.builtin.buffers() end, "Buffers" },
-	{ "<leader><space>", function() pick.builtin.files() end, "Find Files" },
-	{ "<leader>/", function() pick.builtin.grep_live() end, "Live Grep" },
-	{ "<leader>sb", function() extra.pickers.buf_lines({ scope = "current" }) end, "Buffer Lines" },
-	{ "<leader>sc", function() extra.pickers.history() end, "Command History" },
-	{ "<leader>sd", function() extra.pickers.diagnostic({ scope = "all" }) end, "Diagnostics" },
-	{ "<leader>sh", function() pick.builtin.help() end, "Help Tags" },
-	{ "<leader>sH", function() extra.pickers.hl_groups() end, "Highlight Groups" },
-	{ "<leader>sj", function() extra.pickers.list({ scope = "jump" }) end, "Jumplist" },
-	{ "<leader>sk", function() extra.pickers.keymaps() end, "Keymaps" },
-	{ "<leader>sl", function() extra.pickers.list({ scope = "location" }) end, "Location List" },
-	{ "<leader>sm", function() extra.pickers.manpages() end, "Man Pages" },
-	{ "<leader>so", function() extra.pickers.options() end, "Options" },
-	{ "<leader>sO", function() extra.pickers.oldfiles() end, "Oldfiles" },
-	{ "<leader>sq", function() extra.pickers.list({ scope = "quickfix" }) end, "Quickfix List" },
-	{ "<leader>sR", function() pick.builtin.resume() end, "Resume Picker" },
+	{ "<leader>,", function() require("mini.pick").builtin.buffers() end, "Active Buffers" },
+	{ "<leader><space>", function() require("mini.pick").builtin.files() end, "Find Files" },
+	{ "<leader>/", function() require("mini.pick").builtin.grep_live() end, "Live Grep" },
+	{ "<leader>sb", function() require("mini.extra").pickers.buf_lines({ scope = "current" }) end, "Buffer Lines" },
+	{ "<leader>sc", function() require("mini.extra").pickers.history() end, "Command History" },
+	{ "<leader>sd", function() require("mini.extra").pickers.diagnostic({ scope = "all" }) end, "Diagnostics" },
+	{ "<leader>sh", function() require("mini.pick").builtin.help() end, "Help Tags" },
+	{ "<leader>sH", function() require("mini.extra").pickers.hl_groups() end, "Highlight Groups" },
+	{ "<leader>sj", function() require("mini.extra").pickers.list({ scope = "jump" }) end, "Jumplist" },
+	{ "<leader>sk", function() require("mini.extra").pickers.keymaps() end, "Keymaps" },
+	{ "<leader>sl", function() require("mini.extra").pickers.list({ scope = "location" }) end, "Location List" },
+	{ "<leader>sm", function() require("mini.extra").pickers.manpages() end, "Man Pages" },
+	{ "<leader>so", function() require("mini.extra").pickers.options() end, "Options" },
+	{ "<leader>sO", function() require("mini.extra").pickers.oldfiles() end, "Oldfiles" },
+	{ "<leader>sq", function() require("mini.extra").pickers.list({ scope = "quickfix" }) end, "Quickfix List" },
+	{ "<leader>sR", function() require("mini.pick").builtin.resume() end, "Resume Picker" },
 	{ "<leader>st", function() todo_picker() end, "Todo" },
 	{ "<leader>sT", function() todo_picker({ "TODO", "FIX", "FIXME" }) end, "Todo/Fix/Fixme" },
-	{ "<leader>uC", function() extra.pickers.colorschemes() end, "Colorscheme" },
+	{ "<leader>uC", function() require("mini.extra").pickers.colorschemes() end, "Colorscheme" },
 	{ "<leader>fc", function() files_in(vim.fn.stdpath("config"), "Config Files") end, "Config Files" },
 	{
 		"<leader>fP",

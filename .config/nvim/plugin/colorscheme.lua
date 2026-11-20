@@ -1,8 +1,5 @@
--- Gruvbox colorscheme: I can't leave without this
-local ok, plugin = pcall(require, "gruvbox")
-
-if ok then
-	plugin.setup({
+if pcall(require, "gruvbox") then
+	require("gruvbox").setup({
 		terminal_colors = true,
 		transparent_mode = true,
 		undercurl = true,

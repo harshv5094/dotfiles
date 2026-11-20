@@ -3,7 +3,7 @@
 ---@type vim.diagnostic.Opts.VirtualText
 local virtual_text_opts = {
 	spacing = 4,
-	prefix = require('utils').icons.diagnostics.Prefix,
+	prefix = require("icons").diagnostics.Prefix,
 }
 local virtual_text_on = true
 
@@ -15,10 +15,10 @@ local opts = {
 	severity_sort = true,
 	signs = {
 		text = {
-			[vim.diagnostic.severity.ERROR] = require('utils').icons.diagnostics.Error,
-			[vim.diagnostic.severity.WARN] = require('utils').icons.diagnostics.Warn,
-			[vim.diagnostic.severity.HINT] = require('utils').icons.diagnostics.Hint,
-			[vim.diagnostic.severity.INFO] = require('utils').icons.diagnostics.Info,
+			[vim.diagnostic.severity.ERROR] = require("icons").diagnostics.Error,
+			[vim.diagnostic.severity.WARN] = require("icons").diagnostics.Warn,
+			[vim.diagnostic.severity.HINT] = require("icons").diagnostics.Hint,
+			[vim.diagnostic.severity.INFO] = require("icons").diagnostics.Info,
 		},
 	},
 }
