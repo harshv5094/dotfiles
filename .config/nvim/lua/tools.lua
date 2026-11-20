@@ -199,4 +199,16 @@ function M.project_root()
 	return vim.fs.root(0, { ".git" }) or vim.fs.root(vim.fn.getcwd(), { ".git" }) or vim.fn.getcwd()
 end
 
+-- This function allows user to setup git initialized on the root directory where neovim is open.
+function M.git_init()
+	local root = vim.fn.getcwd()
+	local output = vim.fn.system({ "git", "init", root })
+
+	if vim.v.shell_error == 0 then
+		vim.notify("Git initialized in: " .. root, vim.log.levels.INFO, { title = "Git Init" })
+	else
+		vim.notify("Git init failed:\n" .. output, vim.log.levels.ERROR, { title = "Git Init Error" })
+	end
+end
+
 return M
