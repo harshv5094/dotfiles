@@ -1,6 +1,6 @@
 -- NOTE: pack.lua
 -- User commands for managing plugins with vim.pack (Neovim 0.12+).
--- Load from init.lua with: require('pack_user_command')
+-- Load from init.lua with: require('pack')
 -- Verify the vim.pack API against `:h vim.pack` in your version.
 
 -- TODO: Keep it until there is any default name after v0.13 release
