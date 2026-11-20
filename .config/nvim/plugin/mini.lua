@@ -19,11 +19,65 @@ if pcall(require, "mini.files") then
 	require("mini.files").setup({
 		options = {
 			use_as_default_explorer = true,
+			permanent_delete = false,
+			lsp_timeout = 500,
 		},
-		-- windows = {
-		-- 	preview = true,
-		-- 	width_preview = 40,
-		-- },
+		mappings = {
+			close = "q",
+			go_in = "L",
+			go_in_plus = "l",
+			go_out = "H",
+			go_out_plus = "h",
+			mark_goto = "'",
+			mark_set = "m",
+			reset = "<BS>",
+			reveal_cwd = "@",
+			show_help = "g?",
+			synchronize = "=",
+			trim_left = "<",
+			trim_right = ">",
+		},
+		windows = {
+			max_number = 2, -- show at most 2 panes side by side
+			width_focus = 50,
+			width_nofocus = 15,
+			preview = false,
+		},
+	})
+
+	-- Center the explorer horizontally and pin it to the top
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "MiniFilesWindowUpdate",
+		callback = function()
+			local state = MiniFiles.get_explorer_state()
+			if state == nil then
+				return
+			end
+
+			-- Collect open explorer windows and their total outer width (inner + 2 for borders)
+			local wins, total = {}, 0
+			for _, w in ipairs(state.windows) do
+				if vim.api.nvim_win_is_valid(w.win_id) then
+					table.insert(wins, w.win_id)
+					total = total + vim.api.nvim_win_get_width(w.win_id) + 2
+				end
+			end
+			if #wins == 0 then
+				return
+			end
+
+			-- Lay them out left to right, starting so the group is centered
+			local col = math.floor((vim.o.columns - total) / 2)
+			for _, win_id in ipairs(wins) do
+				local config = vim.api.nvim_win_get_config(win_id)
+				config.relative = "editor"
+				config.row = 0 -- just below the top edge (tabline/border space)
+				config.col = col
+				config.border = "rounded"
+				vim.api.nvim_win_set_config(win_id, config)
+				col = col + vim.api.nvim_win_get_width(win_id) + 2
+			end
+		end,
 	})
 
 	local minifiles_toggle = function(...)
