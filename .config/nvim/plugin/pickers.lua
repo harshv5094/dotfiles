@@ -20,22 +20,33 @@ require("mini.pick").setup({
 		end,
 	},
 	mappings = {
-		move_down = "<M-n>",
-		move_up = "<M-p>",
+		move_down = "<M-j>",
+		move_up = "<M-k>",
 		move_start = "<M-g>",
+
 		mark = "<M-x>",
 		mark_all = "<M-a>",
+
 		paste = "<M-r>",
+
 		scroll_down = "<M-f>",
 		scroll_up = "<M-b>",
 		scroll_left = "<M-h>",
 		scroll_right = "<M-l>",
+
+		delete_char = "<BS>",
+		delete_char_right = "<Del>",
 		delete_left = "<M-u>",
 		delete_word = "<M-w>",
+
+		choose = "<CR>",
 		choose_in_split = "<M-s>",
 		choose_in_vsplit = "<M-v>",
-		choose_in_tabpage = "<M-t>",
-		stop = "<M-c>",
+		choose_in_tabpage = "<C-t>",
+
+		stop = "<Esc>",
+		toggle_info = "<S-Tab>",
+		toggle_preview = "<Tab>",
 	},
 })
 
