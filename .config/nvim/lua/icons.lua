@@ -2,19 +2,9 @@ local M = {
 	-- Misc Icons
 	misc = {
 		clock = "  ",
-		bug = "",
-		vim = " ",
 		nvim = " ",
-		dashed_bar = "┊",
-		ellipsis = "…",
-		palette = "󰏘",
-		robot = "󰚩",
 		search = "",
-		terminal = "",
-		toolbox = "󰦬",
-		vertical_bar = "│",
 		box = "󰏗",
-		tree = "󰙅",
 		buffers = "",
 	},
 
