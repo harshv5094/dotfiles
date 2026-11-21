@@ -4,10 +4,6 @@ local opt = vim.opt
 -- Let ripgrep-based pickers search hidden files while still honoring .gitignore
 vim.env.RIPGREP_CONFIG_PATH = vim.fn.stdpath("config") .. "/.ripgreprc"
 
--- Path setup for undodir (For persistence undo file record)
-local undodir_path = vim.fn.stdpath("cache") .. "/undodir"
-vim.fn.mkdir(undodir_path, "p")
-
 -- Better i,j,k,l,-,+ discipline
 require("discipline").cowboy()
 
@@ -78,7 +74,6 @@ opt.breakindent = true -- keep indentation on wrapped lines
 
 -- session
 opt.undofile = true -- persist undo history across sessions
-opt.undodir = undodir_path -- using my custom directory path for undo files
 opt.swapfile = false -- Don't need swapfile backup never asked for it
 opt.writebackup = false -- Disable writing backup file for config
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" } -- choose what a session saves
