@@ -38,12 +38,6 @@ if pcall(require, "mini.files") then
 			trim_left = "<",
 			trim_right = ">",
 		},
-		windows = {
-			max_number = 2, -- show at most 2 panes side by side
-			width_focus = 50,
-			width_nofocus = 15,
-			preview = false,
-		},
 	})
 
 	-- Center the explorer horizontally and pin it to the top
