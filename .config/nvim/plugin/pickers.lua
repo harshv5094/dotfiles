@@ -29,8 +29,8 @@ require("mini.pick").setup({
 
 		paste = "<M-r>",
 
-		scroll_down = "<M-f>",
-		scroll_up = "<M-b>",
+		scroll_down = "<M-n>",
+		scroll_up = "<M-p>",
 		scroll_left = "<M-h>",
 		scroll_right = "<M-l>",
 
