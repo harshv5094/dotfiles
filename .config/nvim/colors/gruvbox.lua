@@ -56,7 +56,7 @@ local Gruvbox = {}
 ---@field transparent_mode boolean?
 ---@field undercurl boolean?
 ---@field underline boolean?
-local config = {
+local defaults = {
 	terminal_colors = true,
 	undercurl = true,
 	underline = true,
@@ -80,7 +80,7 @@ local config = {
 	transparent_mode = true,
 }
 
-Gruvbox.config = vim.deepcopy(config)
+Gruvbox.config = vim.deepcopy(defaults)
 
 -- main gruvbox color palette
 ---@class GruvboxPalette
@@ -1088,7 +1088,7 @@ local function get_groups()
 		["@lsp.type.interface"] = { link = "@constructor" },
 		["@lsp.type.macro"] = { link = "@macro" },
 		["@lsp.type.method"] = { link = "@method" },
-		["@lsp.type.modifier.java"] = { link = "@keyword.type.java" },
+		["@lsp.type.modifier.java"] = { link = "@keyword" },
 		["@lsp.type.namespace"] = { link = "@namespace" },
 		["@lsp.type.parameter"] = { link = "@parameter" },
 		["@lsp.type.property"] = { link = "@property" },
@@ -1096,39 +1096,6 @@ local function get_groups()
 		["@lsp.type.type"] = { link = "@type" },
 		["@lsp.type.typeParameter"] = { link = "@type.definition" },
 		["@lsp.type.variable"] = { link = "@variable" },
-
-		-- NeoTreeDirectoryName = { link = "Directory" },
-		-- NeoTreeDotfile = { fg = colors.fg4 },
-		-- NeoTreeFadeText1 = { fg = colors.fg3 },
-		-- NeoTreeFadeText2 = { fg = colors.fg4 },
-		-- NeoTreeFileIcon = { fg = colors.blue },
-		-- NeoTreeFileName = { fg = colors.fg1 },
-		-- NeoTreeFileNameOpened = { fg = colors.fg1, bold = true },
-		-- NeoTreeFileStats = { fg = colors.fg3 },
-		-- NeoTreeFileStatsHeader = { fg = colors.fg2, italic = true },
-		-- NeoTreeFilterTerm = { link = "SpecialChar" },
-		-- NeoTreeHiddenByName = { link = "NeoTreeDotfile" },
-		-- NeoTreeIndentMarker = { fg = colors.fg4 },
-		-- NeoTreeMessage = { fg = colors.fg3, italic = true },
-		-- NeoTreeModified = { fg = colors.yellow },
-		-- NeoTreeRootName = { fg = colors.fg1, bold = true, italic = true },
-		-- NeoTreeSymbolicLinkTarget = { link = "NeoTreeFileName" },
-		-- NeoTreeExpander = { fg = colors.fg4 },
-		-- NeoTreeWindowsHidden = { link = "NeoTreeDotfile" },
-		-- NeoTreePreview = { link = "Search" },
-		-- NeoTreeGitAdded = { link = "GitGutterAdd" },
-		-- NeoTreeGitConflict = { fg = colors.orange, bold = true, italic = true },
-		-- NeoTreeGitDeleted = { link = "GitGutterDelete" },
-		-- NeoTreeGitIgnored = { link = "NeoTreeDotfile" },
-		-- NeoTreeGitModified = { link = "GitGutterChange" },
-		-- NeoTreeGitRenamed = { link = "NeoTreeGitModified" },
-		-- NeoTreeGitStaged = { link = "NeoTreeGitAdded" },
-		-- NeoTreeGitUntracked = { fg = colors.orange, italic = true },
-		-- NeoTreeGitUnstaged = { link = "NeoTreeGitConflict" },
-		-- NeoTreeTabActive = { fg = colors.fg1, bold = true },
-		-- NeoTreeTabInactive = { fg = colors.fg4, bg = colors.bg1 },
-		-- NeoTreeTabSeparatorActive = { fg = colors.bg1 },
-		-- NeoTreeTabSeparatorInactive = { fg = colors.bg2, bg = colors.bg1 },
 	}
 
 	-- In transparent mode, leave the background unset for these groups.
@@ -1453,7 +1420,6 @@ local function get_groups()
 		["@struct"] = { link = "@type" },
 		["@typeParameter"] = { link = "@type.definition" },
 		["@function.method.call"] = { link = "@function.method" },
-		["@lsp.type.typeParameter"] = { link = "@type.definition" },
 		["@lsp.typemod.variable.readonly"] = { link = "@variable" },
 		["@lsp.typemod.variable.static"] = { link = "@variable" },
 	}
@@ -1476,7 +1442,7 @@ end
 
 --- main load function
 Gruvbox.load = function()
-	if vim.version().minor < 8 then
+	if vim.fn.has("nvim-0.8") == 0 then
 		vim.notify_once("gruvbox: you must use neovim 0.8 or higher")
 		return
 	end
