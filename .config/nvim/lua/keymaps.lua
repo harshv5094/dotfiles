@@ -109,7 +109,7 @@ map("n", "<leader>uc", function()
 end, { desc = "Toggle Codelens", noremap = true })
 
 -- Toggle terminal
-map({ "n", "t" }, "<C-`>", require("tools").toggle_terminal, { desc = "Toggle Terminal" })
+map({ "n", "t" }, "<M-`>", require("tools").toggle_terminal, { desc = "Toggle Terminal" })
 
 -- Toggle Lazygit
 map({ "n", "t" }, "<leader>gg", require("tools").toggle_lazygit, { desc = "LazyGit" })
