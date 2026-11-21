@@ -24,9 +24,6 @@ vim.pack.add({
 	{ src = gh("b0o/SchemaStore.nvim") },
 	{ src = gh("laytan/cloak.nvim") },
 
-	-- Colorscheme
-	{ src = gh("ellisonleao/gruvbox.nvim") },
-
 	-- Editor
 	{ src = gh("nvim-lua/plenary.nvim") },
 	{ src = gh("nvim-tree/nvim-web-devicons") },
