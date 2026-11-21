@@ -6,6 +6,8 @@ if pcall(require, "conform") then
 			bash = { "shfmt" },
 			yaml = { "prettier" },
 			markdown = { "prettier" },
+			json = { "prettier" },
+			jsonc = { "prettier" },
 			python = {
 				-- To fix auto-fixable lint errors.
 				"ruff_fix",
