@@ -1,5 +1,5 @@
-if pcall(require, "nvim-lint") then
-	require("nvim-lint").linters_by_ft = {
+if pcall(require, "lint") then
+	require("lint").linters_by_ft = {
 		lua = { "luacheck" },
 		sh = { "shellcheck" },
 		bash = { "shellcheck" },
@@ -13,7 +13,7 @@ if pcall(require, "nvim-lint") then
 	vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 		callback = function()
 			if vim.g.lint_enabled then
-				require("nvim-lint").try_lint()
+				require("lint").try_lint()
 			end
 		end,
 	})
@@ -21,7 +21,7 @@ if pcall(require, "nvim-lint") then
 	vim.keymap.set("n", "<leader>ul", function()
 		vim.g.lint_enabled = not vim.g.lint_enabled
 		if vim.g.lint_enabled then
-			require("nvim-lint").try_lint()
+			require("lint").try_lint()
 		else
 			vim.diagnostic.reset(nil, 0) -- clear current buffer's lint diagnostics
 		end
