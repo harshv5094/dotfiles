@@ -157,6 +157,7 @@ if pcall(require, "which-key") then
 	-- Adding custom groups for my which-key config
 	require("which-key").add({
 		{ "<leader>p", group = "vim.pack", icon = { icon = require("icons").misc.box, color = "green" } },
+		{ "<leader>e", group = "explore", icon = { icon = require("icons").misc.tree, color = "purple" } },
 		{ "<leader>b", group = "buffers", icon = { icon = require("icons").misc.buffers, color = "blue" } },
 	})
 end

@@ -81,7 +81,7 @@ if pcall(require, "mini.files") then
 		end
 	end
 
-	vim.keymap.set("n", "sf", function()
+	vim.keymap.set("n", "<leader>e", function()
 		minifiles_toggle()
 	end, { desc = "Toggle file explorer" })
 end

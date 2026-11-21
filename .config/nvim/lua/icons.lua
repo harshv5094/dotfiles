@@ -6,6 +6,7 @@ local M = {
 		search = "",
 		box = "󰏗",
 		buffers = "",
+		tree = "󰙅 ",
 	},
 
 	-- Diagnostics Icons
