@@ -66,7 +66,7 @@ if pcall(require, "mini.files") then
 			for _, win_id in ipairs(wins) do
 				local config = vim.api.nvim_win_get_config(win_id)
 				config.relative = "editor"
-				config.row = 0 -- just below the top edge (tabline/border space)
+				config.row = 1 -- just below the top edge (tabline/border space)
 				config.col = col
 				config.border = "rounded"
 				vim.api.nvim_win_set_config(win_id, config)

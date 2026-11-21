@@ -13,7 +13,7 @@ require("mini.pick").setup({
 				anchor = "NW",
 				height = height,
 				width = width,
-				row = 0, -- On the top edge
+				row = 1, -- On the top edge
 				col = math.floor(0.5 * (vim.o.columns - width)), -- still horizontally centered
 				border = "rounded",
 			}
