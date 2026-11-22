@@ -116,8 +116,7 @@ if pcall(require, "blink.cmp") then
 end
 
 -- A git wrapper by tpope
-local path_check = vim.fn.isdirectory(vim.fn.stdpath("data") .. "/site/pack/core/opt/vim-fugitive/")
-if path_check then
+if require("tools").vim_plugin_path_checker("vim-fugitive") then
 	-- stylua: ignore
 	local keys = {
 		{ "<leader>gss", "<CMD>G status<CR>", desc = "status" },

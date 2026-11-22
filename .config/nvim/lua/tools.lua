@@ -211,4 +211,11 @@ function M.git_init()
 	end
 end
 
+---@param plugin_name string
+---@return 0|1
+--- A function to check vimscript plugin path exist or not.
+function M.vim_plugin_path_checker(plugin_name)
+	return vim.fn.isdirectory(vim.fn.stdpath("data") .. "/site/pack/core/opt/" .. plugin_name .. "/")
+end
+
 return M

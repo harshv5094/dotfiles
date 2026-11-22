@@ -41,9 +41,7 @@ if pcall(require, "grug-far") then
 end
 
 -- A tree view of undo file
-local path_check = vim.fn.isdirectory(vim.fn.stdpath("data") .. "/site/pack/core/opt/undotree/")
-
-if path_check then
+if require("tools").vim_plugin_path_checker("undotree") then
 	vim.keymap.set("n", "<leader>fu", function()
 		vim.cmd("UndotreeToggle")
 		vim.cmd("UndotreeFocus")
