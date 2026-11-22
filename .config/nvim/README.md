@@ -27,7 +27,7 @@ lua/
   diagnostics.lua        -> vim.diagnostic config + virtual text toggle
   keymaps.lua            -> global + LSP keymaps
   pack.lua               -> Custom nvim_user_commands for `vim.pack`
-  base.lua               -> terminal / lazygit helpers
+  tools.lua              -> Contains all my utilities and tools (lazygit, terminal, etc.)
   discipline.lua         -> hjkl throttle ("cowboy" mode)
   git.lua                -> git init helper
   icons.lua              -> icon glyph tables (nerd font symbols)
