@@ -16,6 +16,11 @@ for _, mini_plugin in ipairs(mini_plugins) do
 	end
 end
 
+-- Let plugins that only integrate with nvim-web-devicons use mini.icons instead
+if _G.MiniIcons then
+	MiniIcons.mock_nvim_web_devicons()
+end
+
 if pcall(require, "mini.files") then
 	require("mini.files").setup({
 		options = {
