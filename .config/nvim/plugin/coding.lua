@@ -114,3 +114,26 @@ if pcall(require, "blink.cmp") then
 		fuzzy = { implementation = "prefer_rust" },
 	})
 end
+
+-- A git wrapper by tpope
+local path_check = vim.fn.isdirectory(vim.fn.stdpath("data") .. "/site/pack/core/opt/vim-fugitive/")
+if path_check then
+	-- stylua: ignore
+	local keys = {
+		{ "<leader>gss", "<CMD>G status<CR>", desc = "status" },
+		{ "<leader>gsq", "<CMD>G status --short<CR>", desc = "status (short)" },
+		{ "<leader>gab", "<CMD>G add %<CR>", desc = "add (Current Buffer)" },
+		{ "<leader>gaa", "<CMD>G add *<CR>", desc = "add (All)" },
+		{ "<leader>gaf", ":G add ", desc = "add (Manual)" },
+		{ "<leader>gce", "<CMD>G commit --edit<CR>", desc = "commit (edit)" },
+		{ "<leader>gca", "<CMD>G commit --amend<CR>", desc = "commit (amend)" },
+		{ "<leader>gp", "<CMD>G pull --no-edit<CR>", desc = "pull (no-edit)" },
+		{ "<leader>gr", "<CMD>G reset --hard HEAD<CR>", desc = "reset (--hard) HEAD" },
+		{ "<leader>gP", "<CMD>G push --force-with-lease<CR>", desc = "push (force-with-lease)" },
+		{ "<leader>gll", "<CMD>G log<CR>", desc = "log" },
+	}
+
+	for _, key in ipairs(keys) do
+		vim.keymap.set("n", key[1], key[2], { desc = key.desc })
+	end
+end

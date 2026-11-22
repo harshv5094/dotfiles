@@ -23,6 +23,7 @@ vim.pack.add({
 	{ src = gh("folke/trouble.nvim") },
 	{ src = gh("b0o/SchemaStore.nvim") },
 	{ src = gh("laytan/cloak.nvim") },
+	{ src = gh("tpope/vim-fugitive") },
 
 	-- Colorscheme
 	{ src = gh("ellisonleao/gruvbox.nvim") },
