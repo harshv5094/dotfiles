@@ -29,7 +29,9 @@ if pcall(require, "incline") then
 		},
 		window = { padding = 0, margin = { vertical = 0, horizontal = 0 } },
 		render = function(props)
-			local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+			local bufname = vim.api.nvim_buf_get_name(props.buf)
+			local filename = vim.fn.fnamemodify(bufname, ":t")
+			local icon, icon_hl = require("mini.icons").get("file", filename)
 			local modified = vim.bo[props.buf].modified
 
 			-- No Name for unsaved file
@@ -52,6 +54,8 @@ if pcall(require, "incline") then
 			end
 
 			local design = {
+				{ " " },
+				{ icon, group = icon_hl },
 				{ " " },
 				{ filename, gui = style },
 				{ " " },
@@ -90,6 +94,10 @@ if pcall(require, "render-markdown") then
 		},
 		checkbox = {
 			enabled = false,
+		},
+		win_options = {
+			-- Applied in non-rendered modes (insert, visual); rendered modes keep 3
+			conceallevel = { default = 0 },
 		},
 	})
 
