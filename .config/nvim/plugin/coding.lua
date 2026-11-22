@@ -124,6 +124,7 @@ if path_check then
 		{ "<leader>gsq", "<CMD>G status --short<CR>", desc = "status (short)" },
 		{ "<leader>gab", "<CMD>G add %<CR>", desc = "add (Current Buffer)" },
 		{ "<leader>gaa", "<CMD>G add *<CR>", desc = "add (All)" },
+		{ "<leader>gbb", "<CMD>G blame<CR>", desc = "blame" },
 		{ "<leader>gaf", ":G add ", desc = "add (Manual)" },
 		{ "<leader>gce", "<CMD>G commit --edit<CR>", desc = "commit (edit)" },
 		{ "<leader>gca", "<CMD>G commit --amend<CR>", desc = "commit (amend)" },
