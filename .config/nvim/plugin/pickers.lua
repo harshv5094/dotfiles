@@ -24,10 +24,10 @@ require("mini.pick").setup({
 		move_up = "<M-k>",
 		move_start = "<M-g>",
 
-		mark = "<M-x>",
+		mark = "<M-m>",
 		mark_all = "<M-a>",
 
-		paste = "<M-r>",
+		paste = "<M-y>",
 
 		scroll_down = "<M-n>",
 		scroll_up = "<M-p>",
@@ -40,6 +40,7 @@ require("mini.pick").setup({
 		delete_word = "<M-w>",
 
 		choose = "<CR>",
+		choose_marked = "<M-CR>",
 		choose_in_split = "<M-s>",
 		choose_in_vsplit = "<M-v>",
 		choose_in_tabpage = "<C-t>",
