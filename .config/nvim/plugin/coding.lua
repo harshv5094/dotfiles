@@ -121,16 +121,17 @@ if require("tools").vim_plugin_path_checker("vim-fugitive") then
 	local keys = {
 		{ "<leader>gss", "<CMD>G status<CR>", desc = "status" },
 		{ "<leader>gsq", "<CMD>G status --short<CR>", desc = "status (short)" },
-		{ "<leader>gab", "<CMD>G add %<CR>", desc = "add (Current Buffer)" },
-		{ "<leader>gaa", "<CMD>G add *<CR>", desc = "add (All)" },
-		{ "<leader>gbb", "<CMD>G blame<CR>", desc = "blame" },
-		{ "<leader>gaf", ":G add ", desc = "add (Manual)" },
-		{ "<leader>gce", "<CMD>G commit --edit<CR>", desc = "commit (edit)" },
-		{ "<leader>gca", "<CMD>G commit --amend<CR>", desc = "commit (amend)" },
+		{ "<leader>gab", "<CMD>G add %<CR>", desc = "Current Buffer" },
+		{ "<leader>gaa", "<CMD>G add *<CR>", desc = "All" },
+		{ "<leader>gaf", ":G add ", desc = "Manual" },
+		{ "<leader>gbb", "<CMD>G blame %<CR>", desc = "Current Buffer" },
+		{ "<leader>gla", "<CMD>G log<CR>", desc = "All" },
+		{ "<leader>glb", "<CMD>G log %<CR>", desc = "Current Buffer" },
+		{ "<leader>gce", "<CMD>G commit --edit<CR>", desc = "Edit" },
+		{ "<leader>gca", "<CMD>G commit --amend<CR>", desc = "Amend" },
 		{ "<leader>gp", "<CMD>G pull --no-edit<CR>", desc = "pull (no-edit)" },
 		{ "<leader>gr", "<CMD>G reset --hard HEAD<CR>", desc = "reset (--hard) HEAD" },
 		{ "<leader>gP", "<CMD>G push --force-with-lease<CR>", desc = "push (force-with-lease)" },
-		{ "<leader>gll", "<CMD>G log<CR>", desc = "log" },
 	}
 
 	for _, key in ipairs(keys) do
