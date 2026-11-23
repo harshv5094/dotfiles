@@ -1,3 +1,9 @@
+-- NOTE: My neovim setup
+-- Author: Harsh Vyapari (@harshv5094)
+-- Inspiration from:
+--  - Matsuyama Takuya (aka. craftzdog): https://github.com/craftzdog/dotfiles
+--  - Maria Solano (aka. MariaSolOs): https://github.com/MariaSolOs/dotfiles
+
 -- Loading vim.loader: this'll cache the require modules
 if vim.loader then
 	vim.loader.enable()
