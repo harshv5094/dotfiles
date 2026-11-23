@@ -39,11 +39,6 @@ if pcall(require, "incline") then
 				filename = "[No Name]"
 			end
 
-			-- Adding plus sign for unsaved file
-			if modified then
-				filename = "[+] " .. filename
-			end
-
 			-- Determine styling: Bold only if focused
 			-- Keeps italic if modified, regardless of focus
 			local style = ""
@@ -53,13 +48,19 @@ if pcall(require, "incline") then
 				style = modified and "italic" or "none"
 			end
 
-			local design = {
-				{ " " },
+			local design = { { " " } }
+
+			-- Modified icon in front of the file icon
+			if modified then
+				table.insert(design, { "[+] " })
+			end
+
+			vim.list_extend(design, {
 				{ icon, group = icon_hl },
 				{ " " },
 				{ filename, gui = style },
 				{ " " },
-			}
+			})
 			return design
 		end,
 	})
