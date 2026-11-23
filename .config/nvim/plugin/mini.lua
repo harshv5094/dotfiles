@@ -23,6 +23,9 @@ end
 
 if pcall(require, "mini.files") then
 	require("mini.files").setup({
+		windows = {
+			max_number = 2,
+		},
 		options = {
 			use_as_default_explorer = true,
 			permanent_delete = false,
