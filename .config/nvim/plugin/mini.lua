@@ -6,6 +6,7 @@ local mini_plugins = {
 	"mini.icons",
 	"mini.bracketed",
 	"mini.jump2d",
+	"mini.git",
 }
 
 -- HACK: A loop for just loading mini plugins with their default settings.
