@@ -1,6 +1,6 @@
 local term = {
 	buf = nil, -- persistent terminal buffer
-	height_fraction = 0.4,
+	height_fraction = 0.38,
 }
 
 local lazygit = {
