@@ -15,8 +15,12 @@ if pcall(require, "conform") then
 			},
 		},
 		format_on_save = {
+			async = true,
 			timeout_ms = 500,
 			lsp_format = "fallback",
 		},
 	})
+	vim.keymap.set("n", "<leader>fb", function()
+		require("conform").format({ async = true })
+	end, { desc = "Format buffer" })
 end
