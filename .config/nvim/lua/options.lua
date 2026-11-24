@@ -31,7 +31,7 @@ vim.o.tabstop = 2 -- display a tab character as 2 spaces
 vim.o.softtabstop = 2 -- treat 2 spaces as a tab while editing
 vim.o.smartindent = true -- indent new lines based on syntax
 vim.o.confirm = true -- ask to save changes instead of failing on quit
-vim.opt.formatoptions:append({ "r" }) -- continue comments when pressing enter in insert mode
+vim.opt.formatoptions:append("r") -- continue comments when pressing enter in insert mode
 vim.opt.completeopt = { "menu", "menuone", "noselect", "popup", "fuzzy" } -- configure insert-mode completion behavior
 vim.o.foldmethod = "expr" -- Use expression for folding
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Use treesitter for folding
