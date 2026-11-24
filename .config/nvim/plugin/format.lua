@@ -14,7 +14,7 @@ if pcall(require, "conform") then
 				"ruff_organize_imports",
 			},
 		},
-		format_on_save = {
+		format_after_save = {
 			async = true,
 			timeout_ms = 500,
 			lsp_format = "fallback",
