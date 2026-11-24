@@ -77,6 +77,11 @@ local M = {
 		Unit = " ",
 		Value = " ",
 		Variable = "󰀫 ",
+		Command = "󰆍 ",
+		Lambda = "󰘧 ",
+		Treesitter = "󰙅 ",
+		Regex = "󰑑 ",
+		Spell = "󰓆 ",
 	},
 }
 
