@@ -52,7 +52,7 @@ if pcall(require, "incline") then
 
 			-- Modified icon in front of the file icon
 			if modified then
-				table.insert(design, { "[+] " })
+				table.insert(design, { require("icons").misc.dot .. " " })
 			end
 
 			vim.list_extend(design, {

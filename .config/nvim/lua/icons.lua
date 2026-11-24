@@ -7,6 +7,7 @@ local M = {
 		box = "󰏗",
 		buffers = "",
 		tree = "󰙅 ",
+		dot = "",
 	},
 
 	-- Diagnostics Icons
