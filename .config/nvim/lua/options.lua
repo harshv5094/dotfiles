@@ -1,5 +1,3 @@
-local g = vim.g
-
 -- Let ripgrep-based pickers search hidden files while still honoring .gitignore
 vim.env.RIPGREP_CONFIG_PATH = vim.fn.stdpath("config") .. "/.ripgreprc"
 
@@ -20,8 +18,8 @@ vim.api.nvim_create_autocmd("UIEnter", {
 })
 
 -- basic
-g.mapleader = " " -- use space as the leader key
-g.maplocalleader = "\\" -- use backslash as the local leader key
+vim.g.mapleader = " " -- use space as the leader key
+vim.g.maplocalleader = "\\" -- use backslash as the local leader key
 vim.o.ignorecase = true -- ignore case when searching
 vim.o.smartcase = true -- respect case when the search contains uppercase
 vim.o.inccommand = "split" -- preview substitutions live in a split window
@@ -78,11 +76,11 @@ vim.o.writebackup = false -- Disable writing backup file for config
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" } -- choose what a session saves
 
 -- file explorer
-g.netrw_liststyle = 3 -- show netrw entries as a tree
-g.netrw_banner = 1 -- show the netrw banner
-g.netrw_winsize = 25 -- set the netrw window width to 25%
-g.netrw_browse_split = 0 -- open netrw files in the current window
-g.netrw_altfile = 1 -- use the alternate file when opening from netrw
+vim.g.netrw_liststyle = 3 -- show netrw entries as a tree
+vim.g.netrw_banner = 1 -- show the netrw banner
+vim.g.netrw_winsize = 25 -- set the netrw window width to 25%
+vim.g.netrw_browse_split = 0 -- open netrw files in the current window
+vim.g.netrw_altfile = 1 -- use the alternate file when opening from netrw
 
 -- commands
 vim.api.nvim_create_user_command("LspLog", function()
