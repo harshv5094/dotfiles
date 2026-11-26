@@ -16,6 +16,7 @@ _darcs
 \.gitmodules
 \.pre-commit-config.yaml
 \.yamllint
+\.markdownlint.json
 
 # Ignore this custom folders
 \.github
