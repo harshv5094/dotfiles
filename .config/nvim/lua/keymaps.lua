@@ -44,6 +44,8 @@ map("n", "<C-l>", "<C-w>>", opts)
 -- Major Navigation
 map("n", "<M-j>", "<C-d>zz", opts)
 map("n", "<M-k>", "<C-u>zz", opts)
+map("n", "<M-Down>", "<C-d>zz", opts)
+map("n", "<M-Up>", "<C-u>zz", opts)
 
 -- My custom git initialization function
 map("n", "<leader>gi", tools.git_init, { desc = "Git init", noremap = true })
