@@ -49,7 +49,6 @@ vim.pack.add({
 
 	-- LSP
 	{ src = gh("saghen/blink.cmp"), version = vim.version.range("1.*") },
-	{ src = gh("rafamadriz/friendly-snippets") },
 	{ src = gh("moyiz/blink-emoji.nvim") },
 	{ src = gh("folke/lazydev.nvim") },
 	{ src = gh("mason-org/mason.nvim") },

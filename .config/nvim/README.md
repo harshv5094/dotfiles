@@ -33,4 +33,5 @@ lua/
   icons.lua              -> icon glyph tables (nerd font symbols)
 plugin/                  -> Auto imports plugin specs (one file per concern: lsp, ui, format, ...)
 lsp/                     -> per-server LSP configs (vim.lsp.Config), auto-loaded
+snippets/                -> VSCode-style snippets, vendored from rafamadriz/friendly-snippets (MIT)
 ```

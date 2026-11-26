@@ -52,6 +52,13 @@ if pcall(require, "blink.cmp") then
 		sources = {
 			default = { "lazydev", "lsp", "path", "snippets", "buffer", "emoji" },
 			providers = {
+				snippets = {
+					opts = {
+						-- Snippets are vendored in ~/.config/nvim/snippets (see snippets/package.json)
+						friendly_snippets = false,
+						search_paths = { vim.fn.stdpath("config") .. "/snippets" },
+					},
+				},
 				lazydev = {
 					name = "LazyDev",
 					module = "lazydev.integrations.blink",
