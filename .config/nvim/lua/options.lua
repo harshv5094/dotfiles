@@ -51,6 +51,7 @@ vim.opt.fillchars = { -- customize the characters used for window fills
 	foldsep = " ",
 	diff = "╱",
 	eob = " ",
+	lastline = "…",
 }
 
 -- ui
