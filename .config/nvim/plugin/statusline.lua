@@ -126,6 +126,26 @@ if pcall(require, "mini.statusline") then
 	end
 
 	---------------------------------------------------------------------------
+	-- Spell (drawn on the Filename section background)
+	---------------------------------------------------------------------------
+
+	local function set_spell_hl()
+		vim.api.nvim_set_hl(0, "MiniStatuslineSpell", {
+			fg = fg_of("DiagnosticWarn", "WarningMsg"),
+			bg = bg_of("MiniStatuslineFileName"),
+			bold = true,
+		})
+	end
+
+	local function spell_str()
+		if not vim.wo.spell then
+			return ""
+		end
+		local text = MiniStatusline.is_truncated(120) and "S" or "SPELL"
+		return "%#MiniStatuslineSpell#" .. text .. "%#MiniStatuslineFilename#"
+	end
+
+	---------------------------------------------------------------------------
 	-- Git branch (no post-processing of a formatted string)
 	---------------------------------------------------------------------------
 
@@ -175,7 +195,7 @@ if pcall(require, "mini.statusline") then
 					"%<",
 					{ hl = "MiniStatuslineFilename", strings = { filename } },
 					"%=",
-					{ hl = "MiniStatuslineFilename", strings = { diff_str() } },
+					{ hl = "MiniStatuslineFilename", strings = { spell_str(), diff_str() } },
 					{ hl = "MiniStatuslineDevinfo", strings = { "%p%%" } },
 					{ hl = mode_hl, strings = { clock_str } },
 				})
@@ -190,11 +210,12 @@ if pcall(require, "mini.statusline") then
 	-- Autocmds and timer
 	---------------------------------------------------------------------------
 
-	local gr = vim.api.nvim_create_augroup("my_statusline", { clear = true })
+	local statusline_group = vim.api.nvim_create_augroup("my_statusline", { clear = true })
 
 	local function apply_hl()
 		set_diff_hl()
 		set_diag_hl()
+		set_spell_hl()
 	end
 
 	apply_hl()
@@ -202,7 +223,7 @@ if pcall(require, "mini.statusline") then
 	-- Scheduled so the colorscheme (and mini.statusline's own ColorScheme
 	-- handler) have finished before we read their groups.
 	vim.api.nvim_create_autocmd("ColorScheme", {
-		group = gr,
+		group = statusline_group,
 		callback = function()
 			vim.schedule(apply_hl)
 		end,
@@ -210,7 +231,7 @@ if pcall(require, "mini.statusline") then
 
 	-- gruvbox reloads its palette when 'background' flips (dark <-> light)
 	vim.api.nvim_create_autocmd("OptionSet", {
-		group = gr,
+		group = statusline_group,
 		pattern = "background",
 		callback = function()
 			vim.schedule(apply_hl)
@@ -220,13 +241,13 @@ if pcall(require, "mini.statusline") then
 	-- Statusline content is computed on render, so just request a redraw
 	-- when the data it depends on changes.
 	vim.api.nvim_create_autocmd({ "DiagnosticChanged" }, {
-		group = gr,
+		group = statusline_group,
 		callback = function()
 			vim.cmd.redrawstatus()
 		end,
 	})
 	vim.api.nvim_create_autocmd("User", {
-		group = gr,
+		group = statusline_group,
 		pattern = "MiniDiffUpdated",
 		callback = function()
 			vim.cmd.redrawstatus()
@@ -251,7 +272,7 @@ if pcall(require, "mini.statusline") then
 	)
 
 	vim.api.nvim_create_autocmd("VimLeavePre", {
-		group = gr,
+		group = statusline_group,
 		callback = stop_clock,
 	})
 end

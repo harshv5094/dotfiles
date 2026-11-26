@@ -115,5 +115,10 @@ map({ "n", "t" }, "<M-`>", tools.toggle_terminal, { desc = "Toggle Terminal" })
 -- Toggle Lazygit
 map({ "n", "t" }, "<leader>gg", tools.toggle_lazygit, { desc = "LazyGit" })
 
+vim.keymap.set("n", "<leader>us", function()
+	vim.wo.spell = not vim.wo.spell
+	vim.notify("Spell: " .. (vim.wo.spell and "on" or "off"))
+end, { desc = "Toggle spell check" })
+
 -- Escape keymap for terminal
 map("t", "<S-Esc>", "<C-\\><C-n>", opts)
