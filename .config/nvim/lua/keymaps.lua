@@ -83,12 +83,6 @@ if vim.fn.has("linux") == 1 or vim.fn.has("mac") == 1 then
 	map("n", "<leader>fX", function()
 		tools.chmod("-")
 	end, { desc = "chmod -x <current-buffer>" })
-
-	-- A custom command for opening manpage in tab window
-	vim.api.nvim_create_user_command("Vhelp", "tab help <args>", {
-		nargs = "?",
-		complete = "help",
-	})
 end
 
 -- Quit while asking
