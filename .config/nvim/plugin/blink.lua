@@ -63,7 +63,6 @@ if pcall(require, "blink.cmp") then
 					auto_insert = false,
 				},
 			},
-			auto_show_delay_ms = 500,
 			ghost_text = {
 				enabled = true,
 			},
@@ -75,8 +74,7 @@ if pcall(require, "blink.cmp") then
 				draw = {
 					columns = {
 						{ "kind_icon" },
-						{ "label", "label_description", gap = 1 },
-						{ "source_name", gap = 1 },
+						{ "label", "label_description", "source_name", gap = 1 },
 					},
 					components = {
 						source_name = {
