@@ -87,7 +87,7 @@ local keys = {
 	{ "<leader>sb", function() require("mini.extra").pickers.buf_lines({ scope = "current" }) end, "Buffer Lines" },
 	{ "<leader>sc", function() require("mini.extra").pickers.history() end, "Command History" },
 	{ "<leader>sd", function() require("mini.extra").pickers.diagnostic({ scope = "all" }) end, "Diagnostics" },
-	{ "<leader>sh", function() require("mini.pick").builtin.help() end, "Help Tags" },
+	{ "<leader>sh", function() require("mini.pick").builtin.help({ default_split = "tab" }) end, "Help Tags" },
 	{ "<leader>sH", function() require("mini.extra").pickers.hl_groups() end, "Highlight Groups" },
 	{ "<leader>sj", function() require("mini.extra").pickers.list({ scope = "jump" }) end, "Jumplist" },
 	{ "<leader>sk", function() require("mini.extra").pickers.keymaps() end, "Keymaps" },
