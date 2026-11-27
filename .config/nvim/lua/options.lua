@@ -58,6 +58,8 @@ vim.opt.fillchars = { -- customize the characters used for window fills
 vim.o.laststatus = 3 -- use one global statusline for all windows
 -- vim.o.mouse = "" -- disable mouse support
 vim.o.pumheight = 10 -- limit the popup menu to 10 items
+vim.o.pumwidth = 20 -- Starting limit the width of popup menu
+vim.o.pummaxwidth = 40 -- The maximum limit of the popup menu
 
 -- windows
 vim.o.splitbelow = true -- open horizontal splits below the current window
