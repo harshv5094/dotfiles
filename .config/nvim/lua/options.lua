@@ -43,8 +43,9 @@ vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Use treesitter for folding
 vim.o.foldlevel = 99 -- open all folds by default
 
 -- appearance
-vim.o.title = true -- set the terminal window title
+vim.o.number = true -- enable the number (for hybrid number)
 vim.o.relativenumber = true -- show line numbers relative to the cursor
+vim.o.title = true -- set the terminal window title
 vim.o.cursorline = true -- highlight the line the cursor is on
 vim.o.signcolumn = "yes" -- always reserve space for the sign column
 vim.o.conceallevel = 2 -- hide concealed text unless it has a custom replacement
