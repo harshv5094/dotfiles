@@ -4,6 +4,11 @@ vim.env.RIPGREP_CONFIG_PATH = vim.fn.stdpath("config") .. "/.ripgreprc"
 -- Better i,j,k,l,-,+ discipline
 require("discipline").cowboy()
 
+-- HACK: Setting up gcc for windows
+if vim.fn.has("win32") == 1 and vim.fn.executable("cl.exe") == 0 then
+	vim.env.CC = "gcc"
+end
+
 -- use PowerShell on Windows
 if vim.fn.has("win32") == 1 then
 	vim.o.shell = "pwsh"

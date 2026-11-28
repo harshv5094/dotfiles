@@ -1,10 +1,5 @@
 if pcall(require, "nvim-treesitter") then
 	---@type nvim-ts.parsers
-	-- HACK: Setting up gcc for windows
-	if vim.fn.has("win32") == 1 and vim.fn.executable("cl.exe") == 0 then
-		vim.env.CC = "gcc"
-	end
-
 	local parsers = {
 		"bash",
 		"gitcommit",
