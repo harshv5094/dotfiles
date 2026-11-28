@@ -534,5 +534,12 @@
     ],
     "body": "> [!CAUTION]\n> ",
     "description": "Insert Caution"
+  },
+  "Disable Lint Comments": {
+    "prefix": [
+      "dlc"
+    ],
+    "body": "<!-- markdownlint-disable ${0} -->",
+    "description": "Insert markdown-lint disable comments"
   }
 }
