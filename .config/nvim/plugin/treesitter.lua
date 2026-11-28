@@ -36,8 +36,14 @@ if pcall(require, "treesitter-context") then
 	})
 
 	vim.keymap.set("n", "<leader>ut", function()
-		vim.cmd("TSContext toggle")
-		vim.notify("treesitter context: " .. (require("treesitter-context").enabled and "on" or "off"))
+		require("treesitter-context").toggle()
+		local string
+		if require("treesitter-context").enabled() then
+			string = "on"
+		else
+			string = "off"
+		end
+		vim.notify("Treesitter Context: " .. string)
 	end, { desc = "Toggle Treesitter Context" })
 end
 
