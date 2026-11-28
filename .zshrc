@@ -111,6 +111,9 @@ AUR_HELPER="$(command -v paru || command -v yay)"
 if [[ -n "$AUR_HELPER" ]]; then
   # Install packages interactively
   pkgi() {
+    echo "Updating database..."
+    $AUR_HELPER -Sy
+
     pkgs=$($AUR_HELPER -Slq | fzf --border-label "** Install Packages ($AUR_HELPER) **" \
       --multi \
       --preview "${AUR_HELPER} -Sii {1}" \
